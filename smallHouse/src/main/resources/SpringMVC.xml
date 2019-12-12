@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mv="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 配置扫描包  -->
+    <context:component-scan base-package="cn.bdqn" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--2、配置视图解析器，作用是配置目录前缀和文件后缀，然后解析为一个资源文件-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--3、在SpringMVC.xml主配置文件中添加一个注解驱动。 -->
+    <mvc:annotation-driven/>
+
+    <!-- 静态资源文件的引用 -->
+    <!--
+        mapping:将静态资源映射到指定的路径下
+        location：本地静态资源文件所在的目录
+    -->
+    <mvc:resources mapping="/js/*" location="/js/"/>
+    <mvc:resources mapping="/image/*" location="/image/"/>
+    <mvc:resources mapping="/css/*" location="/css/"/>
+
+    <!--
+        这个可以不通过再新建Controller就能访问一个物理视图名
+        path:请求路径
+        view-name:视图名称
+    -->
+    <mvc:view-controller path="/admin/queryAdmin" view-name="queryAll"/>
+
+
+</beans>
