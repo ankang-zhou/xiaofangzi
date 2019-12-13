@@ -40,7 +40,7 @@
         path:请求路径
         view-name:视图名称
     -->
-    <mvc:view-controller path="/admin/queryAdmin" view-name="queryAll"/>
+<!--    <mvc:view-controller path="/admin/queryAdmin" view-name="queryAll"/>-->
 
 
 </beans>
