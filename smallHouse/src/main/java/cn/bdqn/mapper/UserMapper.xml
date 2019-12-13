@@ -174,4 +174,13 @@
       user_profession = #{userProfession,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <!--根据邮箱跟密码登录-->
+  <select id="selectUserByEmailAndPassword" resultMap="BaseResultMap">
+    select
+        <include refid="Base_Column_List" />
+    where
+    user_eamil = #{Email} and user_password = #{userPassword}
+  </select>
+
 </mapper>
