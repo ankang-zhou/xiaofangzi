@@ -14,6 +14,14 @@
     from t_type
     where type_id = #{typeId,jdbcType=INTEGER}
   </select>
+
+  <!-- 查询博客类型列表 -->
+  <select id="selectTypeList" resultType="cn.bdqn.domain.Type">
+    select
+    <include refid="Base_Column_List" />
+    from t_type
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_type
     where type_id = #{typeId,jdbcType=INTEGER}

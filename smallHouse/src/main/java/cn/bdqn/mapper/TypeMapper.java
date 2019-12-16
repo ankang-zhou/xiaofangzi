@@ -2,6 +2,8 @@ package cn.bdqn.mapper;
 
 import cn.bdqn.domain.Type;
 
+import java.util.List;
+
 public interface TypeMapper {
     int deleteByPrimaryKey(Integer typeId);
 
@@ -14,4 +16,6 @@ public interface TypeMapper {
     int updateByPrimaryKeySelective(Type record);
 
     int updateByPrimaryKey(Type record);
+
+    public List<Type> selectTypeList();
 }
