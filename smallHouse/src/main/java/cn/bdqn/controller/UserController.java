@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
@@ -17,21 +18,31 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/addUserInfo")
-    public String addUserInfo(User user){
+    public String addUserInfo(User user,Model model){
 
         userService.insertUserInfo(user);
 
-        return "Login";
+        return "login";
     }
 
     @RequestMapping("/LoginVerify")
-    public String LoginVerify(String email, String pwd, Model model){
+    public String loginVerify(String nickName,String email, String pwd, Model model){
 
-        User user = userService.selectUserByUserInfo(email,pwd);
+        User user = userService.selectUserByUserInfo(nickName,email,pwd);
 
         model.addAttribute("user",user);
 
         return "main";
+    }
+
+    @RequestMapping("/EmailVerify")
+    @ResponseBody
+    public String EmailVerify(String userEamil){
+
+        int num = userService.selectNumByEmail(userEamil);
+        System.out.println(num);
+
+        return String.valueOf(num);
     }
 
 }

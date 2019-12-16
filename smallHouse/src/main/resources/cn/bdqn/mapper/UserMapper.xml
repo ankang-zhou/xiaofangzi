@@ -174,13 +174,19 @@
       user_profession = #{userProfession,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-
   <!--根据邮箱跟密码登录-->
-  <select id="selectUserByEmailAndPassword" resultMap="BaseResultMap">
+  <select id="selectUserByNickNameAndEmailAndPassword" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
+    from
+        t_user
     where
-    user_eamil = #{Email} and user_password = #{userPassword}
+    user_nickName = #{nickName} and user_eamil = #{Email} and user_password = #{userPassword}
   </select>
-
+  <!--根据邮箱查询信息条数-->
+  <select id="selectNumByEmail" resultType="int">
+    select count(*)
+    from t_user
+    where user_eamil = #{email}
+  </select>
 </mapper>

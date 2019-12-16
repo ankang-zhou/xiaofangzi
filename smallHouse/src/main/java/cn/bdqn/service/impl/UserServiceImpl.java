@@ -20,8 +20,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectUserByUserInfo(String email, String pwd) {
-        return userMapper.selectUserByEmailAndPassword(email,pwd);
+    public User selectUserByUserInfo(String nickName, String email, String pwd) {
+        return userMapper.selectUserByNickNameAndEmailAndPassword(nickName, email, pwd);
+    }
+
+    @Override
+    public int selectNumByEmail(String Email) {
+        return userMapper.selectNumByEmail(Email);
     }
 
 }

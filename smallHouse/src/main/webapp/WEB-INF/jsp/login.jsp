@@ -1,304 +1,127 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: lenovo
+  Date: 2019/12/13
+  Time: 10:43
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-	<title>易图云</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/iconfont.css">
-	<script src="js/jquery.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width-device-width,initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="sie-edge" />
+<%--	<% String path = request.getContextPath();%>--%>
+<%--	<link rel="stylesheet" href="<%=path%>/css/style.css"/>--%>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+	<title>登录注册页面</title>
+	<!--图标库-->
+	<script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+
 </head>
+<script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js" type="text/javascript"></script>
+
+
 <body>
-<div class="login-nav fix">
-	<ul class="f-r">
-		<li><a href="#">首页</a></li>
-		<li><a href="#">协同</a></li>
-		<li><a href="#">应用</a></li>
-		<li><a href="#">案例</a></li>
-		<li><a href="#">开发者</a></li>
-		<li><a href="#">企业版</a></li>
-	</ul>
-</div>
-<div class="login-banner"></div>
-<div class="login-box">
-	<div class="box-con tran">
-		<div class="login-con f-l">
-			<div class="form-group">
-				<input type="text" placeholder="邮箱"/>
-				<span class="error-notic">邮箱不正确</span>
-			</div>
-			<div class="form-group">
-				<input type="password" placeholder="密码">
-				<span class="error-notic">密码不正确</span>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="#" class="tran">登录</a>
-					<img class="loading" src="images/loading.gif" style="display:block">
-				</button>
-			</div>
-			<div class="from-line"></div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
-			</div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-reset a-tag tran">忘记密码？重置 <i class="iconfont tran">&#xe606;</i></a>
-			</div>
-		</div>
-		<!-- 登录 -->
-
-		<div class="signup f-l">
-			<div class="form-group">
-				<div class="signup-form">
-					<input type="text" placeholder="邮箱" class="email-mobile" onBlur="verify.verifyEmail(this)">
-				</div>
-				<span class="error-notic">邮箱格式不正确</span>
-			</div>
-			<div class="signup-email">
-				<div class="form-group">
-					<input type="text" placeholder="您的名字">
-				</div>
-				<div class="form-group">
-					<input type="password" placeholder="密码（字母、数字，至少6位）" onBlur="verify.PasswordLenght(this)">
-					<span class="error-notic">密码长度不够</span>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="tran pr">
-						<a href="javascript:;" class="tran">注册</a>
-						<img class="loading" src="images/loading.gif">
-					</button>
-				</div>
-				<p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p>
-			</div><!-- 邮箱注册 -->
-			<div class="signup-tel" style="display:none">
-				<div class="signup-form" id="message-inf" style="display:none">
-					<input type="text" placeholder="短信验证码" style="width:180px;" onBlur="verify.VerifyCount(this)">
-					<a href="javascript:;" class="reacquire">重新获取（59）</a>
-					<span class="error-notic">验证码输入错误</span>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="tran get-message pr">
-						<a href="javascript:;" class="tran">获取短信验证码</a>
-						<img class="loading" src="images/loading.gif">
-					</button>
-				</div>
-			</div><!-- 手机号码注册 -->
-			<div class="from-line"></div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-login a-tag tran blue-border">已有帐号？登录<i class="iconfont tran">&#xe606;</i></a>
-			</div>
-		</div>
-		<!-- 注册 -->
-
-		<div class="other-way f-l">
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="javascript:;" class="tran">QQ帐号登录</a>
-					<img class="loading" src="images/loading.gif">
-				</button>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="javascript:;" class="tran">新浪微博帐号登录</a>
-					<img class="loading" src="images/loading.gif">
-				</button>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="javascript:;" class="tran">微信帐号登录</a>
-					<img class="loading" src="images/loading.gif">
-				</button>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="javascript:;" class="tran">网易帐号登录</a>
-					<img class="loading" src="images/loading.gif">
-				</button>
-			</div>
-			<div class="from-line"></div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-signup a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
-			</div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran">&#xe606;</i></a>
-			</div>
-		</div>
-		<!-- 第三方登录 -->
-
-		<div class="mimachongzhi f-l">
-			<div class="form-group">
-				<input type="text" placeholder="请输入您的邮箱地址">
-				<span class="error-notic">邮箱格式不正确</span>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="javascript:;" class="tran">发送重置密码邮件</a>
-					<img class="loading" src="images/loading.gif">
-				</button>
-			</div>
-			<div class="from-line"></div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-signup	a-tag tran blue-border">还没有帐号？免费注册<i class="iconfont tran">&#xe606;</i></a>
-			</div>
-			<div class="form-group">
-				<a href="javascript:;" class="move-login a-tag tran">已有帐号？登录<i class="iconfont tran">&#xe606;</i></a>
-			</div>
-		</div>
-		<!-- 密码重置 -->
-
-		<div class="mobile-success f-l">
-			<p>手机号 <span>186****7580</span> 验证成功</p>
-			<p>请完善您的账号信息，您也可以<a href="#">绑定现有账号</a></p>
-			<div class="form-group">
-				<input type="text" placeholder="邮箱" class="email-mobile" onBlur="verify.verifyEmail(this)"/>
-				<span class="error-notic">邮箱格式不正确</span>
-			</div>
-			<div class="form-group">
-				<input type="text" placeholder="您的名字">
-			</div>
-			<div class="form-group">
-				<input type="password" placeholder="密码（字母、数字，至少6位）" onBlur="verify.PasswordLenght(this)"/>
-				<span class="error-notic">密码长度不够</span>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="tran pr">
-					<a href="javascript:;" class="tran">注册</a>
-					<img class="loading" src="images/loading.gif">
-				</button>
-			</div>
-			<p class="view-clause">点击注册，即同意我们的 <a href="#">用户隐私条款</a></p>
-		</div>
-		<!-- 手机注册成功添补信息 -->
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="${pageContext.request.contextPath}/user/addUserInfo" method="post" id="register">
+			<h1>第三方按钮注册</h1>
+			<div class="social-container"> <a href="#" class="social">
+				<ion-icon name="logo-facebook"></ion-icon>
+			</a> <a href="#" class="social">
+				<ion-icon name="logo-googleplus"></ion-icon>
+			</a> <a href="#" class="social">
+				<ion-icon name="logo-linkedin"></ion-icon>
+			</a> </div>
+			<span>或使用您的电子邮箱注册</span>
+			<input type="text" placeholder="姓名" name="userNickname" class="userNickname">
+			<input type="email" placeholder="邮箱" name="userEamil" class="userEamil">
+			<input type="password" placeholder="密码" name="userPassword" class="userPassword">
+			<input type="submit" value="注册" id="registerSubmit">
+		</form>
 	</div>
-</div>
+	<div class="form-container sign-in-container">
+		<form action="${pageContext.request.contextPath}/user/LoginVerify" method="post" id="login">
+			<h1>第三方登录</h1>
+			<div class="social-container"> <a href="#" class="social">
+				<ion-icon name="logo-facebook"></ion-icon>
+			</a> <a href="#" class="social">
+				<ion-icon name="logo-googleplus"></ion-icon>
+			</a> <a href="#" class="social">
+				<ion-icon name="logo-linkedin"></ion-icon>
+			</a> </div>
+			<span>或用邮箱登录</span>
+			<input type="email" placeholder="邮箱" name="userEamil" class="loginUserEamil">
+			<input type="password" placeholder="密码" name="userPassword" class="loginUserPassword">
+			<input type="submit" value="登录" id="loginSubmit">
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>欢迎回来</h1>
+				<p>与我们保持联系请登录您的个人信息</p>
+				<button class="ghost" id="signIn">登录</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>欢迎光临</h1>
+				<p>输入您的个人资料，并与我们一起开始旅程</p>
+				<button class="ghost" id="signUp">注册</button>
+			</div>
+		</div>
+	</div>
 
-<div style="height:80px;"></div>
-
-<div class="login-footer">
-	<p>Copyright© 2014-2015 Powered by <a href="http://www.17sucai.com/">17素材网</a> </p>
-	<p>沪ICP备13043785号-1</p>
 </div>
-<script>
-	var _handle='';//储存电话是否填写正确
-	$(function(){
-		$(".signup-form input").on("focus",function(){
-			$(this).parent().addClass("border");
+</body><script  src="${pageContext.request.contextPath}/js/script.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$("#registerSubmit").off().on('click',function(event){
+			var flag = true;
+			if($(".userNickname").val()==null||$(".userNickname").val()==""){
+				alert("请输入昵称");
+				flag = false;
+			}else if($(".userEamil").val()==null||$(".userEamil").val()==""){
+				alert("请输入邮箱");
+				flag = false;
+			}else if($(".userPassword").val()==null||$(".userPassword").val()==""){
+				alert("请输入密码");
+				flag = false;
+			}
+			if(!flag){
+				event.preventDefault();
+			}
 		});
-		$(".signup-form input").on("blur",function(){
-			$(this).parent().removeClass("border");
+		$(".userEamil").blur(function () {
+			if ($(".userEamil").val()!=null&&$(".userEamil").val()!=""){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/user/EmailVerify",
+					type:"POST",
+					data:$(".userEamil").serialize(),
+					dataType:"JSON",
+					success:function (data) {
+						if (data!="0"){
+							$(".userEamil").val("");
+							alert("该邮箱已被注册")
+						}
+					}
+				})
+			}
+
 		})
-		//注册方式切换
-		$(".signup-select").on("click",function(){
-			var _text=$(this).text();
-			var $_input=$(this).prev();
-			$_input.val('');
-			if(_text=="手机注册"){
-				$(".signup-tel").fadeIn(200);
-				$(".signup-email").fadeOut(180);
-				$(this).text("邮箱注册");
-				$_input.attr("placeholder","手机号码");
-				$_input.attr("onblur","verify.verifyMobile(this)");
-				$(this).parents(".form-group").find(".error-notic").text("手机号码格式不正确")
-
+		$("#loginSubmit").off().on('click',function(event){
+			var flag = true;
+			if($(".loginUserEamil").val()==null||$(".loginUserEamil").val()==""){
+				alert("请输入邮箱");
+				flag = false;
+			}else if($(".loginUserPassword").val()==null||$(".loginUserPassword").val()==""){
+				alert("请输入密码");
+				flag = false;
 			}
-			if(_text=="邮箱注册"){
-				$(".signup-tel").fadeOut(180);
-				$(".signup-email").fadeIn(200);
-				$(this).text("手机注册");
-				$_input.attr("placeholder","邮箱");
-				$_input.attr("onblur","verify.verifyEmail(this)");
-				$(this).parents(".form-group").find(".error-notic").text("邮箱格式不正确")
+			if(!flag){
+				event.preventDefault();
 			}
 		});
-		//步骤切换
-		var _boxCon=$(".box-con");
-		$(".move-login").on("click",function(){
-			$(_boxCon).css({
-				'marginLeft':0
-			})
-		});
-		$(".move-signup").on("click",function(){
-			$(_boxCon).css({
-				'marginLeft':-320
-			})
-		});
-		$(".move-other").on("click",function(){
-			$(_boxCon).css({
-				'marginLeft':-640
-			})
-		});
-		$(".move-reset").on("click",function(){
-			$(_boxCon).css({
-				'marginLeft':-960
-			})
-		});
-		$("body").on("click",".move-addinf",function(){
-			$(_boxCon).css({
-				'marginLeft':-1280
-			})
-		});
-
-		//获取短信验证码
-		var messageVerify=function (){
-			$(".get-message").on("click",function(){
-				if(_handle){
-					$("#message-inf").fadeIn(100)
-					$(this).html('<a href="javascript:;">下一步</a><img class="loading" src="images/loading.gif">').addClass("move-addinf");
-				}
-			});
-		}();
-	});
-
-	//表单验证
-	function showNotic(_this){
-		$(_this).parents(".form-group").find(".error-notic").fadeIn(100);
-		$(_this).focus();
-	}//错误提示显示
-	function hideNotic(_this){
-		$(_this).parents(".form-group").find(".error-notic").fadeOut(100);
-	}//错误提示隐藏
-	var verify={
-		verifyEmail:function(_this){
-			var validateReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-			var _value=$(_this).val();
-			if(!validateReg.test(_value)){
-				showNotic(_this)
-			}else{
-				hideNotic(_this)
-			}
-		},//验证邮箱
-		verifyMobile:function(_this){
-			var validateReg = /^((\+?86)|(\(\+86\)))?1\d{10}$/;
-			var _value=$(_this).val();
-			if(!validateReg.test(_value)){
-				showNotic(_this);
-				_handle=false;
-			}else{
-				hideNotic(_this);
-				_handle=true;
-			}
-			return _handle
-		},//验证手机号码
-		PasswordLenght:function(_this){
-			var _length=$(_this).val().length;
-			if(_length<6){
-				showNotic(_this)
-			}else{
-				hideNotic(_this)
-			}
-		},//验证设置密码长度
-		VerifyCount:function(_this){
-			var _count="123456";
-			var _value=$(_this).val();
-			console.log(_value)
-			if(_value!=_count){
-				showNotic(_this)
-			}else{
-				hideNotic(_this)
-			}
-		}//验证验证码
-	}
+	})
 </script>
-
-</body>
 </html>
