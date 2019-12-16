@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.mapper.ThemeMapper" >
+  <resultMap id="BaseResultMap" type="cn.bdqn.domain.Theme" >
+    <id column="theme_id" property="themeId" jdbcType="INTEGER" />
+    <result column="theme_name" property="themeName" jdbcType="VARCHAR" />
+    <result column="theme_url" property="themeUrl" jdbcType="VARCHAR" />
+    <result column="theme_state" property="themeState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    theme_id, theme_name, theme_url, theme_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_theme
+    where theme_id = #{themeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_theme
+    where theme_id = #{themeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.bdqn.domain.Theme" >
+    insert into t_theme (theme_id, theme_name, theme_url, 
+      theme_state)
+    values (#{themeId,jdbcType=INTEGER}, #{themeName,jdbcType=VARCHAR}, #{themeUrl,jdbcType=VARCHAR}, 
+      #{themeState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bdqn.domain.Theme" >
+    insert into t_theme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="themeId != null" >
+        theme_id,
+      </if>
+      <if test="themeName != null" >
+        theme_name,
+      </if>
+      <if test="themeUrl != null" >
+        theme_url,
+      </if>
+      <if test="themeState != null" >
+        theme_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="themeId != null" >
+        #{themeId,jdbcType=INTEGER},
+      </if>
+      <if test="themeName != null" >
+        #{themeName,jdbcType=VARCHAR},
+      </if>
+      <if test="themeUrl != null" >
+        #{themeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="themeState != null" >
+        #{themeState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bdqn.domain.Theme" >
+    update t_theme
+    <set >
+      <if test="themeName != null" >
+        theme_name = #{themeName,jdbcType=VARCHAR},
+      </if>
+      <if test="themeUrl != null" >
+        theme_url = #{themeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="themeState != null" >
+        theme_state = #{themeState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where theme_id = #{themeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bdqn.domain.Theme" >
+    update t_theme
+    set theme_name = #{themeName,jdbcType=VARCHAR},
+      theme_url = #{themeUrl,jdbcType=VARCHAR},
+      theme_state = #{themeState,jdbcType=INTEGER}
+    where theme_id = #{themeId,jdbcType=INTEGER}
+  </update>
+</mapper>
