@@ -1,0 +1,68 @@
+/*writeBlog CSS*/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #FAF2EA;
+}
+
+/*写博客页面标题*/
+.titleTd {
+    font-family: YouYuan;
+    font-weight: bold;
+}
+
+/*form start*/
+#title {
+    width: 400px;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 14px;
+    height: 26px
+}
+
+#typeId {
+    width: 154px;
+    font-size: 14px;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    width: 150px;
+    height: 26px;
+    padding: 0 5px;
+}
+
+#summary {
+    width: 750px;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-size: 14px;
+}
+
+#myTextarea {
+    width: 750px;
+    height: 800px;
+}
+
+#submit {
+    text-align: center;
+    width: 300px;
+    font-weight: bold;
+    line-height: 30px;
+    display: inline-block;
+    border: 1px solid lightseagreen;
+    background-color: lightseagreen;
+    border-radius: 20px;
+    margin-bottom: 150px;
+    margin-left: 450px;
+}
+
+#submit:hover{
+    border: 1px solid lightslategrey;
+    background-color: lightslategrey;
+}
+
+/*form end*/

@@ -16,12 +16,12 @@ public class UserServiceImpl implements UserService {
     public void insertUserInfo(User user) {
 
         userMapper.insertSelective(user);
-
     }
 
+    //根据账号和密码查询用户信息
     @Override
-    public User selectUserByUserInfo(String nickName, String email, String pwd) {
-        return userMapper.selectUserByNickNameAndEmailAndPassword(nickName, email, pwd);
+    public User selectUserByUserInfo(String email, String pwd) {
+        return userMapper.selectUserByNickNameAndEmailAndPassword(email,pwd);
     }
 
     @Override

@@ -11,7 +11,9 @@
     <title>Title</title>
 </head>
 <body>
+
     <jsp:forward page="WEB-INF/jsp/login.jsp"></jsp:forward>
-<%--    <jsp:forward page="WEB-INF/jsp/writeBlog.jsp"></jsp:forward>--%>
+
 </body>
+
 </html>

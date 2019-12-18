@@ -3,15 +3,17 @@ package cn.bdqn.domain;
 import java.util.Date;
 
 public class Article {
-    private Integer articleId;
+    private Integer articleId;  //文章Id
 
     private String articleTitle;
 
     private Integer typeId;
 
+    private Integer userId; //用户Id
+
     private Integer adminId;
 
-    private Date articleTime;
+    private Date articleTime;//发布时间
 
     private Integer articlePageview;
 
@@ -49,6 +51,14 @@ public class Article {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getAdminId() {

@@ -23,16 +23,22 @@ public class UtilController {
      * @return Map<String, Object> location(图片要上传的位置)
      * @throws
      */
+    /*实现思路
+    * 工具类ImageUtil
+    *
+    *
+    * */
     @RequestMapping("/uploadImage")
-    public @ResponseBody Map<String, Object> uploadImage(@RequestParam("file") MultipartFile file,
+    @ResponseBody
+    public Map<String, Object> uploadImage(@RequestParam("file") MultipartFile file,
                                     HttpServletRequest request) throws Exception {
         Map<String, Object> ret = new HashMap<>();
 
         String realPath = request.getSession().getServletContext().getRealPath("/"); //获得真实路径
-        String stuId = request.getParameter("stuId");//获得学号
-        Integer maxLogId = Integer.parseInt(request.getParameter("maxLogId")); // 获得最大的日志编号
-        Integer logId = maxLogId+1;//当前日志编号
-        String location = ImageUtil.uploadImage(file, realPath, stuId, logId);
+        Integer userId = Integer.parseInt(request.getParameter("userId"));//获得用户Id
+        Integer maxArticleId = Integer.parseInt(request.getParameter("maxArticleId")); // 获得最大的文章编号
+        Integer articleId = maxArticleId+1;//当前文章编号
+        String location = ImageUtil.uploadImage(file, realPath, userId, articleId);
 
         ret.put("location", location);
 

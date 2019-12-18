@@ -195,4 +195,13 @@
       theme_id = #{themeId,jdbcType=INTEGER}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
+
+  <!-- 获得最大的文章编号 -->
+  <select id="getMaxArticleId" resultType="java.lang.Integer">
+    SELECT article_id
+    FROM t_article
+    ORDER BY article_id DESC
+    LIMIT 1
+  </select>
+
 </mapper>

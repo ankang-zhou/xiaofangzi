@@ -16,4 +16,7 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    //获得最大的文章编号
+    public Integer getMaxArticleId();
 }
