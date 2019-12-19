@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>写文章-小房子博客</title>
+    <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
     <%-- writeBlog CSS   --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/writeBlog.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.css" />
@@ -24,7 +25,7 @@
 </head>
 <body>
 <div class="container">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <table class="table table-hover">
             <tr>
                 <td class="titleTd">标题：</td>
@@ -56,49 +57,39 @@
         </table>
         <input type="submit" id="submit" value="提          交" />
     </form>
-
 </div>
 </body>
 <script type="text/javascript">
     tinymce.init({
         selector: "#myTextarea",
         language: 'zh_CN',
-        plugins: [
-            'advlist autolink lists image link charmap print preview hr anchor pagebreak',
-            'searchreplace wordcount visualblocks visualchars code fullscreen',
-            'insertdatetime media nonbreaking save table contextmenu directionality',
-            'save table contextmenu directionality emoticons template paste imagetools textcolor',
-            'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help'
-        ],
-        //工具框，也可自己随意配置
-        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | preview | forecolor backcolor emoticons | codesample help uploadimage',
+        plugins: 'image',
+        toolbar: 'image',
         image_advtab: true,
         menubar: false,
-        images_upload_handler: function (blobInfo, success, failure) {
+        images_upload_handler: function (blobInfo, succFun, failFun) {
+            var userId = ${userId};//用户Id
+            var maxArticleId = ${maxArticleId};//最大文章数
             var xhr, formData;
-            //var userId = ${user.userId};//获取用户Id
-            //var maxArticleId = ${maxArticleId};//获取最大的文章编号
-
+            var file = blobInfo.blob();//转化为易于理解的file对象
             xhr = new XMLHttpRequest();
             xhr.withCredentials = false;
             xhr.open('POST', "${pageContext.request.contextPath}/utilController/uploadImage?userId="+userId+"&maxArticleId="+maxArticleId);
             xhr.onload = function() {
                 var json;
-
                 if (xhr.status != 200) {
-                    failure('HTTP Error: ' + xhr.status);
+                    failFun('HTTP Error: ' + xhr.status);
                     return;
                 }
                 json = JSON.parse(xhr.responseText);
-
                 if (!json || typeof json.location != 'string') {
-                    failure('Invalid JSON: ' + xhr.responseText);
+                    failFun('Invalid JSON: ' + xhr.responseText);
                     return;
                 }
-                success(json.location);
+                succFun(json.location);
             };
             formData = new FormData();
-            formData.append('file', blobInfo.blob(), fileName(blobInfo));
+            formData.append('file', file, file.name );//此处与源文档不一样
             xhr.send(formData);
         }
     });

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("utilController")
 @Controller
+@RequestMapping("/utilController")
 public class UtilController {
     /**
      上传图片
@@ -32,13 +32,20 @@ public class UtilController {
     @ResponseBody
     public Map<String, Object> uploadImage(@RequestParam("file") MultipartFile file,
                                     HttpServletRequest request) throws Exception {
+
         Map<String, Object> ret = new HashMap<>();
 
         String realPath = request.getSession().getServletContext().getRealPath("/"); //获得真实路径
+
         Integer userId = Integer.parseInt(request.getParameter("userId"));//获得用户Id
+
         Integer maxArticleId = Integer.parseInt(request.getParameter("maxArticleId")); // 获得最大的文章编号
+
         Integer articleId = maxArticleId+1;//当前文章编号
+
         String location = ImageUtil.uploadImage(file, realPath, userId, articleId);
+
+        System.out.println("路径："+location);
 
         ret.put("location", location);
 

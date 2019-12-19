@@ -43,8 +43,13 @@
     <!--定义文件解析器-->
     <!--id的名字必须叫：multipartResolver-->
 
+    <!-- 上传文件 -->
+    <!-- 配置上传文件的组件 id的值必须为“multipartResolver” -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 配置最大的上传文件10兆 -->
         <property name="maxUploadSize" value="#{1024*1024*10}"/>
+        <!-- 设置默认的编码格式 -->
+        <property name="defaultEncoding" value="utf-8"></property>
     </bean>
 
 </beans>

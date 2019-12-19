@@ -15,7 +15,6 @@ public class ImageUtil {
      * @param basePath 基础路径
      * @param userId 上传者的用户ID
      * @param articleId 当前文章编号
-     * @param: request
      * @return String (图片要上传的位置)
      * @throws
      */
@@ -43,7 +42,7 @@ public class ImageUtil {
 
         image.transferTo(new File(path));
 
-        ret = "/Test/uploadImage/log/" + userId.toString() + "/" + articleId.toString() + "/" + imageName;
+        ret = "/smallHouse/uploadImage/log/" + userId.toString() + "/" + articleId.toString() + "/" + imageName;
 
         return ret;
     }

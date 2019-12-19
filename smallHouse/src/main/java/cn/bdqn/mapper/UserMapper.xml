@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.bdqn.domain.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_eamil" property="userEamil" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_nickName" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_sex" property="userSex" jdbcType="INTEGER" />
+    <result column="user_head" property="userHead" jdbcType="VARCHAR" />
+    <result column="user_vip" property="userVip" jdbcType="INTEGER" />
+    <result column="user_state" property="userState" jdbcType="INTEGER" />
+    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_profession" property="userProfession" jdbcType="VARCHAR" />
+    <result column="user_attention" property="userAttention" jdbcType="VARCHAR" />
+    <result column="user_fans" property="userFans" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_eamil, user_password, user_nickName, user_name, user_age, user_sex, 
+    user_head, user_vip, user_state, user_address, user_profession, user_attention, user_fans
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.bdqn.domain.User" >
+    insert into t_user (user_id, user_eamil, user_password, 
+      user_nickName, user_name, user_age, 
+      user_sex, user_head, user_vip, 
+      user_state, user_address, user_profession, 
+      user_attention, user_fans)
+    values (#{userId,jdbcType=INTEGER}, #{userEamil,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userNickname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER}, 
+      #{userSex,jdbcType=INTEGER}, #{userHead,jdbcType=VARCHAR}, #{userVip,jdbcType=INTEGER}, 
+      #{userState,jdbcType=INTEGER}, #{userAddress,jdbcType=VARCHAR}, #{userProfession,jdbcType=VARCHAR}, 
+      #{userAttention,jdbcType=VARCHAR}, #{userFans,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bdqn.domain.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userEamil != null" >
+        user_eamil,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userNickname != null" >
+        user_nickName,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userAge != null" >
+        user_age,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="userHead != null" >
+        user_head,
+      </if>
+      <if test="userVip != null" >
+        user_vip,
+      </if>
+      <if test="userState != null" >
+        user_state,
+      </if>
+      <if test="userAddress != null" >
+        user_address,
+      </if>
+      <if test="userProfession != null" >
+        user_profession,
+      </if>
+      <if test="userAttention != null" >
+        user_attention,
+      </if>
+      <if test="userFans != null" >
+        user_fans,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userEamil != null" >
+        #{userEamil,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userHead != null" >
+        #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="userVip != null" >
+        #{userVip,jdbcType=INTEGER},
+      </if>
+      <if test="userState != null" >
+        #{userState,jdbcType=INTEGER},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userProfession != null" >
+        #{userProfession,jdbcType=VARCHAR},
+      </if>
+      <if test="userAttention != null" >
+        #{userAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="userFans != null" >
+        #{userFans,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bdqn.domain.User" >
+    update t_user
+    <set >
+      <if test="userEamil != null" >
+        user_eamil = #{userEamil,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        user_nickName = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAge != null" >
+        user_age = #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=INTEGER},
+      </if>
+      <if test="userHead != null" >
+        user_head = #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="userVip != null" >
+        user_vip = #{userVip,jdbcType=INTEGER},
+      </if>
+      <if test="userState != null" >
+        user_state = #{userState,jdbcType=INTEGER},
+      </if>
+      <if test="userAddress != null" >
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userProfession != null" >
+        user_profession = #{userProfession,jdbcType=VARCHAR},
+      </if>
+      <if test="userAttention != null" >
+        user_attention = #{userAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="userFans != null" >
+        user_fans = #{userFans,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bdqn.domain.User" >
+    update t_user
+    set user_eamil = #{userEamil,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_nickName = #{userNickname,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_age = #{userAge,jdbcType=INTEGER},
+      user_sex = #{userSex,jdbcType=INTEGER},
+      user_head = #{userHead,jdbcType=VARCHAR},
+      user_vip = #{userVip,jdbcType=INTEGER},
+      user_state = #{userState,jdbcType=INTEGER},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_profession = #{userProfession,jdbcType=VARCHAR},
+      user_attention = #{userAttention,jdbcType=VARCHAR},
+      user_fans = #{userFans,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

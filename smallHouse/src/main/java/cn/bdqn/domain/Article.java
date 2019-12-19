@@ -3,17 +3,17 @@ package cn.bdqn.domain;
 import java.util.Date;
 
 public class Article {
-    private Integer articleId;  //文章Id
+    private Integer articleId;
 
     private String articleTitle;
 
     private Integer typeId;
 
-    private Integer userId; //用户Id
+    private Integer userId;
 
     private Integer adminId;
 
-    private Date articleTime;//发布时间
+    private Date articleTime;
 
     private Integer articlePageview;
 
