@@ -59,4 +59,22 @@ public class UserController {
         return String.valueOf(num);
     }
 
+    @RequestMapping("/SkipAmend")
+    public String skipAmend(int id,Model model){
+
+        model.addAttribute("user",userService.selectInfoByUserId(id));
+
+        return "amend";
+    }
+
+    @RequestMapping("/SkipPersonalPage")
+    public String skipPersonalPage(int id,Model model){
+
+        id = 1;
+
+        model.addAttribute("user",userService.selectInfoByUserId(id));
+
+        return "personalPage";
+    }
+
 }

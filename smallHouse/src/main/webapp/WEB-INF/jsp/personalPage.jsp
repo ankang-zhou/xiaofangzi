@@ -6,25 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/personagePage.css" />
-</head>
+    <link rel="stylesheet" href="${ctx}/static/layui/css/layui.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.js" ></script>
-    <script src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $("#right_bottom_a").click(function () {
-                alert("123")
-                layer.open({
-                    type:1,
-                    title: '在线调试',
-                    content: '123'
-                });
-            })
-        })
-    </script>
+    <script src="${ctx}/static/layui/layui.js"></script>
+</head>
 <body>
 <header>
 
@@ -53,7 +45,8 @@
                 <hr />
             </div>
             <div id="right_bottom">
-                <button id="right_bottom_a">修改信息</button>
+                <button id="amendBtn">修改信息</button>
+                <input type="hidden" value="${userInfo.userId}">
                 <p>昵称：${userInfo.userNickname}</p>
                 <p>邮箱：${userInfo.userEamil}</p>
                 <p>姓名：${userInfo.userName}</p>
@@ -67,4 +60,18 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    $("#amendBtn").click(function () {
+            layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.open({
+                    title: '在线调试',
+                    type:2,
+                    content: '${pageContext.request.contextPath}/user/SkipAmend?id='
+                });
+            })
+
+
+    });
+</script>
 </html>
