@@ -27,12 +27,9 @@
     <mvc:annotation-driven/>
 
     <!-- 静态资源文件的引用 -->
-    <!--
-        mapping:将静态资源映射到指定的路径下
-        location：本地静态资源文件所在的目录
-    -->
-    <mvc:resources mapping="/static/**" location="/static/"/>
 
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
 
     <!--
         这个可以不通过再新建Controller就能访问一个物理视图名

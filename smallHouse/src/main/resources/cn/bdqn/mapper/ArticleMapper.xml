@@ -14,6 +14,7 @@
     <result column="article_photo" property="articlePhoto" jdbcType="VARCHAR" />
     <result column="music_id" property="musicId" jdbcType="INTEGER" />
     <result column="theme_id" property="themeId" jdbcType="INTEGER" />
+    <result column="article_summary" property="articleSummary" jdbcType="VARCHAR"/>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="cn.bdqn.domain.Article" extends="BaseResultMap" >
     <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
@@ -91,6 +92,9 @@
       <if test="articleContent != null" >
         article_content,
       </if>
+      <if test="articleSummary != null">
+        article_summary,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="articleId != null" >
@@ -131,6 +135,9 @@
       </if>
       <if test="articleContent != null" >
         #{articleContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="articleSummary != null">
+        #{articleSummary,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -215,5 +222,7 @@
     ORDER BY article_id DESC
     LIMIT 1
   </select>
+
+
 
 </mapper>

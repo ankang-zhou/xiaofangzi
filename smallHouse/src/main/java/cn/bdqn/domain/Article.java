@@ -29,6 +29,8 @@ public class Article {
 
     private String articleContent;
 
+    private String articleSummary;
+
     public Integer getArticleId() {
         return articleId;
     }
@@ -127,6 +129,14 @@ public class Article {
 
     public String getArticleContent() {
         return articleContent;
+    }
+
+    public String getArticleSummary() {
+        return articleSummary;
+    }
+
+    public void setArticleSummary(String articleSummary) {
+        this.articleSummary = articleSummary;
     }
 
     public void setArticleContent(String articleContent) {

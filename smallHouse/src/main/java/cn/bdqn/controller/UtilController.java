@@ -28,10 +28,10 @@ public class UtilController {
     *
     *
     * */
-    @RequestMapping("/uploadImage")
+    @RequestMapping(value = "/uploadImage")
     @ResponseBody
     public Map<String, Object> uploadImage(@RequestParam("file") MultipartFile file,
-                                    HttpServletRequest request) throws Exception {
+                                           HttpServletRequest request) throws Exception {
 
         Map<String, Object> ret = new HashMap<>();
 
@@ -44,8 +44,6 @@ public class UtilController {
         Integer articleId = maxArticleId+1;//当前文章编号
 
         String location = ImageUtil.uploadImage(file, realPath, userId, articleId);
-
-        System.out.println("路径："+location);
 
         ret.put("location", location);
 

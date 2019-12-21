@@ -42,8 +42,6 @@ public class TypeController {
         //将用户Id放在Request作用域中
         modelMap.addAttribute("userId",userId);
 
-        System.out.println("最大文章数："+maxArticleId+"用户Id:"+userId);
-
         return "writeBlog";
     }
 

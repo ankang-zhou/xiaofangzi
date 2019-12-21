@@ -35,7 +35,9 @@ public class ImageUtil {
         File direFile = new File(direPath);
         //文件夹如果不存在，新建文件夹
         if (direFile.exists() == false || direFile.isDirectory() == false) {
-            direFile.mkdir();
+            //此处的坑。谨记！ 之前是direFile.mkdir();这个方法只能生成一层文件夹
+            //direFile.mkdirs()此方法可以递归的生成文件夹。即多层文件夹。
+            direFile.mkdirs();
         }
         //得到文件路径
         String path = direPath + "\\" + imageName;
