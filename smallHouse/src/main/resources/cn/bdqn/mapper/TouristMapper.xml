@@ -11,7 +11,7 @@
     tourist_id, tourist_nickName, tourist_email, head_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_tourist
     where tourist_id = #{touristId,jdbcType=INTEGER}

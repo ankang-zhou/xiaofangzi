@@ -11,7 +11,7 @@
     theme_id, theme_name, theme_url, theme_state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_theme
     where theme_id = #{themeId,jdbcType=INTEGER}

@@ -10,7 +10,7 @@
     address_id, address_name, parent_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_address
     where address_id = #{addressId,jdbcType=INTEGER}

@@ -11,7 +11,7 @@
     music_id, music_name, music_url, music_state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_music
     where music_id = #{musicId,jdbcType=INTEGER}

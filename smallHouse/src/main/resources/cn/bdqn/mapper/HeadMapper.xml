@@ -9,7 +9,7 @@
     head_id, head_url
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_head
     where head_id = #{headId,jdbcType=INTEGER}

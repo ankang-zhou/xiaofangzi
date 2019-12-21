@@ -9,19 +9,11 @@
     type_id, type_name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_type
     where type_id = #{typeId,jdbcType=INTEGER}
   </select>
-
-  <!-- 查询博客类型列表 -->
-  <select id="selectTypeList" resultMap="BaseResultMap">
-    select
-        type_id, type_name
-    from t_type
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_type
     where type_id = #{typeId,jdbcType=INTEGER}
@@ -63,4 +55,10 @@
     set type_name = #{typeName,jdbcType=VARCHAR}
     where type_id = #{typeId,jdbcType=INTEGER}
   </update>
+  <!-- 查询博客类型列表 -->
+  <select id="selectTypeList" resultMap="BaseResultMap">
+    select
+        type_id, type_name
+    from t_type
+  </select>
 </mapper>
