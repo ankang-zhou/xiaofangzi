@@ -1,0 +1,34 @@
+body{
+	width: 250px;
+	height: 400px;
+}
+#amend{
+	margin: 0px auto;
+	padding: 20px;
+	width: 250px;
+	height: 400px;
+}
+#amend form input{
+	margin: 10px;
+}
+.submit{
+	margin-left: 1000px;
+}
+#amendbtn{
+	margin-top: 20px;
+	margin-left: 80px;
+}
+.submit{
+	background-color:#930000;
+	width:80px;
+	height:40px;
+	font-size:18px;
+	color:white;
+	font-weight:bold;
+	border-radius:10px;
+}
+#submitDiv{
+	padding-left: 90px;
+}
+
+

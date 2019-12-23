@@ -6,6 +6,8 @@ import cn.bdqn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
 
@@ -32,6 +34,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectInfoByUserId(int id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateUserInfo(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public List<User> selectUsersInfoByIds(String[] Ids) {
+        return userMapper.selectUsersInfoByIds(Ids);
     }
 
 }

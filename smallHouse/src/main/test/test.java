@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 public class test {
 
     @Test
@@ -13,9 +15,16 @@ public class test {
 
         UserService userService = (UserService) ac.getBean("userServiceImpl");
 
-        int num = userService.selectNumByEmail("1405957431@qq.com");
+        String[] Ids = {"2","3"};
 
-        System.out.println(num);
+        List<User> list = userService.selectUsersInfoByIds(Ids);
+
+        System.out.println(list.toString());
+
+        for (User user:list
+             ) {
+            System.out.println(user.getUserHead());
+        }
 
     }
 
