@@ -6,6 +6,8 @@ import cn.bdqn.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("articleService")
 public class ArticleServiceImpl implements ArticleService {
 
@@ -21,4 +23,16 @@ public class ArticleServiceImpl implements ArticleService {
     public Integer addArticle(Article article) {
         return articleMapper.insertSelective(article);
     }
+
+    @Override
+    public Article selectArticleById(Integer articleId) {
+        return articleMapper.selectArticleById(articleId);
+    }
+
+    @Override
+    public List<Article> selectArticlesByTitle(String articleTitle) {
+        return articleMapper.selectArticlesByTitle(articleTitle);
+    }
+
+
 }

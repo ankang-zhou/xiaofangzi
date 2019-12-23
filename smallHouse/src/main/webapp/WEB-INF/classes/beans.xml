@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--SSM整合的时候，原则：Spring只负责对业务Bean。持久层的Bean做管理
+        做注册，对于Controller层应该是由SpringMVC管理
+        -->
+    <!-- 1、配置扫描包,排除Controller层的注解  -->
+    <context:component-scan base-package="cn.bdqn">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--2、引入properties文件    -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--3、阿里巴巴数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!-- 配置连接数据库的4个基本信息 -->
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--4、事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 5、开启事务支持-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--  2、配置事务的增强-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--定义属性，声明事务规则-->
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" isolation="DEFAULT" read-only="false"/>
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 3、开启配置AOP 配置切入点表达式及事务通知和切入点表达式的关系-->
+    <aop:config>
+        <aop:pointcut id="pt" expression="execution(* cn.bdqn.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
+    </aop:config>
+
+
+    <!--6、开始配置Spring整合的Mybatis
+    作用：就是用来创建我们的SessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 绑定数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 批量起别名-->
+        <property name="typeAliasesPackage" value="cn.bdqn"/>
+<!--        <property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+    </bean>
+    <!--7、批量生成接口的代理类,并且将我们的代理类注册到Spring容器中，并且会扫描映射文件
+        定义映射文件路径
+    -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.bdqn.mapper"/>
+    </bean>
+
+    <!-- 配置视图解析器,作用是配置目录前缀和文件后缀，然后解析为一个资源文件
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>-->
+
+</beans>

@@ -1,0 +1,49 @@
+/*
+简介文字11px
+
+*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+div{
+    width: 800px;
+    margin: 0px auto;
+}
+h1{
+    text-align: center;
+}
+.titleP{
+    font-weight: bold;
+    color: #00A67C;
+}
+.imgDiv{
+    width: 200px;
+    height: 113px;
+    float: left;
+    display: table;
+}
+.summaryP{
+    float: left;
+    margin: 20px 25px;
+    font-size: 11px;
+    color: #6f7882;
+}
+.blogImg{
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform .3s linear;
+}
+.blogImg:hover{
+    transform: scale(1.1);
+}
+ul li{
+    list-style: none;
+    display: inline-block;
+    font-size: 10px;
+    color: #565656;
+}
+.liColor{
+    color: #b85119;
+}

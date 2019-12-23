@@ -1,8 +1,11 @@
 package cn.bdqn.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Article {
+
     private Integer articleId;
 
     private String articleTitle;
@@ -30,6 +33,10 @@ public class Article {
     private String articleContent;
 
     private String articleSummary;
+
+    private String userNickName;
+
+    private String typeName;
 
     public Integer getArticleId() {
         return articleId;
@@ -141,5 +148,41 @@ public class Article {
 
     public void setArticleContent(String articleContent) {
         this.articleContent = articleContent == null ? null : articleContent.trim();
+    }
+
+    public String getUserNickName() {
+        return userNickName;
+    }
+
+    public void setUserNickName(String userNickName) {
+        this.userNickName = userNickName;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "articleId=" + articleId +
+                ", articleTitle='" + articleTitle + '\'' +
+                ", typeId=" + typeId +
+                ", userId=" + userId +
+                ", adminId=" + adminId +
+                ", articleTime=" + articleTime +
+                ", articlePageview=" + articlePageview +
+                ", articleLike=" + articleLike +
+                ", articleState=" + articleState +
+                ", articlePhoto='" + articlePhoto + '\'' +
+                ", musicId=" + musicId +
+                ", themeId=" + themeId +
+                ", articleContent='" + articleContent + '\'' +
+                ", articleSummary='" + articleSummary + '\'' +
+                '}';
     }
 }

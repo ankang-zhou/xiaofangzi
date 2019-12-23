@@ -25,18 +25,20 @@
 </head>
 <body>
 <div class="container">
-    <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/article/saveArticle">
+    <form action="${pageContext.request.contextPath}/article/saveArticle"
+            method="post"
+            enctype="multipart/form-data" >
         <table class="table table-hover">
             <tr>
                 <td class="titleTd">标题：</td>
                 <td><input name="articleTitle" id="title" type="text"/></td>
             </tr>
-<%--            <tr>--%>
-<%--                <td class="titleTd">博客图片：</td>--%>
-<%--                <td>--%>
-<%--                    <input name="articlePhoto" id="photo" type="file" />--%>
-<%--                </td>--%>
-<%--            </tr>--%>
+            <tr>
+                <td class="titleTd">博客图片：</td>
+                <td>
+                    <input name="photo" id="photo" type="file" required="false"/>
+                </td>
+            </tr>
             <tr>
                 <td class="titleTd">所属类别：</td>
                 <td>
