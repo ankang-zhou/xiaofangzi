@@ -12,8 +12,10 @@
 </head>
 <body>
 
-    <jsp:forward page="WEB-INF/jsp/login.jsp"></jsp:forward>
-
+<%--    <jsp:forward page="WEB-INF/jsp/login.jsp"></jsp:forward>--%>
+<%--    <jsp:forward page="/user/SkipPersonalPage"></jsp:forward>--%>
+<%--    <jsp:forward page="/user/SkipAmend"></jsp:forward>--%>
+<jsp:forward page="/user/SkipPersonalPage?id=1"></jsp:forward>
 </body>
 
 </html>

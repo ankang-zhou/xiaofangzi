@@ -27,6 +27,13 @@
     <mvc:annotation-driven/>
 
     <!-- 静态资源文件的引用 -->
+<<<<<<< HEAD
+=======
+
+<!--    <mvc:resources mapping="/static/**" location="/static/"/>-->
+
+    <mvc:default-servlet-handler/>
+>>>>>>> 4f61caae8d99a3d6fefea61713edad21d0f39fbb
 
     <mvc:default-servlet-handler/>
 
