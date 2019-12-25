@@ -46,7 +46,8 @@ public class UserController {
         if(user != null){
             model.addAttribute("users",user);
 
-            return "main";
+            //重定向到主页面
+            return "redirect:/article/articleList";
         }else{
             return "hint";
         }

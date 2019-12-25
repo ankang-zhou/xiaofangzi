@@ -1,8 +1,10 @@
 package cn.bdqn.controller;
 
 import cn.bdqn.domain.Article;
+import cn.bdqn.domain.Type;
 import cn.bdqn.domain.User;
 import cn.bdqn.service.ArticleService;
+import cn.bdqn.service.TypeService;
 import cn.bdqn.utils.BlogImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private TypeService typeService;
 
     @RequestMapping(value = "/saveArticle")
     public String saveArticle(@SessionAttribute(value = "users",required = false)User user
@@ -80,8 +85,6 @@ public class ArticleController {
     @RequestMapping(value = "/ArticleById")
     public String queryArticleById(ModelMap modelMap,Integer articleId){
 
-        articleId = 6; //模拟点击要查看的文章，获取了文章Id
-
         Article article = articleService.selectArticleById(articleId);
 
         //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -90,6 +93,28 @@ public class ArticleController {
         modelMap.addAttribute("article",article);
 
         return "blogContent";
+    }
+
+
+    //根据文章类别查询文章列表
+
+
+    //查询文章列表
+    @RequestMapping(value = "/articleList")
+    public String queryArticleList(@SessionAttribute(value = "users",required = false)User user, ModelMap modelMap){
+
+        //接收查询到的所有文章信息
+        List<Article> articleList = articleService.selectArticleList();
+
+        //接收查询到的所有类型信息
+        List<Type> typeList = typeService.selectTypeList();
+
+        //将数据放在ModelMap中
+        modelMap.addAttribute("articleList",articleList);
+
+        modelMap.addAttribute("typeList",typeList);
+
+        return "main";
     }
 
 }

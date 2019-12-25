@@ -27,17 +27,8 @@
     <mvc:annotation-driven/>
 
     <!-- 静态资源文件的引用 -->
-<<<<<<< HEAD
-=======
-
-<!--    <mvc:resources mapping="/static/**" location="/static/"/>-->
 
     <mvc:default-servlet-handler/>
->>>>>>> 4f61caae8d99a3d6fefea61713edad21d0f39fbb
-
-    <mvc:default-servlet-handler/>
-
-    <mvc:annotation-driven/>
 
     <!--
         这个可以不通过再新建Controller就能访问一个物理视图名

@@ -17,26 +17,29 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/tinymce/js/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.js"></script>
 </head>
-<body>
+<body id="body">
 <section>
+    <h1>根据搜索显示内容</h1>
     <div id="left">
-        <h1>根据搜索显示内容</h1>
         <c:forEach items="${articles}" var="articles">
-            <p class="titleP">${articles.articleTitle}</p>
-            <div class="imgDiv">
-                <a href="">
-                    <img class="blogImg" src="${pageContext.request.contextPath}/${articles.articlePhoto}">
-                </a>
+
+            <div class="fenGe">
+                <p class="titleP"><a href="${pageContext.request.contextPath}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
+                <div class="imgDiv">
+                    <a class="blogA" href="${pageContext.request.contextPath}/article/ArticleById?articleId=${articles.articleId}">
+                        <img class="blogImg" src="${pageContext.request.contextPath}/${articles.articlePhoto}">
+                    </a>
+                </div>
+                <div class="summaryP">${articles.articleSummary}</div>
+                <div class="clearDiv"></div>
+                <ul id="ul">
+                    <li><p class="liColor">${articles.userNickName}</p></li>
+                    <li><p><fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日"/></p></li>
+                    <li><p>${articles.articlePageview}<span>浏览</span></p></li>
+                    <li><p>${articles.articleLike}<span style="color: red">喜欢</span></p></li>
+                </ul>
+                <div class="clearDiv"></div>
             </div>
-            <p class="summaryP">${articles.articleSummary}</p>
-            <div style="clear: both"></div>
-            <ul>
-                <li><p class="liColor">${articles.userNickName}</p></li>
-                <li><p><fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日"/></p></li>
-                <li><p>${articles.articlePageview}<span>浏览</span></p></li>
-                <li><p>${articles.articleLike}<span>喜欢</span></p></li>
-            </ul>
-            <hr/>
         </c:forEach>
     </div>
     </div>

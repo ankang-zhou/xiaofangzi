@@ -1,7 +1,6 @@
 package cn.bdqn.mapper;
 
 import cn.bdqn.domain.Article;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -30,6 +29,9 @@ public interface ArticleMapper {
 
     //根据标题模糊查询博客头内容(只显示标题，(文章图片)简介,作者，时间，浏览人数，点赞个数)
     public List<Article> selectArticlesByTitle(@Param("articleTitle") String articleTitle);
+
+    //显示文章列表
+    public List<Article> selectArticleList();
 
 
 }

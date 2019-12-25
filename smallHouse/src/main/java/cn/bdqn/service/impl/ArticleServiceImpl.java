@@ -34,5 +34,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.selectArticlesByTitle(articleTitle);
     }
 
+    @Override
+    public List<Article> selectArticleList() {
+        return articleMapper.selectArticleList();
+    }
+
 
 }

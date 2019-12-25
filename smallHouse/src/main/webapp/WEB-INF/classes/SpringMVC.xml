@@ -30,8 +30,6 @@
 
     <mvc:default-servlet-handler/>
 
-    <mvc:annotation-driven/>
-
     <!--
         这个可以不通过再新建Controller就能访问一个物理视图名
         path:请求路径
