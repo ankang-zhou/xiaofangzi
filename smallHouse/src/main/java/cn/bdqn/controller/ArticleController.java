@@ -80,7 +80,7 @@ public class ArticleController {
     @RequestMapping(value = "/ArticleById")
     public String queryArticleById(ModelMap modelMap,Integer articleId){
 
-        articleId = 6; //模拟点击要查看的文章，获取了文章Id
+//        articleId = 6; //模拟点击要查看的文章，获取了文章Id
 
         Article article = articleService.selectArticleById(articleId);
 

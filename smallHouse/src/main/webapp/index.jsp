@@ -15,7 +15,7 @@
 <%--    <jsp:forward page="WEB-INF/jsp/login.jsp"></jsp:forward>--%>
 <%--    <jsp:forward page="/user/SkipPersonalPage"></jsp:forward>--%>
 <%--    <jsp:forward page="/user/SkipAmend"></jsp:forward>--%>
-<jsp:forward page="/user/SkipPersonalPage?id=1"></jsp:forward>
+<jsp:forward page="WEB-INF/jsp/login.jsp"></jsp:forward>
 </body>
 
 </html>

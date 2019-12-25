@@ -261,4 +261,14 @@
         WHERE article_title LIKE concat('%',#{articleTitle},'%') AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id` AND a.`article_state` = 1
     </select>
 
+  <!-- 根据用户id查询文章内容 -->
+  <select id="selectArticleByUserId" resultMap="BaseResultMap">
+    select
+    article_id,article_title,article_state,article_photo,article_time, article_pageview,
+    article_like,article_summary,article_content
+    <include refid="Blob_Column_List" />
+    from t_article
+    where user_id = #{Id}
+  </select>
+
 </mapper>

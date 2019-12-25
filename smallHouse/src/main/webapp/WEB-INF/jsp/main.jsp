@@ -12,5 +12,6 @@
 </head>
 <body>
     <h1>主页面，欢迎光临</h1>
+    <a href="${pageContext.request.contextPath}/user/SkipPersonalPage">跳转</a>
 </body>
 </html>
