@@ -1,33 +1,47 @@
 /*
-简介文字11px
+简介文字13px
 
 */
 *{
     margin: 0px;
     padding: 0px;
 }
-section{
-    width: 70%;
-    margin: 0px auto;
+.blogA{
+    text-decoration: none;
 }
+#body{
+    background-color: #d7d8d9;
+}
+section{
+    width: 66%;
+    margin: 0px auto;
+    border: 1px solid red;
 
+}
+#left{
+    width: 69%;
+}
 h1{
     text-align: center;
 }
 .titleP{
     font-weight: bold;
     color: #00A67C;
+    margin-left: 80px;
+    padding-top: 10px;
+    font-size: 18px;
 }
 .imgDiv{
     width: 200px;
     height: 113px;
     float: left;
+    margin: 0px 0px 0px 20px;
     display: table;
 }
 .summaryP{
     float: left;
     margin: 20px 25px;
-    font-size: 11px;
+    font-size: 13px;
     color: #6f7882;
 }
 .blogImg{
@@ -37,10 +51,12 @@ h1{
     transition: transform .3s linear;
 }
 .blogImg:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
-ul{
+#ul{
     float: right;
+    margin-bottom: 1px;
+    margin-right: 20px;
 }
 ul li{
     list-style: none;
@@ -50,4 +66,16 @@ ul li{
 }
 .liColor{
     color: #b85119;
+}
+/*底边距*/
+.fenGe{
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    background-color: white;
+}
+/*清除浮动*/
+.clearDiv{
+    width: 100%;
+    clear: both;
 }

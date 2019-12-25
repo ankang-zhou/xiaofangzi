@@ -22,4 +22,5 @@ public interface ArticleService {
     //根据用户id查询文章内容
     public List<Article> selectArticleByUserId(@Param("Id") int Id);
 
+    public List<Article> selectArticleList();
 }

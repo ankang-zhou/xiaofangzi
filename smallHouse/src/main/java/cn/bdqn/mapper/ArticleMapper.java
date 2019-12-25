@@ -1,7 +1,6 @@
 package cn.bdqn.mapper;
 
 import cn.bdqn.domain.Article;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -33,5 +32,8 @@ public interface ArticleMapper {
 
     //根据用户id查询文章内容
     public List<Article> selectArticleByUserId(@Param("Id") int Id);
+    //显示文章列表
+    public List<Article> selectArticleList();
+
 
 }

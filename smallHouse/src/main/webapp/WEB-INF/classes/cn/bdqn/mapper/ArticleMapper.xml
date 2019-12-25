@@ -250,7 +250,7 @@
         SELECT article_id,article_title,article_state,article_photo, t.`type_name`, u.`user_nickName`,article_time, article_pageview,
                 article_like,article_summary,article_content
         FROM t_article AS a,t_user AS u,t_type AS t
-        WHERE article_id = #{articleId} AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
+        WHERE article_id = #{articleId} AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id` AND a.`article_state` = 1
     </select>
 
   <!-- 根据标题模糊查询博客头内容 -->
@@ -261,6 +261,7 @@
         WHERE article_title LIKE concat('%',#{articleTitle},'%') AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id` AND a.`article_state` = 1
     </select>
 
+<<<<<<< HEAD
   <!-- 根据用户id查询文章内容 -->
   <select id="selectArticleByUserId" resultMap="BaseResultMap">
     select
@@ -271,4 +272,14 @@
     where user_id = #{Id}
   </select>
 
+=======
+  <!-- 显示文章列表 -->
+  <select id="selectArticleList" resultMap="queryUserName">
+        SELECT article_id,article_title,article_state,article_photo, t.`type_name`, u.`user_nickName`,article_time, article_pageview,
+                article_like,article_summary,article_content
+        FROM t_article AS a,t_user AS u,t_type AS t
+        WHERE a.`article_state` = 1 AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
+        ORDER BY article_time DESC
+    </select>
+>>>>>>> 29416bd98364b51d7b92caad1e64314f5d1a806c
 </mapper>
