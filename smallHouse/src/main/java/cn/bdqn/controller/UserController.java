@@ -1,7 +1,9 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.domain.Address;
 import cn.bdqn.domain.Article;
 import cn.bdqn.domain.User;
+import cn.bdqn.service.AddressService;
 import cn.bdqn.service.ArticleService;
 import cn.bdqn.service.UserService;
 import cn.bdqn.utils.BlogImageUtil;
@@ -29,6 +31,9 @@ public class UserController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private AddressService addressService;
 
     //跳转登录页面
     @RequestMapping(value = "/skipLogin")
@@ -112,11 +117,14 @@ public class UserController {
 
         List<User> userFansList = userService.selectUsersInfoByIds(strings);
         List<User> userAttentionList =userService.selectUsersInfoByIds(strings1);
+        List<Address> addresses = addressService.selectAllStair();
+
+        System.out.println(addresses.get(1).getAddressName());
 
         model.addAttribute("userAttention",userAttentionList);
         model.addAttribute("userFans",userFansList);
-        model.addAttribute("userInfo",user);
         model.addAttribute("users",user);
+        model.addAttribute("addresses",addresses);
         return "personalPage";
     }
 

@@ -98,9 +98,15 @@ body{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+#right_bottom p:after{
+	content: '';
+	display: block;
+	clear: both;
+}
 #right_bottom a{
+	padding: 2px;
 	float: right;
-	margin-right: 10px;
+	margin-right: 240px;
 	text-decoration: none;
 	color: cornflowerblue;
 	font-size: 12px;

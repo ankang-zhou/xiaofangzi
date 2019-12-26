@@ -24,6 +24,89 @@
         }
     </style>
 </head>
+<script type="text/javascript">
+    $(function(){
+        $("#divright").show()
+        $("#divFans").hide()
+        $("#divAttention").hide()
+        $("#userInfo").click(function(){
+            $("#divleft #ul li").removeClass('ul_li_a')
+            $(this).parent().addClass('ul_li_a')
+            $("#divright").show()
+            $("#divFans").hide()
+            $("#divAttention").hide()
+        })
+        $("#userAttention").click(function(){
+            $("#divleft #ul li").removeClass('ul_li_a')
+            $(this).parent().addClass('ul_li_a')
+            $("#divright").hide()
+            $("#divFans").hide()
+            $("#divAttention").show()
+        })
+        $("#userFans").click(function(){
+            $("#divleft #ul li").removeClass('ul_li_a')
+            $(this).parent().addClass('ul_li_a')
+            $("#divright").hide()
+            $("#divFans").show()
+            $("#divAttention").hide()
+        })
+    })
+    $("#amendBtn").click(function () {
+        var userid = $("input[type=hidden]").val();
+        layui.use('layer', function(){
+            //头像：<input type='text' name='userHead' class='userHead' value='"$"{users.userHead}' /><br />
+            var page = "<div id='amend'><form action='${pageContext.request.contextPath}/user/UpdateUserInfo' method='post' class='layui-form'><input type='hidden' name='userId' value='${users.userId}'>昵称：<input type='text' name='userNickname' class='userNickname' value='${users.userNickname}' /><br />邮箱：<input type='text' name='userEamil' class='userEamil' value='${users.userEamil}' readonly/><br />姓名：<input type='text' name='userName' class='userName' value='${users.userName}' /><br />年纪：<input type='text' name='userAge' class='userAge' value='${users.userAge}' /><br />性别：<input type='text' name='userSex' class='userSex' value='${users.userSex}' /><br />职业：<input type='text' name='userProfession' class='userProfession' value='${users.userProfession}' /><br /><button class='layui-btn' lay-submit id='amendbtn' lay-filter='login'>修改</button></form></div>"
+            var layer = layui.layer;
+            layer.open({
+                title: '修改信息',
+                type:1,
+                area: ['300px', '500px'],
+                offset: ['100px', '650px'],
+                content: page
+            });
+        })
+    })
+    $("#amendA").click(function () {
+        layui.use('layer', function(){
+            var layer = layui.layer;
+            var file = "<form action='${pageContext.request.contextPath}/user/FileUpLoad' method='post' enctype='multipart/form-data' style='margin-left: 20px;margin-top: 20px'><input type='file' name='photo'/><br /><input type='submit' style='margin-top: 20px;'/></form>"
+            layer.open({
+                title: '上传头像',
+                type:1,
+                area: ['300px', '150px'],
+                offset: ['100px', '650px'],
+                content:file
+            });
+        })
+    })
+    $("#amenda").click(function () {
+        layui.use('layer', function(){
+            var layer = layui.layer;
+            layer.open({
+                title: '修改地址',
+                type:1,
+                area: ['300px', '150px'],
+                offset: ['100px', '650px'],
+                content:''
+            });
+        })
+    })
+    $(function  () {
+        layui.use('form', function(){
+            var layer = layui.layer;
+            var form = layui.form;
+            //监听提交
+            form.on('submit(login)', function(data){
+                if ($(".layui-form .userNickname").val()==null||$(".userNickname").val()==""){
+                    alert("昵称不能为空")
+                    return false;
+                }else {
+                    alert("修改成功")
+                }
+            });
+        });
+    })
+</script>
 <body>
 <header>
 </header>
@@ -53,20 +136,20 @@
         </div>
         <div id="right">
             <div id="right_top">
-                <p id="pid">ID：${userInfo.userEamil}</p>
+                <p id="pid">ID：${users.userEamil}</p>
                 <p>关注：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;粉丝：0</p>
                 <hr />
             </div>
             <div id="right_bottom">
                 <button id="amendBtn">修改信息</button>
-                <input type="hidden" value="${userInfo.userId}">
+                <input type="hidden" value="${users.userId}">
                 <p>昵称：${users.userNickname}</p>
                 <p>邮箱：${users.userEamil}</p>
                 <p>姓名：${users.userName}</p>
                 <p>年纪：${users.userAge}</p>
                 <p>性别：${users.userSex}</p>
 <%--                <p>头像：${users.userHead}</p>--%>
-                <p>地址：${users.userAddress}</p>
+                <p>地址：${users.userAddress}中国河南省郑州市<a href="" id="amenda">修改</a></p>
                 <p>职业：${users.userProfession}</p>
             </div>
         </div>
@@ -103,77 +186,8 @@
             </c:forEach>
         </ul>
     </div>
+
 </div>
 </body>
-<script type="text/javascript">
-    $(function(){
-        $("#divright").show()
-        $("#divFans").hide()
-        $("#divAttention").hide()
-        $("#userInfo").click(function(){
-            $("#divleft #ul li").removeClass('ul_li_a')
-            $(this).parent().addClass('ul_li_a')
-            $("#divright").show()
-            $("#divFans").hide()
-            $("#divAttention").hide()
-        })
-        $("#userAttention").click(function(){
-            $("#divleft #ul li").removeClass('ul_li_a')
-            $(this).parent().addClass('ul_li_a')
-            $("#divright").hide()
-            $("#divFans").hide()
-            $("#divAttention").show()
-        })
-        $("#userFans").click(function(){
-            $("#divleft #ul li").removeClass('ul_li_a')
-            $(this).parent().addClass('ul_li_a')
-            $("#divright").hide()
-            $("#divFans").show()
-            $("#divAttention").hide()
-        })
-    })
-    $("#amendBtn").click(function () {
-        var userid = $("input[type=hidden]").val();
-        layui.use('layer', function(){
-            //头像：<input type='text' name='userHead' class='userHead' value='"$"{users.userHead}' /><br />
-            var page = "<div id='amend'><form action='${pageContext.request.contextPath}/user/UpdateUserInfo' method='post' class='layui-form'><input type='hidden' name='userId' value='${users.userId}'>昵称：<input type='text' name='userNickname' class='userNickname' value='${users.userNickname}' /><br />邮箱：<input type='text' name='userEamil' class='userEamil' value='${users.userEamil}' readonly/><br />姓名：<input type='text' name='userName' class='userName' value='${users.userName}' /><br />年纪：<input type='text' name='userAge' class='userAge' value='${users.userAge}' /><br />性别：<input type='text' name='userSex' class='userSex' value='${users.userSex}' /><br />地址：<input type='text' name='userAddress' class='userAddress' value='${users.userAddress}' /><br />职业：<input type='text' name='userProfession' class='userProfession' value='${users.userProfession}' /><br /><button class='layui-btn' lay-submit id='amendbtn' lay-filter='login'>修改</button></form></div>"
-            var layer = layui.layer;
-            layer.open({
-                title: '修改信息',
-                type:1,
-                area: ['300px', '500px'],
-                offset: ['100px', '650px'],
-                content: page
-            });
-        })
-    })
-    $("#amendA").click(function () {
-        layui.use('layer', function(){
-            var layer = layui.layer;
-            var file = "<form action='${pageContext.request.contextPath}/user/FileUpLoad' method='post' enctype='multipart/form-data' style='margin-left: 20px;margin-top: 20px'><input type='file' name='photo'/><br /><input type='submit' style='margin-top: 20px;'/></form>"
-            layer.open({
-                title: '在线调试',
-                type:1,
-                area: ['300px', '150px'],
-                offset: ['100px', '650px'],
-                content:file
-            });
-        })
-    })
-    $(function  () {
-        layui.use('form', function(){
-            var layer = layui.layer;
-            var form = layui.form;
-            //监听提交
-            form.on('submit(login)', function(data){
-                if ($(".layui-form .userNickname").val()==null||$(".userNickname").val()==""){
-                    alert("昵称不能为空")
-                    return false;
-                }else {
-                    alert("修改成功")
-                }
-            });
-        });
-    })
-</script>
+
 </html>

@@ -50,7 +50,7 @@
                 <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;">修改信息</a></dd>
-                    <dd><a href="javascript:;">个人中心</a></dd>
+                    <dd><a href="${ctx}/user/SkipPersonalPage">个人中心</a></dd>
                     <dd><a href="javascript:;">退出</a></dd>
                 </dl>
             </li>
