@@ -1,0 +1,16 @@
+#rightZhuTI{
+    width: 321px;
+}
+#rightMenu{
+    width: 100%;
+}
+#ad,#ad2,#tuiArticle,#tuiBlog,#footer{
+    width: 100%;
+    margin-bottom: 10px;
+    height: 250px;
+    background: #00A67C;
+}
+#ad{
+    height: 230px;
+}
+

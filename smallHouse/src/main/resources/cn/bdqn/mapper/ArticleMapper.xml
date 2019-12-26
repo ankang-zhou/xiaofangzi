@@ -235,6 +235,7 @@
     <result column="article_content" property="articleContent" jdbcType="LONGVARCHAR" />
     <result column="user_nickName" property="userNickName"/>
     <result column="type_name" property="typeName"/>
+    <result column="user_head" property="userHead"/>
   </resultMap>
 
   <!-- 获得最大的文章编号 -->
@@ -274,7 +275,7 @@
   <!-- 显示文章列表 -->
   <select id="selectArticleList" resultMap="queryUserName">
         SELECT article_id,article_title,article_state,article_photo, t.`type_name`, u.`user_nickName`,article_time, article_pageview,
-                article_like,article_summary,article_content
+                article_like,article_summary,article_content,u.user_head
         FROM t_article AS a,t_user AS u,t_type AS t
         WHERE a.`article_state` = 1 AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
         ORDER BY article_time DESC

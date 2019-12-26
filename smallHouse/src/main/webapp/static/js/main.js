@@ -29,7 +29,7 @@ layui.use(['carousel', 'form'], function(){
     //图片轮播
     carousel.render({
         elem: '#test3'
-        ,width: '450px'
+        ,width: '100%'
         ,height: '230px'
         ,interval: 5000
     });
@@ -73,3 +73,15 @@ layui.use(['carousel', 'form'], function(){
         active[type] ? active[type].call(this, othis) : '';
     });
 });
+//点击搜索框
+$(function(){
+    $("#button").click(function(){
+        var articleTitle = $("#searchText").val();
+        location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+
+    });
+    $("#button2").click(function(){
+        var articleTitle = $("#searchText2").val();
+        location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+    })
+})
