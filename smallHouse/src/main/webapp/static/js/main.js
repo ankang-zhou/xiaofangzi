@@ -73,3 +73,15 @@ layui.use(['carousel', 'form'], function(){
         active[type] ? active[type].call(this, othis) : '';
     });
 });
+//点击搜索框
+$(function(){
+    $("#button").click(function(){
+        var articleTitle = $("#searchText").val();
+        location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+
+    });
+    $("#button2").click(function(){
+        var articleTitle = $("#searchText2").val();
+        location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+    })
+})

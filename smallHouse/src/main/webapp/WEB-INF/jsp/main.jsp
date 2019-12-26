@@ -142,23 +142,10 @@
 
     <%-- rbox begin --%>
     <div id="rBox">
+
     </div>
 </article>
 <footer></footer>
 
 </body>
-<script type="text/javascript">
-    $(function(){
-        $("#button").click(function(){
-            var articleTitle = $("#searchText").val();
-            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
-
-        });
-        $("#button2").click(function(){
-            var articleTitle = $("#searchText2").val();
-            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
-        })
-
-    })
-</script>
 </html>

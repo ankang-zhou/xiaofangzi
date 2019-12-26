@@ -53,6 +53,7 @@ header {
     font-size: 25px;
     color: #fbfff8;
     margin: 10px 20px;
+    display: none;
 }
 #menu:hover{
     color: red;
