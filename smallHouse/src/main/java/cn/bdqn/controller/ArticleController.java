@@ -71,9 +71,12 @@ public class ArticleController {
     @RequestMapping(value = "/queryArticle")
     public String queryArticleByTitle(ModelMap modelMap,String articleTitle){
 
-        articleTitle = "天气"; //模拟搜索
 
         List<Article> articles = articleService.selectArticlesByTitle(articleTitle);
+
+        System.out.println("用户输入的文字"+articleTitle);
+
+        System.out.println(articles);
 
         //将article列表放在ModelMap中
         modelMap.addAttribute("articles",articles);

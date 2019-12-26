@@ -13,9 +13,8 @@
 <head>
     <title>显示博客页面</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/showBlog.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.css"/>
+
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/tinymce/js/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.js"></script>
 </head>
 <body id="body">
 <section>

@@ -38,6 +38,8 @@ public class Article {
 
     private String typeName;
 
+    private String userHead;
+
     public Integer getArticleId() {
         return articleId;
     }
@@ -164,6 +166,14 @@ public class Article {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getUserHead() {
+        return userHead;
+    }
+
+    public void setUserHead(String userHead) {
+        this.userHead = userHead;
     }
 
     @Override

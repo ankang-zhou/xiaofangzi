@@ -29,7 +29,7 @@ layui.use(['carousel', 'form'], function(){
     //图片轮播
     carousel.render({
         elem: '#test3'
-        ,width: '450px'
+        ,width: '100%'
         ,height: '230px'
         ,interval: 5000
     });
