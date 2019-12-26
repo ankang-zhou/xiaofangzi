@@ -1,5 +1,6 @@
 package cn.bdqn.service;
 
+import cn.bdqn.domain.Article;
 import cn.bdqn.domain.User;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,5 +1,6 @@
 import cn.bdqn.domain.User;
 import cn.bdqn.service.UserService;
+import cn.bdqn.utils.StringSplitUtils;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,9 +16,11 @@ public class test {
 
         UserService userService = (UserService) ac.getBean("userServiceImpl");
 
-        String[] Ids = {"2","3"};
+        User user1 = userService.selectInfoByUserId(1);
 
-        List<User> list = userService.selectUsersInfoByIds(Ids);
+        String[] strings = StringSplitUtils.splitString(user1.getUserFans(), ",");
+
+        List<User> list = userService.selectUsersInfoByIds(strings);
 
         System.out.println(list.toString());
 

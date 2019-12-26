@@ -1,8 +1,10 @@
 package cn.bdqn.controller;
 
+import cn.bdqn.domain.Article;
 import cn.bdqn.domain.User;
 import cn.bdqn.service.ArticleService;
 import cn.bdqn.service.UserService;
+import cn.bdqn.utils.BlogImageUtil;
 import cn.bdqn.utils.StringSplitUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -23,6 +27,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ArticleService articleService;
+
     //跳转登录页面
     @RequestMapping(value = "/skipLogin")
     public String skipLogin(){
@@ -30,6 +37,12 @@ public class UserController {
         return "login";
     }
 
+    /**
+     * 添加用户信息
+     * @param user
+     * @param model
+     * @return
+     */
     @RequestMapping("/addUserInfo")
     public String addUserInfo(User user,Model model){
 
@@ -38,6 +51,13 @@ public class UserController {
         return "login";
     }
 
+    /**
+     * 登录验证
+     * @param userEamil
+     * @param userPassword
+     * @param model
+     * @return
+     */
     @RequestMapping("/LoginVerify")
     public String loginVerify(String userEamil, String userPassword, ModelMap model){
 
@@ -53,6 +73,11 @@ public class UserController {
         }
     }
 
+    /**
+     * 用户邮箱验证
+     * @param userEamil
+     * @return
+     */
     @RequestMapping("/EmailVerify")
     @ResponseBody
     public String EmailVerify(String userEamil){
@@ -62,44 +87,99 @@ public class UserController {
         return String.valueOf(num);
     }
 
-    @RequestMapping("/SkipAmend")
-    public String skipAmend(int id,Model model){
+//    /**
+//     * 跳转修改信息页面
+//     */
+//    @RequestMapping("/SkipAmend")
+//    public String skipAmend(int id,Model model){
+//
+//        model.addAttribute("user",userService.selectInfoByUserId(id));
+//
+//        return "amend";
+//    }
 
-        model.addAttribute("user",userService.selectInfoByUserId(id));
-
-        return "amend";
-    }
-
+    /**
+     * 跳转个人中心
+     * @param user
+     * @param model
+     * @return
+     */
     @RequestMapping("/SkipPersonalPage")
-    public String skipPersonalPage(int id,Model model){
-
-        id = 1;
-        User user = userService.selectInfoByUserId(id);
+    public String skipPersonalPage(@SessionAttribute(value = "users")User user, Model model){
+        user = userService.selectInfoByUserId(user.getUserId());
         String[] strings = StringSplitUtils.splitString(user.getUserFans(), "，");
         String[] strings1 = StringSplitUtils.splitString(user.getUserAttention(), "，");
 
         List<User> userFansList = userService.selectUsersInfoByIds(strings);
         List<User> userAttentionList =userService.selectUsersInfoByIds(strings1);
 
-
-//        System.out.println(userFansList.get(0).getUserNickname());
-//        System.out.println(userAttentionList.get(0).getUserNickname());
         model.addAttribute("userAttention",userAttentionList);
         model.addAttribute("userFans",userFansList);
         model.addAttribute("userInfo",user);
-
+        model.addAttribute("users",user);
         return "personalPage";
     }
 
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
     @RequestMapping("/UpdateUserInfo")
     public String updateUserInfo(User user){
 
-        System.out.println(user.getUserId());
+        userService.updateUserInfo(user);
+
+        return "forward:/user/SkipPersonalPage";
+
+    }
+
+    /**
+     * 文件上传
+     * @param user
+     * @param request
+     * @param photo
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/FileUpLoad")
+    public String fileUpLoad(@SessionAttribute(value = "users")User user,HttpServletRequest request, MultipartFile photo)throws Exception{
+
+        String realPath = request.getSession().getServletContext().getRealPath("/"); //获得真实路径
+
+        String articlePhoto = BlogImageUtil.uploadImage(photo,realPath);
+
+        user.setUserHead(articlePhoto);
 
         userService.updateUserInfo(user);
 
-        return "";
+        System.out.println(user.getUserHead());
 
+        return "forward:/user/SkipPersonalPage";
+    }
+
+    /**
+     * 跳转用户个人主页
+     */
+    @RequestMapping("/SkipUserPage")
+    public String skipUserPage(int id,Model model){
+
+        List<Article> articles = articleService.selectArticleByUserId(id);
+
+        User user = userService.selectInfoByUserId(id);
+
+        String[] fans = StringSplitUtils.splitString(user.getUserFans(), ",");
+        String[] attention = StringSplitUtils.splitString(user.getUserAttention(),",");
+
+        List<User> fanss = userService.selectUsersInfoByIds(fans);
+        List<User> attentions = userService.selectUsersInfoByIds(attention);
+
+        model.addAttribute("userAttention",attentions);
+        model.addAttribute("userFans",fanss);
+        model.addAttribute("userInfo",user);
+        model.addAttribute("userArticle",articles);
+
+        return "userMainPage";
     }
 
 }
