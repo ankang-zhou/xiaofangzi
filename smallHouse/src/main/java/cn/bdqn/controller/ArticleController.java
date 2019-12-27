@@ -74,10 +74,6 @@ public class ArticleController {
 
         List<Article> articles = articleService.selectArticlesByTitle(articleTitle);
 
-        System.out.println("用户输入的文字"+articleTitle);
-
-        System.out.println(articles);
-
         //将article列表放在ModelMap中
         modelMap.addAttribute("articles",articles);
 
@@ -112,12 +108,18 @@ public class ArticleController {
         //接收查询到的所有类型信息
         List<Type> typeList = typeService.selectTypeList();
 
+        //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+        List<Article> articles = articleService.selectRecommendArticleList();
+
         //将数据放在ModelMap中
         modelMap.addAttribute("articleList",articleList);
+
+        modelMap.addAttribute("articles",articles);
 
         modelMap.addAttribute("typeList",typeList);
 
         return "main";
     }
+
 
 }

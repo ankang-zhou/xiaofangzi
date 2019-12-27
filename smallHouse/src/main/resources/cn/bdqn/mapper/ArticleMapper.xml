@@ -280,4 +280,13 @@
         WHERE a.`article_state` = 1 AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
         ORDER BY article_time DESC
     </select>
+  <!-- 显示推荐的文章列表 -->
+  <select id="selectRecommendArticleList" resultMap="queryUserName">
+        SELECT article_id,article_title,article_state,article_photo, t.`type_name`, u.`user_nickName`,article_time, article_pageview,
+                article_like,article_summary,article_content,u.user_head
+        FROM t_article AS a,t_user AS u,t_type AS t
+        WHERE a.`article_state` = 1 AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
+        ORDER BY article_pageview,article_like DESC
+        LIMIT 10
+  </select>
 </mapper>

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="${ctx}/static/layui/css/layui.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/rBox.css"/>
     <link media="(max-width:768px)" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/mobile.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.js"></script>
     <script src="${ctx}/static/layui/layui.js" charset="utf-8"></script>
@@ -27,11 +28,13 @@
 <body>
 <%--top begin--%>
 <header id="header">
-    <i id="menu" class="layui-icon layui-icon-spread-left"></i>
+    <a href="${ctx}/article/articleList">
+        <i id="menu" class="layui-icon layui-icon-home"></i>
+    </a>
     <nav>
         <ul id="lul" class="layui-nav" lay-filter="">
             <li class="layui-nav-item"><a href="">最新活动</a></li>
-            <li class="layui-nav-item layui-this"><a href="">产品</a></li>
+            <li class="layui-nav-item layui-this"><a href="">首页</a></li>
             <li class="layui-nav-item"><a href="">大数据</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">解决方案</a>
@@ -56,18 +59,23 @@
                 <li class="layui-nav-item">
                     <a href="${ctx}/type/queryAllTypes">写博客</a>
                 </li>
+                <li class="layui-nav-item">
+                    <a href="${ctx}">个人中心<span class="layui-badge-dot"></span></a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href=""><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="${ctx}">个人主页</a></dd>
+                        <dd><a href="${ctx}">个人中心</a></dd>
+                        <dd><a href="${ctx}">退出</a></dd>
+                    </dl>
+                </li>
             </c:if>
-            <li class="layui-nav-item">
-                <a href="${ctx}">个人中心<span class="layui-badge-dot"></span></a>
-            </li>
-            <li class="layui-nav-item">
-                <a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img"></a>
-                <dl class="layui-nav-child">
-                    <dd><a href="${ctx}">修改信息</a></dd>
-                    <dd><a href="${ctx}">个人中心</a></dd>
-                    <dd><a href="${ctx}">退出</a></dd>
-                </dl>
-            </li>
+            <c:if test="${users.userId == null}">
+                <li class="layui-nav-item">
+                    <a href="${ctx}/">登录/注册</a>
+                </li>
+            </c:if>
         </ul>
     </nav>
 </header>
@@ -96,8 +104,8 @@
                 </div>
             </div>
             <div class="lunRight">
-                <div class="lunRightS"><img class="rightSImg"  src="${ctx}/static/images/lunboimages/1.png" /></div>
-                <div class="lunRightX"><img class="rightXImg"  src="${ctx}/static/images/lunboimages/2.png" /></div>
+                <div class="lunRightS"><img class="rightSImg"  src="${ctx}/static/images/lunboimages/1.png" title="一元秒杀" /></div>
+                <div class="lunRightX"><img class="rightXImg"  src="${ctx}/static/images/lunboimages/2.png" title="夏日清甜感" /></div>
             </div>
         </div>
 
@@ -113,7 +121,7 @@
         <div class="articleList">
             <c:forEach items="${articleList}" var="articles">
                 <div class="fenGe">
-                    <p class="titleP"><a href="${pageContext.request.contextPath}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
+                    <p class="titleP"><a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
                     <div class="summaryP">${articles.articleSummary}</div>
                     <div class="clearDiv"></div>
                     <div class="liColor">
@@ -142,10 +150,82 @@
 
     <%-- rbox begin --%>
     <div id="rBox">
+        <div id="rightMenu">
+            <div id="ad">
+                <div>
+                    <img src="${ctx}/static/images/img/1.jpg"/>
+                    <span>来去自由</span>
+                </div>
 
+                <div>
+                    <img src="${ctx}/static/images/img/2.jpg"/>
+                    <span>干净如风</span>
+                </div>
+
+                <div>
+                    <img src="${ctx}/static/images/img/3.jpg"/>
+                    <span>甲乙丙丁</span>
+                </div>
+
+                <div>
+                    <img src="${ctx}/static/images/img/4.jpg"/>
+                    <span>向往平淡</span>
+                </div>
+
+                <div>
+                    <img src="${ctx}/static/images/img/5.jpg"/>
+                    <span>不甘平凡</span>
+                </div>
+            </div>
+            <div id="tuiArticle">
+                <h3><span style="color: red;font-weight: bold">|</span> 今日推荐</h3>
+                <ul>
+                    <c:forEach items="${articles}" var="recommend">
+                        <li>
+                            <a href="${ctx}/article/ArticleById?articleId=${recommend.articleId}">
+                                <img src="${ctx}/${recommend.articlePhoto}"><span>${recommend.articleTitle}</span>
+
+                            </a>
+                        </li>
+
+                    </c:forEach>
+                </ul>
+            </div>
+            <div id="ad2">
+                广告2
+            </div>
+            <div id="tuiBlog">
+                推荐博客
+            </div>
+            <div id="footer">
+                <div id="middle">
+                    <a class="btn" href="https://github.com/">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a class="btn" href="#">
+                        <i class="fab fa-weixin"></i>
+                    </a>
+                    <a class="btn" href="#">
+                        <i class="fab fa-qq"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </article>
-<footer></footer>
+<script type="text/javascript">
+    //点击搜索框
+    $(function(){
+        $("#button").click(function(){
+            var articleTitle = $("#searchText").val();
+            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
 
+        });
+        $("#button2").click(function(){
+            var articleTitle = $("#searchText2").val();
+            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+        });
+    })
+</script>
 </body>
 </html>

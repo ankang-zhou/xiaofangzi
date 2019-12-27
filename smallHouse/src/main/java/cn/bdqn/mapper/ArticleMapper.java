@@ -35,5 +35,8 @@ public interface ArticleMapper {
     //显示文章列表
     public List<Article> selectArticleList();
 
+    //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+    public List<Article> selectRecommendArticleList();
+
 
 }

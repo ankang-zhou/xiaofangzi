@@ -41,4 +41,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> selectArticleList() {
         return articleMapper.selectArticleList();
     }
+
+    @Override
+    public List<Article> selectRecommendArticleList() {
+        return articleMapper.selectRecommendArticleList();
+    }
 }

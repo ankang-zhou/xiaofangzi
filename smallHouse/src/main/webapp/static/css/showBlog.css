@@ -12,14 +12,14 @@
 #body{
     background-color: #d7d8d9;
 }
-section{
-    width: 66%;
+#section{
+    width: 72%;
     margin: 0px auto;
-    border: 1px solid red;
-
 }
+/*left*/
 #left{
-    width: 69%;
+    width: 66%;
+    float: left;
 }
 h1{
     text-align: center;
@@ -27,7 +27,8 @@ h1{
 .titleP{
     font-weight: bold;
     color: #00A67C;
-    margin-left: 80px;
+    margin-left: 20px;
+    margin-bottom: 5px;
     padding-top: 10px;
     font-size: 18px;
 }
@@ -56,7 +57,8 @@ h1{
 #ul{
     float: right;
     margin-bottom: 1px;
-    margin-right: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
 }
 ul li{
     list-style: none;
@@ -78,4 +80,10 @@ ul li{
 .clearDiv{
     width: 100%;
     clear: both;
+}
+/*right*/
+#right{
+    width: 29.4%;
+    margin-left: 10px;
+    float: left;
 }

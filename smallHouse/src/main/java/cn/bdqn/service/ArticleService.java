@@ -23,4 +23,7 @@ public interface ArticleService {
     public List<Article> selectArticleByUserId(@Param("Id") int Id);
 
     public List<Article> selectArticleList();
+
+    //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+    public List<Article> selectRecommendArticleList();
 }

@@ -73,15 +73,32 @@ layui.use(['carousel', 'form'], function(){
         active[type] ? active[type].call(this, othis) : '';
     });
 });
-//点击搜索框
 $(function(){
-    $("#button").click(function(){
-        var articleTitle = $("#searchText").val();
-        location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+    //初始化,i代表遍历的索引,e代表遍历的对象
+    $.each($("#box div"),function(i,e){
+        $(e).css("transform","translateX("+i*40+"px)").css("transition","1s");
+    });
+
+
+    //点击事件
+    /**
+     * 小于等于点击的索引  向左
+     * 大于点击的索引  向右
+     */
+    $("#ad div").click(function(){
+        //获取点击的索引
+        var index = $(this).index();
+        $.each($("#ad div"),function(i,e){
+            if(i<=index){//小于等于点击的索引  向左
+                $(e).css("transform","translateX("+i*20+"px)").css("transition","1s");
+            }else{//大于点击的索引  向右
+                //总长度-5*40=偏移量
+                $(e).css("transform","translateX("+(321-5*20+i*20)+"px)").css("transition","1s");
+            }
+        });
 
     });
-    $("#button2").click(function(){
-        var articleTitle = $("#searchText2").val();
-        location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
-    })
+
 })
+
+
