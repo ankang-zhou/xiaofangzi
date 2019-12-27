@@ -21,7 +21,7 @@ public class User {
 
     private Integer userState;
 
-    private String userAddress;
+    private Integer userAddress;
 
     private String userProfession;
 
@@ -109,12 +109,12 @@ public class User {
         this.userState = userState;
     }
 
-    public String getUserAddress() {
+    public Integer getUserAddress() {
         return userAddress;
     }
 
-    public void setUserAddress(String userAddress) {
-        this.userAddress = userAddress == null ? null : userAddress.trim();
+    public void setUserAddress(Integer userAddress) {
+        this.userAddress = userAddress;
     }
 
     public String getUserProfession() {

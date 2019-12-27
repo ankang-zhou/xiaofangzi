@@ -1,4 +1,4 @@
-<%--
+﻿<%--
   Created by IntelliJ IDEA.
   User: 鸣人
   Date: 2019/12/18
@@ -66,7 +66,7 @@
                     <a href=""><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
                         <dd><a href="${ctx}">个人主页</a></dd>
-                        <dd><a href="${ctx}">个人中心</a></dd>
+                        <dd><a href="${ctx}/user/SkipPersonalPage">个人中心</a></dd>
                         <dd><a href="${ctx}">退出</a></dd>
                     </dl>
                 </li>

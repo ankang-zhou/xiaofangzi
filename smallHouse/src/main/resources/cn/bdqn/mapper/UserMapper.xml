@@ -12,7 +12,7 @@
     <result column="user_head" property="userHead" jdbcType="VARCHAR" />
     <result column="user_vip" property="userVip" jdbcType="INTEGER" />
     <result column="user_state" property="userState" jdbcType="INTEGER" />
-    <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
+    <result column="user_address" property="userAddress" jdbcType="INTEGER" />
     <result column="user_profession" property="userProfession" jdbcType="VARCHAR" />
     <result column="user_attention" property="userAttention" jdbcType="VARCHAR" />
     <result column="user_fans" property="userFans" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
     values (#{userId,jdbcType=INTEGER}, #{userEamil,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR},
       #{userNickname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER},
       #{userSex,jdbcType=INTEGER}, #{userHead,jdbcType=VARCHAR}, #{userVip,jdbcType=INTEGER},
-      #{userState,jdbcType=INTEGER}, #{userAddress,jdbcType=VARCHAR}, #{userProfession,jdbcType=VARCHAR},
+      #{userState,jdbcType=INTEGER}, #{userAddress,jdbcType=INTEGER}, #{userProfession,jdbcType=VARCHAR},
       #{userAttention,jdbcType=VARCHAR}, #{userFans,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bdqn.domain.User" >
@@ -121,7 +121,7 @@
         #{userState,jdbcType=INTEGER},
       </if>
       <if test="userAddress != null" >
-        #{userAddress,jdbcType=VARCHAR},
+        #{userAddress,jdbcType=INTEGER},
       </if>
       <if test="userProfession != null" >
         #{userProfession,jdbcType=VARCHAR},
@@ -165,7 +165,7 @@
         user_state = #{userState,jdbcType=INTEGER},
       </if>
       <if test="userAddress != null" >
-        user_address = #{userAddress,jdbcType=VARCHAR},
+        user_address = #{userAddress,jdbcType=INTEGER},
       </if>
       <if test="userProfession != null" >
         user_profession = #{userProfession,jdbcType=VARCHAR},
@@ -190,7 +190,7 @@
       user_head = #{userHead,jdbcType=VARCHAR},
       user_vip = #{userVip,jdbcType=INTEGER},
       user_state = #{userState,jdbcType=INTEGER},
-      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=INTEGER},
       user_profession = #{userProfession,jdbcType=VARCHAR},
       user_attention = #{userAttention,jdbcType=VARCHAR},
       user_fans = #{userFans,jdbcType=VARCHAR}
