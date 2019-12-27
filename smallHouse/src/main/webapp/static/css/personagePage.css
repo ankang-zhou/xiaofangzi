@@ -8,7 +8,7 @@ body{
 }
 #divmain{
 	margin: 0px auto;
-	width: 60%;
+	width: 72%;
 }
 #divright,#divFans,#divAttention{
 	width: 80%;
@@ -130,66 +130,128 @@ body{
 	color: red;
 	text-decoration: underline;
 }
+/*粉丝的div*/
 #divFans hr{
-	margin-left: 10px;
-	margin-right: 10px ;
+	margin-top: 10px;
+	margin-right: 20px;
 }
 #divFans ul{
-	margin-left: 20px;
-	margin-top: 20px;
+	list-style: none;
+	margin-bottom: 20px;
 }
 #divFans ul li{
-	margin: 30px;
-	display: inline-block;
+	padding-left: 10px;
+	padding-top: 10px;
+	border-bottom: 1px dashed #C0C4CC;
+	margin-right: 40px;
+
 }
-#divFans ul li img{
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
+#divFans{
+	padding-top: 20px;
+	padding-left: 20px;
+	width: 78%;
 }
 #fansP{
-	margin-top: 20px;
-	margin-left: 20px;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 400;
 }
-#divFans_divimg p{
-	text-align: center;
-	margin-top: 10px;
+#divFans_divimg img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
 }
-#divFans_divimg:hover p{
-	background-color: #930000;
-	color: white;
+#divFans_divimg{
+	margin: 10px;
 }
-------------------
-#divAttention hr{
-	margin-left: 10px;
-	margin-right: 10px ;
+#divFans_divimg a{
+	color: black;
 }
-#divAttention ul{
-	margin-left: 20px;
-	margin-top: 20px;
+#divFans_divimg a:hover{
+	color: dodgerblue;
 }
-#divAttention ul li{
-	margin: 30px;
+#divFans ul li:hover {
+	background-color: #e2e2e2;
+}
+#divFans_divimg span{
 	display: inline-block;
 }
-#divAttention ul li img{
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
+#guan{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+#guanId:hover #guan{
+	background-color: #930000;
+	border: 1px solid #930000;
+	color: white;
+}
+
+/*关注的div*/
+#divAttention hr{
+	margin-top: 10px;
+	margin-right: 20px;
+}
+#divAttention ul{
+	list-style: none;
+	margin-bottom: 20px;
+}
+#divAttention ul li{
+	padding-left: 10px;
+	padding-top: 10px;
+	border-bottom: 1px dashed #C0C4CC;
+	margin-right: 40px;
+
+}
+#divAttention{
+	padding-top: 20px;
+	padding-left: 20px;
+	width: 78%;
 }
 #AttentionP{
-	margin-top: 20px;
-	margin-left: 20px;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 400;
 }
-#divAttention_divimg p{
-	text-align: center;
-	margin-top: 10px;
+#divAttention_divimg img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
 }
-#divAttention_divimg:hover p{
+#divAttention_divimg{
+	margin: 10px;
+}
+#divAttention_divimg a{
+	color: black;
+}
+#divAttention_divimg a:hover{
+	color: dodgerblue;
+}
+#divAttention ul li:hover {
+	background-color: #e2e2e2;
+}
+#divAttention_divimg span{
+	display: inline-block;
+}
+#cancelGuan{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+#cancelGuanId:hover #cancelGuan{
 	background-color: #930000;
+	border: 1px solid #930000;
 	color: white;
 }

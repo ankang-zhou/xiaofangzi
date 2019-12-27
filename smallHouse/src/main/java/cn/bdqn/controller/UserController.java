@@ -118,9 +118,20 @@ public class UserController {
         List<User> userFansList = userService.selectUsersInfoByIds(strings);
         List<User> userAttentionList =userService.selectUsersInfoByIds(strings1);
         List<Address> addresses = addressService.selectAllStair();
+        String address = "";
+        if(user.getUserAddress()!=null||user.getUserAddress()!=0){
+            Address cityAddress = addressService.selectInfoById(user.getUserAddress());
+            System.out.println(cityAddress.getAddressName());
+            Address provinceAddress = addressService.selectParentLevelById(cityAddress.getAddressId());
+            System.out.println(provinceAddress.getAddressName());
+            Address nationAddress = addressService.selectParentLevelById(provinceAddress.getAddressId());
+            System.out.println(nationAddress.getAddressName());
 
-        System.out.println(addresses.get(1).getAddressName());
 
+            address = nationAddress.getAddressName()+provinceAddress.getAddressName()+cityAddress.getAddressName();
+        }
+
+        model.addAttribute("address",address);
         model.addAttribute("userAttention",userAttentionList);
         model.addAttribute("userFans",userFansList);
         model.addAttribute("users",user);
@@ -135,6 +146,10 @@ public class UserController {
      */
     @RequestMapping("/UpdateUserInfo")
     public String updateUserInfo(User user){
+
+        if(user.getUserAddress()==-1){
+            user.setUserAddress(null);
+        }
 
         userService.updateUserInfo(user);
 
@@ -168,6 +183,9 @@ public class UserController {
 
     /**
      * 跳转用户个人主页
+     * @param id
+     * @param model
+     * @return
      */
     @RequestMapping("/SkipUserPage")
     public String skipUserPage(int id,Model model){

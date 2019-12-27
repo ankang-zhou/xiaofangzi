@@ -23,4 +23,14 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> selectStairByAddressId(int Id) {
         return addressMapper.selectStairByAddressId(Id);
     }
+
+    @Override
+    public Address selectParentLevelById(int id) {
+        return addressMapper.selectParentLevelById(id);
+    }
+
+    @Override
+    public Address selectInfoById(int Id) {
+        return addressMapper.selectByPrimaryKey(Id);
+    }
 }

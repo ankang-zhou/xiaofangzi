@@ -82,4 +82,10 @@
     from t_address
     where parent_id = #{Id}
   </select>
+  <!-- 根据当前id查询父级信息 -->
+  <select id="selectParentLevelById" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM t_address
+    WHERE address_id = (SELECT parent_id FROM t_address WHERE address_id = #{id})
+  </select>
 </mapper>

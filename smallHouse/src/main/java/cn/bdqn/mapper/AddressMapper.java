@@ -24,4 +24,7 @@ public interface AddressMapper {
     //根据上级地址查询下级地址
     public List<Address> selectStairByAddressId(@Param("Id") int Id);
 
+    //根据当前id查询父级信息
+    public Address selectParentLevelById(int id);
+
 }
