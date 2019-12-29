@@ -48,4 +48,9 @@
         <property name="defaultEncoding" value="utf-8"></property>
     </bean>
 
+    <!--逻辑视图映射-->
+    <mvc:view-controller path="/main" view-name="main"/>
+
+
+
 </beans>

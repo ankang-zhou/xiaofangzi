@@ -39,6 +39,7 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.selectArticleByUserId(Id);
     }
 
+    @Override
     public List<Article> selectArticleList() {
         return articleMapper.selectArticleList();
     }
@@ -46,6 +47,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void delArticleById(int id) {
         articleMapper.delArticleById(id);
+    }
+
+    @Override
+    public List<Article> selectRecommendArticleList() {
+        return articleMapper.selectRecommendArticleList();
     }
 
 }
