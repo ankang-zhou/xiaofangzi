@@ -269,7 +269,7 @@
     article_like,article_summary,article_content
     <include refid="Blob_Column_List" />
     from t_article
-    where user_id = #{Id}
+    where user_id = #{Id} and article_state = 1
   </select>
 
   <!-- 显示文章列表 -->
@@ -280,4 +280,12 @@
         WHERE a.`article_state` = 1 AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
         ORDER BY article_time DESC
     </select>
+
+  <!-- 根据文章id进行删除 -->
+  <update id="delArticleById">
+    update t_article
+    set
+      article_state = 0
+    where article_id = #{id}
+  </update>
 </mapper>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -118,6 +119,15 @@ public class ArticleController {
         modelMap.addAttribute("typeList",typeList);
 
         return "main";
+    }
+
+    //删除文章
+    @RequestMapping("/DelArticleById")
+    public String delArticleById(int id){
+
+        articleService.delArticleById(id);
+
+        return "forward:/user/SkipPersonalPage";
     }
 
 }

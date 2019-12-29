@@ -14,4 +14,9 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    //根据文章id查询评论
+
+
+
 }

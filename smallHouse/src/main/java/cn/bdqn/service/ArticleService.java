@@ -23,4 +23,7 @@ public interface ArticleService {
     public List<Article> selectArticleByUserId(@Param("Id") int Id);
 
     public List<Article> selectArticleList();
+
+    //根据文章id进行删除
+    public void delArticleById(@Param("id") int id);
 }
