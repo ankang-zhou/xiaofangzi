@@ -2,6 +2,7 @@ package cn.bdqn.mapper;
 
 import cn.bdqn.domain.Article;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public interface ArticleMapper {
 
     //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
     public List<Article> selectRecommendArticleList();
+
+    //根据id 更新文章的浏览量
+    public  void updateArticlePageView(@Param("articleId") Integer articleId);
 
 
 }

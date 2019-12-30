@@ -70,6 +70,7 @@ article{
     line-height: 25px;
     margin-bottom: 2px;
 }
+
 .navUl ul li a {
     font-size: 13px;
     color: #707070;
@@ -80,6 +81,16 @@ article{
 .navUl ul li:hover a{
     color: white;
 }
+#typeName{
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    background: #F44444;
+    border-radius: 10px;
+    padding: 2px;
+    margin-right: 10px;
+}
+
 
 #lBox{
     width: 61%;
@@ -201,7 +212,7 @@ article{
     border-radius: 50%;
 }
 #userNickName{
-    font-size: 14px;
+    font-size: 12px;
 }
 #userNickName:hover{
     color: dodgerblue;

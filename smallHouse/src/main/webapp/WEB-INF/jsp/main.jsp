@@ -62,18 +62,18 @@
                 <li class="layui-nav-item">
                     <a href="${ctx}">个人中心<span class="layui-badge-dot"></span></a>
                 </li>
-                <li class="layui-nav-item">
+                <li id="navItem" class="layui-nav-item">
                     <a href=""><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
                         <dd><a href="${ctx}">个人主页</a></dd>
                         <dd><a href="${ctx}/user/SkipPersonalPage">个人中心</a></dd>
-                        <dd><a href="${ctx}">退出</a></dd>
+                        <dd><a href="${ctx}/user/validateSession">退出</a></dd>
                     </dl>
                 </li>
             </c:if>
             <c:if test="${users.userId == null}">
                 <li class="layui-nav-item">
-                    <a href="${ctx}/">登录/注册</a>
+                    <a href="${ctx}/login">登录/注册</a>
                 </li>
             </c:if>
         </ul>
@@ -121,7 +121,7 @@
         <div class="articleList">
             <c:forEach items="${articleList}" var="articles">
                 <div class="fenGe">
-                    <p class="titleP"><a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
+                    <p class="titleP"><span id="typeName" >${articles.typeName}</span> <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
                     <div class="summaryP">${articles.articleSummary}</div>
                     <div class="clearDiv"></div>
                     <div class="liColor">
@@ -131,15 +131,22 @@
                     </div>
                     <ul id="ul">
                         <li>
+                            <i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>
                             <a id="userNickName" href="${ctx}">${articles.userNickName}</a>
                         </li>
                         <li><span><fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日"/></span></li>
-                        <li><span class="numColor">${articles.articlePageview}</span><span>浏览</span></li>
                         <li>
-                            <i class="layui-icon layui-icon-praise" style="font-size: 15px; color: #565656;"></i>
-                            <span class="numColor">
-                                    ${articles.articleLike}
-                            </span>
+                            <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
+                                <span>浏览</span>&nbsp<span class="numColor">${articles.articlePageview}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="layui-icon layui-icon-praise" style="font-size: 15px; color: #565656;"></i>
+                                <span class="numColor">
+                                        ${articles.articleLike}
+                                </span>
+                            </a>
                         </li>
                     </ul>
                     <div class="clearDiv"></div>
@@ -180,14 +187,13 @@
             <div id="tuiArticle">
                 <h3><span style="color: red;font-weight: bold">|</span> 今日推荐</h3>
                 <ul>
-                    <c:forEach items="${articles}" var="recommend">
+                    <c:forEach items="${articleTop}" var="articleTop">
                         <li>
-                            <a href="${ctx}/article/ArticleById?articleId=${recommend.articleId}">
-                                <img src="${ctx}/${recommend.articlePhoto}"><span>${recommend.articleTitle}</span>
+                            <a href="${ctx}/article/ArticleById?articleId=${articleTop.articleId}">
+                                <img src="${ctx}/${articleTop.articlePhoto}"><span>${articleTop.articleTitle}</span>
 
                             </a>
                         </li>
-
                     </c:forEach>
                 </ul>
             </div>
@@ -198,17 +204,43 @@
                 推荐博客
             </div>
             <div id="footer">
+
                 <div id="middle">
-                    <a class="btn" href="https://github.com/">
+                    <a id="middleA1" class="btn" href="https://github.com/">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a class="btn" href="#">
+                    <div id="middleA1Img"><img class="middleImg" src="${ctx}/static/images/img/gitHub.jpg" /></div>
+                    <a id="middleA2" class="btn" href="#">
                         <i class="fab fa-weixin"></i>
                     </a>
-                    <a class="btn" href="#">
+                    <div id="middleA2Img"><img class="middleImg" src="${ctx}/static/images/img/weixin.jpg" /></div>
+                    <a id="middleA3" class="btn" href="#">
                         <i class="fab fa-qq"></i>
                     </a>
+                    <div id="middleA3Img"><img class="middleImg" src="${ctx}/static/images/img/qq.png" /></div>
                 </div>
+
+                <ul id="footUl">
+                    <li>
+                        <a href="#">
+                            关于我们
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            关于我们
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            关于我们
+                        </a>
+                    </li>
+                </ul>
+                <p>
+                    <span>豫ICP备19041699号-1</span>
+                    <span></span>
+                </p>
             </div>
         </div>
     </div>

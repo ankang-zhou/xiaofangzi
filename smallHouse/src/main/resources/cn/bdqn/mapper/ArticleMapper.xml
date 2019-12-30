@@ -286,7 +286,13 @@
                 article_like,article_summary,article_content,u.user_head
         FROM t_article AS a,t_user AS u,t_type AS t
         WHERE a.`article_state` = 1 AND a.`user_id`=u.`user_id` AND a.`type_id`=t.`type_id`
-        ORDER BY article_pageview,article_like DESC
+        ORDER BY article_like DESC,article_pageview DESC
         LIMIT 10
+  </select>
+<!--  -->
+  <select id="updateArticlePageView" resultType="java.lang.Integer">
+    UPDATE t_article
+    SET article_pageview = article_pageview + 1
+    WHERE article_id = #{articleId}
   </select>
 </mapper>

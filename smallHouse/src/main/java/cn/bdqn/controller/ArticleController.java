@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/article")
+@SessionAttributes(value = ("articleSession"))
 public class ArticleController {
 
     @Autowired
@@ -74,29 +76,49 @@ public class ArticleController {
 
         List<Article> articles = articleService.selectArticlesByTitle(articleTitle);
 
-        //将article列表放在ModelMap中
-        modelMap.addAttribute("articles",articles);
+        //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+        List<Article> articleTop = articleService.selectRecommendArticleList();
+
+        if (articles.size() == 0){
+            articles = null;
+            //将articleTop列表放在ModelMap中
+            modelMap.addAttribute("articleTop",articleTop);
+        }else {
+            //将article列表放在ModelMap中
+            modelMap.addAttribute("articleTop",articleTop);
+
+            modelMap.addAttribute("articles",articles);
+        }
 
         return "showBlog";
     }
 
     //根据文章Id查询文章内容
     @RequestMapping(value = "/ArticleById")
-    public String queryArticleById(ModelMap modelMap,Integer articleId){
+    public String queryArticleById(@SessionAttribute(value = "articleSession",required = false)Article articles, ModelMap modelMap,Integer articleId){
 
-        Article article = articleService.selectArticleById(articleId);
+        //查看方法时先判断Session是否为空，为空先将浏览量+1，再查出数据，将数据保存Session中
+        //不为空就是 不是第一次点击的时候，Session中有数据，判断Session中的文章id和当前点击的
+        //文章id是否相同，相同浏览量不变，不同浏览量则加1。
+        if(articles != null){
+            if(articles.getArticleId() != articleId){
+                articleService.updateArticlePageView(articleId);
+            }
+        }else {
+            articleService.updateArticlePageView(articleId);
+        }
 
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+        articles = articleService.selectArticleById(articleId);
         //将article放在ModelMap中
-        modelMap.addAttribute("article",article);
+        modelMap.addAttribute("article",articles);
+
+        //将articleSession放在Session作用域中
+        modelMap.addAttribute("articleSession",articles);
 
         return "blogContent";
     }
 
-
     //根据文章类别查询文章列表
-
 
     //查询文章列表
     @RequestMapping(value = "/articleList")
@@ -109,14 +131,14 @@ public class ArticleController {
         List<Type> typeList = typeService.selectTypeList();
 
         //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
-        List<Article> articles = articleService.selectRecommendArticleList();
+        List<Article> articleTop = articleService.selectRecommendArticleList();
 
         //将数据放在ModelMap中
         modelMap.addAttribute("articleList",articleList);
 
-        modelMap.addAttribute("articles",articles);
-
         modelMap.addAttribute("typeList",typeList);
+
+        modelMap.addAttribute("articleTop",articleTop);
 
         return "main";
     }

@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>显示博客页面</title>
-    <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${ctx}/static/layui/css/layui.css"/>
     <link rel="stylesheet" href="${ctx}/static/css/header.css"/>
     <link rel="stylesheet" href="${ctx}/static/css/rBox.css"/>
@@ -73,35 +73,63 @@
             </c:if>
             <c:if test="${users.userId == null}">
                 <li class="layui-nav-item">
-                    <a href="${ctx}/">登录/注册</a>
+                    <a href="${ctx}/login">登录/注册</a>
                 </li>
             </c:if>
         </ul>
     </nav>
 </header>
 <div class="clear"></div>
+
 <section id="section">
-
+    <div id="searchBox">
+        <div class="search-box3">
+            <input id="searchText2" class="search-txt2  " type="text" value="java" />
+            <a id="button2" class="search-btn2">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+    </div>
     <div id="left">
+        <c:if test="${articles == null}">
+        <div class="fenGe">
+            <p style="font-size: 13px;color: #c4c4c4;margin-left: 35%;padding-top: 10%">你已经到达了世界的尽头</p>
+            <div style="margin-bottom: 0px"><img style="width: 100%;" src="${ctx}/static/images/img/end.png"/></div>
+        </div>
+        </c:if>
         <c:forEach items="${articles}" var="articles">
-
             <div class="fenGe">
-                <p class="titleP"><a
-                        href="${pageContext.request.contextPath}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a>
+                <p class="titleP">
+                    <span id="typeName" >${articles.typeName}</span><a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a>
                 </p>
                 <div class="imgDiv">
                     <a class="blogA"
-                       href="${pageContext.request.contextPath}/article/ArticleById?articleId=${articles.articleId}">
-                        <img class="blogImg" src="${pageContext.request.contextPath}/${articles.articlePhoto}">
+                       href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
+                        <img class="blogImg" src="${ctx}/${articles.articlePhoto}">
                     </a>
                 </div>
                 <div class="summaryP">${articles.articleSummary}</div>
                 <div class="clearDiv"></div>
                 <ul id="ul">
-                    <li><p class="liColor">${articles.userNickName}</p></li>
-                    <li><p><fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日"/></p></li>
-                    <li><p>${articles.articlePageview}<span>浏览</span></p></li>
-                    <li><p>${articles.articleLike}<span style="color: red">喜欢</span></p></li>
+                    <li><p>
+                        <a class="liColor" href="#">
+                            <i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>&nbsp&nbsp${articles.userNickName}
+                        </a>
+                    </p></li>
+                    <li><p>日期：<fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日 HH:mm"/></p></li>
+                    <li><p>
+                        <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
+                            <span>浏览</span>&nbsp<span class="numColor">${articles.articlePageview}</span>
+                        </a>
+                    </p>
+                    </li>
+                    <li><p>
+                        <a href="#">
+                            <i class="layui-icon layui-icon-praise" style="font-size: 15px; color: #565656;"></i>
+                            <span class="numColor">${articles.articleLike}</span>
+                        </a>
+                    </p>
+                    </li>
                 </ul>
                 <div class="clearDiv"></div>
             </div>
@@ -138,10 +166,10 @@
             <div id="tuiArticle">
                 <h3><span style="color: red;font-weight: bold">|</span> 今日推荐</h3>
                 <ul>
-                    <c:forEach items="${articles}" var="recommend">
+                    <c:forEach items="${articleTop}" var="articleTop">
                         <li>
-                            <a href="${ctx}/article/ArticleById?articleId=${recommend.articleId}">
-                                <img src="${ctx}/${recommend.articlePhoto}"><span>${recommend.articleTitle}</span>
+                            <a href="${ctx}/article/ArticleById?articleId=${articleTop.articleId}">
+                                <img src="${ctx}/${articleTop.articlePhoto}"><span>${articleTop.articleTitle}</span>
 
                             </a>
                         </li>
@@ -171,47 +199,22 @@
         </div>
     </div>
 </section>
+<footer>
+
+</footer>
 </body>
 <script type="text/javascript">
     //点击搜索框
-    $(function(){
-        $("#button").click(function(){
+    $(function () {
+        $("#button").click(function () {
             var articleTitle = $("#searchText").val();
-            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+            location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
 
         });
-        $("#button2").click(function(){
+        $("#button2").click(function () {
             var articleTitle = $("#searchText2").val();
-            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+            location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
         });
     })
-    $(function(){
-        //初始化,i代表遍历的索引,e代表遍历的对象
-        $.each($("#box div"),function(i,e){
-            $(e).css("transform","translateX("+i*40+"px)").css("transition","1s");
-        });
-
-
-        //点击事件
-        /**
-         * 小于等于点击的索引  向左
-         * 大于点击的索引  向右
-         */
-        $("#ad div").click(function(){
-            //获取点击的索引
-            var index = $(this).index();
-            $.each($("#ad div"),function(i,e){
-                if(i<=index){//小于等于点击的索引  向左
-                    $(e).css("transform","translateX("+i*14+"px)").css("transition","1s");
-                }else{//大于点击的索引  向右
-                    //总长度-5*40=偏移量
-                    $(e).css("transform","translateX("+(185-5*14+i*14)+"px)").css("transition","1s");
-                }
-            });
-
-        });
-
-    })
-
 </script>
 </html>

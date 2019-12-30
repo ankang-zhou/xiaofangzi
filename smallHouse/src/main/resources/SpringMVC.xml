@@ -49,8 +49,6 @@
     </bean>
 
     <!--逻辑视图映射-->
-    <mvc:view-controller path="/main" view-name="main"/>
-
-
+    <mvc:view-controller path="/login" view-name="login"/>
 
 </beans>

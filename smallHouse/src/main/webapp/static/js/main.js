@@ -78,8 +78,6 @@ $(function(){
     $.each($("#box div"),function(i,e){
         $(e).css("transform","translateX("+i*40+"px)").css("transition","1s");
     });
-
-
     //点击事件
     /**
      * 小于等于点击的索引  向左

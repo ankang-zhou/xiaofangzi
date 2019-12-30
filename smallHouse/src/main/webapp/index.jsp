@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<jsp:forward page="WEB-INF/jsp/login.jsp"></jsp:forward>
+<jsp:forward page="/article/articleList"></jsp:forward>
 </body>
 
 </html>

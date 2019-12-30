@@ -46,4 +46,10 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> selectRecommendArticleList() {
         return articleMapper.selectRecommendArticleList();
     }
+
+    @Override
+    public void updateArticlePageView(Integer articleId) {
+        articleMapper.updateArticlePageView(articleId);
+    }
+
 }

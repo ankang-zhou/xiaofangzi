@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,17 +92,6 @@ public class UserController {
 
         return String.valueOf(num);
     }
-
-//    /**
-//     * 跳转修改信息页面
-//     */
-//    @RequestMapping("/SkipAmend")
-//    public String skipAmend(int id,Model model){
-//
-//        model.addAttribute("user",userService.selectInfoByUserId(id));
-//
-//        return "amend";
-//    }
 
     /**
      * 跳转个人中心
@@ -208,4 +198,13 @@ public class UserController {
         return "userMainPage";
     }
 
+    //清空Session
+    @RequestMapping(value = "/validateSession")
+    public String validateSession(SessionStatus status) {
+
+        //清空
+        status.setComplete();
+
+        return "redirect:/article/articleList";
+    }
 }
