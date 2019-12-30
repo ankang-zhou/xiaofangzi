@@ -15,8 +15,8 @@
     <script>
         $(function(){
             $("#leftDiv_bottom_blogs").show();
-            $("#leftDiv_bottom_fans").hide()
-            $("#leftDiv_bottom_attention").hide()
+            $("#leftDiv_bottom_fans").hide();
+            $("#leftDiv_bottom_attention").hide();
             $("#blogs").click(function () {
                 $("#leftDiv_bottom_blogs").show();
                 $("#leftDiv_bottom_fans").hide()

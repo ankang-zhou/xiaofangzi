@@ -1,6 +1,7 @@
 package cn.bdqn.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
     private Integer commentId;
@@ -22,6 +23,28 @@ public class Comment {
     private Integer adminId;
 
     private Integer userId;
+
+    //回复评论的评论
+    private List<Comment> replyComment;
+
+    //用户的信息
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Comment> getReplyComment() {
+        return replyComment;
+    }
+
+    public void setReplyComment(List<Comment> replyComment) {
+        this.replyComment = replyComment;
+    }
 
     public Integer getCommentId() {
         return commentId;
