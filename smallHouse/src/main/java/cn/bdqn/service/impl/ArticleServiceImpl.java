@@ -38,14 +38,22 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> selectArticleByUserId(int Id) {
         return articleMapper.selectArticleByUserId(Id);
     }
+
+    @Override
     public List<Article> selectArticleList() {
         return articleMapper.selectArticleList();
+    }
+
+    @Override
+    public void delArticleById(int id) {
+        articleMapper.delArticleById(id);
     }
 
     @Override
     public List<Article> selectRecommendArticleList() {
         return articleMapper.selectRecommendArticleList();
     }
+
 
     @Override
     public void updateArticlePageView(Integer articleId) {

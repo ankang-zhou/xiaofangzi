@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -33,6 +34,7 @@
             <li><a href="#" id="userInfo">个人资料</a></li>
             <li><a href="#" id="userAttention">我的关注</a></li>
             <li><a href="#" id="userFans">我的粉丝</a></li>
+            <li><a href="#" id="myArticle">我的文章</a></li>
         </ul>
     </div>
     <div id="divright">
@@ -111,7 +113,22 @@
             </c:forEach>
         </ul>
     </div>
-
+    <div id="divArticle">
+        <p id="articleP">我发布的文章</p>
+        <hr />
+        <ul>
+            <c:forEach var="article" items="${articles}">
+                <li>
+                    <a href="${ctx}/article/DelArticleById?id=${article.articleId}" id="delA" title="请谨慎删除" onclick="return acilke()"><span id="delSpan">删除</span></a>
+                    <a href="${ctx}/article/ArticleById?articleId=${article.articleId}" id="content">
+                        <span id="ArticleName">${article.articleTitle}</span>
+                        <br />
+                        <span id="articleTime">发布时间：<fmt:formatDate value="${article.articleTime}" pattern="yyyy年MM月dd日"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览次数：${article.articlePageview}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点赞人数：${article.articleLike}</span>
+                    </a>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
 </div>
 </body>
 <script type="text/javascript">
@@ -119,12 +136,14 @@
         $("#divright").show()
         $("#divFans").hide()
         $("#divAttention").hide()
+        $("#divArticle").hide()
         $("#userInfo").click(function(){
             $("#divleft #ul li").removeClass('ul_li_a')
             $(this).parent().addClass('ul_li_a')
             $("#divright").show()
             $("#divFans").hide()
             $("#divAttention").hide()
+            $("#divArticle").hide()
         })
         $("#userAttention").click(function(){
             $("#divleft #ul li").removeClass('ul_li_a')
@@ -139,8 +158,24 @@
             $("#divright").hide()
             $("#divFans").show()
             $("#divAttention").hide()
+            $("#divArticle").hide()
+
+        })
+        $("#myArticle").click(function () {
+            $("#divleft #ul li").removeClass('ul_li_a')
+            $(this).parent().addClass('ul_li_a')
+            $("#divright").hide()
+            $("#divFans").hide()
+            $("#divAttention").hide()
+            $("#divArticle").show()
         })
     })
+
+    function acilke(){
+            var b = confirm("确定删除吗？请谨慎删除！！！");
+            return b;
+    }
+
     $("#amendBtn").click(function () {
         var userid = $("input[type=hidden]").val();
         layui.use('layer', function(){

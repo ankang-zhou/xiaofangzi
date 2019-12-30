@@ -14,29 +14,9 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    comment_id, comment_content, comment_time, article_id, tourist_id, comment_state, 
-    comment_revert, comment_reply, admin_id, user_id
+    comment_id, comment_content, comment_time, article_id, comment_state,
+    comment_revert, comment_reply, admin_id
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
-    <include refid="Base_Column_List" />
-    from t_comment
-    where comment_id = #{commentId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_comment
-    where comment_id = #{commentId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="cn.bdqn.domain.Comment" >
-    insert into t_comment (comment_id, comment_content, comment_time, 
-      article_id, tourist_id, comment_state, 
-      comment_revert, comment_reply, admin_id, 
-      user_id)
-    values (#{commentId,jdbcType=INTEGER}, #{commentContent,jdbcType=VARCHAR}, #{commentTime,jdbcType=TIMESTAMP}, 
-      #{articleId,jdbcType=INTEGER}, #{touristId,jdbcType=INTEGER}, #{commentState,jdbcType=INTEGER}, 
-      #{commentRevert,jdbcType=INTEGER}, #{commentReply,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, 
-      #{userId,jdbcType=INTEGER})
-  </insert>
   <insert id="insertSelective" parameterType="cn.bdqn.domain.Comment" >
     insert into t_comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -137,17 +117,51 @@
     </set>
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bdqn.domain.Comment" >
-    update t_comment
-    set comment_content = #{commentContent,jdbcType=VARCHAR},
-      comment_time = #{commentTime,jdbcType=TIMESTAMP},
-      article_id = #{articleId,jdbcType=INTEGER},
-      tourist_id = #{touristId,jdbcType=INTEGER},
-      comment_state = #{commentState,jdbcType=INTEGER},
-      comment_revert = #{commentRevert,jdbcType=INTEGER},
-      comment_reply = #{commentReply,jdbcType=INTEGER},
-      admin_id = #{adminId,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER}
-    where comment_id = #{commentId,jdbcType=INTEGER}
-  </update>
+
+  <resultMap id="comment" type="cn.bdqn.domain.Comment">
+    <id column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
+    <result column="comment_time" property="commentTime" jdbcType="TIMESTAMP" />
+    <result column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="tourist_id" property="touristId" jdbcType="INTEGER" />
+    <result column="comment_state" property="commentState" jdbcType="INTEGER" />
+    <result column="comment_revert" property="commentRevert" jdbcType="INTEGER" />
+    <result column="comment_reply" property="commentReply" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+    <collection property="user" ofType="user" resultMap="userMap"/>
+  </resultMap>
+  <resultMap id="userMap" type="user">
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_eamil" property="userEamil" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="user_nickName" property="userNickname" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_sex" property="userSex" jdbcType="INTEGER" />
+    <result column="user_head" property="userHead" jdbcType="VARCHAR" />
+    <result column="user_vip" property="userVip" jdbcType="INTEGER" />
+    <result column="user_state" property="userState" jdbcType="INTEGER" />
+    <result column="user_address" property="userAddress" jdbcType="INTEGER" />
+    <result column="user_profession" property="userProfession" jdbcType="VARCHAR" />
+    <result column="user_attention" property="userAttention" jdbcType="VARCHAR" />
+    <result column="user_fans" property="userFans" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 根据文章id查询评论 -->
+  <select id="selectCommentById" resultMap="comment">
+    SELECT
+    c.comment_id, c.comment_content, c.comment_time, c.article_id, c.comment_state,
+    c.comment_revert, c.comment_reply, c.admin_id,
+    u.user_id, u.user_nickName,u.user_head, u.user_state
+    FROM t_comment AS c,t_user AS u
+    WHERE article_id = #{ID} AND comment_reply = 0 AND c.comment_revert = u.user_id AND u.user_state = 1 AND c.comment_state = 1
+  </select>
+<!-- 根据评论id查询回复评论 -->
+  <select id="selectReplyCommentByCommentId" resultMap="comment" parameterType="comment">
+    SELECT
+    c.comment_id, c.comment_content, c.comment_time, c.article_id, c.comment_state,
+    c.comment_revert, c.comment_reply, c.admin_id,
+    u.user_id, u.user_nickName,u.user_head, u.user_state
+    FROM t_comment AS c,t_user AS u
+    where article_id = #{articleId} and comment_reply = #{commentRevert} AND c.comment_revert = u.user_id AND u.user_state = 1 AND c.comment_state = 1
+  </select>
 </mapper>

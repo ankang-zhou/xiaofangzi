@@ -24,8 +24,13 @@ public interface ArticleService {
 
     public List<Article> selectArticleList();
 
+
+    //根据文章id进行删除
+    public void delArticleById(@Param("id") int id);
+
     //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
     public List<Article> selectRecommendArticleList();
+
 
     //根据id 查出当前文章的浏览量
     public void updateArticlePageView(Integer articleId);

@@ -10,7 +10,7 @@ body{
 	margin: 0px auto;
 	width: 72%;
 }
-#divright,#divFans,#divAttention{
+#divright,#divFans,#divAttention,#divArticle{
 	width: 80%;
 	float: left;
 	background-color: white;
@@ -254,4 +254,65 @@ body{
 	background-color: #930000;
 	border: 1px solid #930000;
 	color: white;
+}
+/*文章列表的div*/
+#divArticle #articleP{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 18px;
+}
+#divArticle hr{
+    margin: 10px;
+}
+#divArticle ul{
+    margin-left: 10px;
+    margin-right: 10px;
+    list-style: none;
+    margin-bottom: 20px;
+}
+#divArticle ul li{
+    padding: 10px;
+    padding-top: 20px;
+    border-bottom: 1px dashed #C0C4CC;
+}
+#divArticle ul li:hover{
+    background-color: #E2E2E2;
+}
+#divArticle a{
+    text-decoration: none;
+    color: black;
+}
+#ArticleName{
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+#articleTime{
+    display: inline-block;
+    font-size: 12px;
+    color: #C0C4CC;
+}
+#content:hover{
+    color: #930000;
+}
+#delA{
+    border: 1px solid black;
+    padding: 8px;
+    padding-left:15px ;
+    padding-right: 15px;
+    float: right;
+    border-radius: 15px;
+    margin-top: 3px;
+}
+#delSpan{
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "微软雅黑";
+}
+#delA:hover{
+    border: 1px solid #930000;
+    background-color: #930000;
+}
+#delA:hover #delSpan{
+    color: white;
 }

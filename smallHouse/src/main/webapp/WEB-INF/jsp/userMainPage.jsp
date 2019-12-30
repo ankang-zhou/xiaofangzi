@@ -14,8 +14,9 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.js" ></script>
     <script>
         $(function(){
-            $("#leftDiv_bottom_fans").hide()
-            $("#leftDiv_bottom_attention").hide()
+            $("#leftDiv_bottom_blogs").show();
+            $("#leftDiv_bottom_fans").hide();
+            $("#leftDiv_bottom_attention").hide();
             $("#blogs").click(function () {
                 $("#leftDiv_bottom_blogs").show();
                 $("#leftDiv_bottom_fans").hide()
@@ -54,9 +55,9 @@
         <div id="leftDiv_bottom">
             <div id="leftDiv_bottom_head">
                 <ul>
-                    <li><a href="" id="blogs">博客</a></li>
-                    <li><a href="" id="fans">关注</a></li>
-                    <li><a href="" id="attention">粉丝</a></li>
+                    <li><a href="#" id="blogs">博客</a></li>
+                    <li><a href="#" id="fans">关注</a></li>
+                    <li><a href="#" id="attention">粉丝</a></li>
                 </ul>
                 <hr />
             </div>

@@ -108,8 +108,9 @@ public class UserController {
         List<User> userFansList = userService.selectUsersInfoByIds(strings);
         List<User> userAttentionList =userService.selectUsersInfoByIds(strings1);
         List<Address> addresses = addressService.selectAllStair();
+        List<Article> articles = articleService.selectArticleByUserId(user.getUserId());
         String address = "";
-        if(user.getUserAddress()!=null||user.getUserAddress()!=0){
+        if(user.getUserAddress()!=0){
             Address cityAddress = addressService.selectInfoById(user.getUserAddress());
             System.out.println(cityAddress.getAddressName());
             Address provinceAddress = addressService.selectParentLevelById(cityAddress.getAddressId());
@@ -120,12 +121,11 @@ public class UserController {
 
             address = nationAddress.getAddressName()+provinceAddress.getAddressName()+cityAddress.getAddressName();
         }
-
+        model.addAttribute("articles",articles);
         model.addAttribute("address",address);
         model.addAttribute("userAttention",userAttentionList);
         model.addAttribute("userFans",userFansList);
         model.addAttribute("users",user);
-        model.addAttribute("addresses",addresses);
         return "personalPage";
     }
 
@@ -197,6 +197,7 @@ public class UserController {
 
         return "userMainPage";
     }
+
 
     //清空Session
     @RequestMapping(value = "/validateSession")

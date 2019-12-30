@@ -33,14 +33,17 @@ public interface ArticleMapper {
 
     //根据用户id查询文章内容
     public List<Article> selectArticleByUserId(@Param("Id") int Id);
+
     //显示文章列表
     public List<Article> selectArticleList();
+
+    //根据文章id进行删除
+    public void delArticleById(@Param("id") int id);
 
     //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
     public List<Article> selectRecommendArticleList();
 
     //根据id 更新文章的浏览量
     public  void updateArticlePageView(@Param("articleId") Integer articleId);
-
 
 }
