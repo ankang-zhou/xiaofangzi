@@ -1,0 +1,257 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#article{
+	background-color: #C9C9C9;
+	margin: 0px auto;
+	margin-top: 20px;
+	border: white 1px solid;
+	width: 72%;
+}
+#article:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+#leftDiv{
+	float: left;
+	margin: 20px;
+	width: 70%;
+}
+#rightDiv{
+	float: left;
+	width: 25%;
+	margin-top: 20px;
+	background-color: white;
+}
+#divimg{
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	float: left;
+}
+#divp{
+	margin-left: 20px;
+	margin-top: 60px;
+	float: left;
+	width: 80%;
+}
+#div_p{
+	font-size: 20px;
+	font-family: "微软雅黑";
+	margin-bottom: 10px;
+}
+#div_p_2{
+	font-size: 12px;
+	color: #737383;
+}
+#leftDiv_top{
+	background-color: white;
+}
+#leftDiv_top:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+#leftDiv_bottom{
+	padding-top: 20px;
+	background-color: white;
+	margin-top: 20px;
+}
+#leftDiv_bottom_head{
+	background-color: white;
+}
+#leftDiv_bottom_head ul{
+	margin-left: 20px;
+	list-style: none;
+}
+#leftDiv_bottom_head ul li{
+	float: left;
+	margin-right: 30px;
+	width: 60px;
+	height: 30px;
+	text-align: center;
+	color: #930000;
+	border-bottom: 2px solid white;
+}
+#leftDiv_bottom_head ul li a{
+	text-decoration: none;
+	color: #930000;
+}
+#leftDiv_bottom_head hr{
+	width: 95%;
+	margin-left: 15px;
+}
+#leftDiv_bottom_head ul li:hover{
+	border-bottom: 2px solid #930000;
+}
+#leftDiv_bottom_head:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+#leftDiv_bottom_blogs{
+	margin-left: 20px;
+	margin-top: 20px;
+}
+#leftDiv_bottom_blogs ul{
+	list-style: none;
+}
+#leftDiv_bottom_blogs ul li{
+	padding: 10px;
+	width: 94%;
+	height: 90px;
+	border-bottom: 1px dashed #C0C4CC;
+	list-style: none;
+}
+#leftDiv_bottom_blogs ul li:hover{
+	background-color: #F5F5DC;
+}
+#leftDiv_bottom_blogs ul li a{
+	text-decoration: none;
+	color: #000000;
+}
+.browse{
+	margin-top: 12px;
+	margin-left: 20px;
+	font-size: 10px;
+	color: #C2C2C2;
+}
+.content{
+	font-size: 14px;
+	margin-left: 15px;
+}
+.title{
+	font-size: 18px;
+	color: #737383;
+	margin: 10px;
+}
+#leftDiv_bottom_blogs{
+	padding-bottom: 20px;
+}
+/*粉丝的div*/
+#divFans hr{
+	margin-top: 10px;
+	margin-right: 20px;
+}
+#divFans ul{
+	list-style: none;
+	margin-bottom: 20px;
+}
+#divFans ul li{
+	padding-left: 10px;
+	padding-top: 10px;
+	border-bottom: 1px dashed #C0C4CC;
+	margin-right: 40px;
+
+}
+#divFans{
+	padding-top: 20px;
+	padding-left: 20px;
+	width: 78%;
+}
+#fansP{
+	font-size: 20px;
+	font-weight: 400;
+}
+#divFans_divimg img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+#divFans_divimg{
+	margin: 10px;
+}
+#divFans_divimg a{
+	color: black;
+}
+#divFans_divimg a:hover{
+	color: dodgerblue;
+}
+#divFans ul li:hover {
+	background-color: #e2e2e2;
+}
+#divFans_divimg span{
+	display: inline-block;
+}
+#guan{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+#guanId:hover #guan{
+	background-color: #930000;
+	border: 1px solid #930000;
+	color: white;
+}
+
+/*关注的div*/
+#divAttention hr{
+	margin-top: 10px;
+	margin-right: 20px;
+}
+#divAttention ul{
+	list-style: none;
+	margin-bottom: 20px;
+}
+#divAttention ul li{
+	padding-left: 10px;
+	padding-top: 10px;
+	border-bottom: 1px dashed #C0C4CC;
+	margin-right: 40px;
+
+}
+#divAttention{
+	padding-top: 20px;
+	padding-left: 20px;
+	width: 78%;
+}
+#AttentionP{
+	font-size: 20px;
+	font-weight: 400;
+}
+#divAttention_divimg img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+#divAttention_divimg{
+	margin: 10px;
+}
+#divAttention_divimg a{
+	color: black;
+}
+#divAttention_divimg a:hover{
+	color: dodgerblue;
+}
+#divAttention ul li:hover {
+	background-color: #e2e2e2;
+}
+#divAttention_divimg span{
+	display: inline-block;
+}
+#cancelGuan{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+#cancelGuanId:hover #cancelGuan{
+	background-color: #930000;
+	border: 1px solid #930000;
+	color: white;
+}

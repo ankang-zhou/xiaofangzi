@@ -1,0 +1,105 @@
+/*
+简介文字13px
+
+*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.blogA{
+    text-decoration: none;
+}
+#body{
+    background-color: #d7d8d9;
+}
+#section{
+    width: 72%;
+    margin: 0px auto;
+}
+/*left*/
+#left{
+    width: 66%;
+    float: left;
+}
+h1{
+    text-align: center;
+}
+#typeName{
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    background: #F44444;
+    border-radius: 10px;
+    padding: 2px;
+    margin-right: 10px;
+}
+.titleP{
+    font-weight: bold;
+    color: #00A67C;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+    font-size: 18px;
+}
+
+.summaryP{
+    float: left;
+    margin: 20px 25px;
+    font-size: 13px;
+    color: #6f7882;
+}
+.imgDiv{
+    width: 200px;
+    height: 113px;
+    float: left;
+    margin: 0px 0px 0px 20px;
+    overflow: hidden;
+    transition:all 2s;
+}
+.blogImg{
+    width: 100%;
+    height: auto;
+    transition:all 1s;
+}
+.blogImg:hover{
+    transform: scale(1.2);
+}
+#ul{
+    float: right;
+    margin-bottom: 1px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+ul li{
+    list-style: none;
+    display: inline-block;
+    font-size: 11px;
+    color: #565656;
+}
+.liColor{
+    color: #b85119;
+}
+.liColor:hover{
+    color: dodgerblue;
+}
+.numColor{
+    color: dodgerblue;
+}
+/*底边距*/
+.fenGe{
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    background-color: white;
+}
+/*清除浮动*/
+.clearDiv{
+    width: 100%;
+    clear: both;
+}
+/*right*/
+#right{
+    width: 29.4%;
+    margin-left: 10px;
+    float: left;
+}

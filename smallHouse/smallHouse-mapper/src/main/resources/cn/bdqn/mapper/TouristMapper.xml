@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.mapper.TouristMapper" >
+  <resultMap id="BaseResultMap" type="cn.bdqn.domain.Tourist" >
+    <id column="tourist_id" property="touristId" jdbcType="INTEGER" />
+    <result column="tourist_nickName" property="touristNickname" jdbcType="VARCHAR" />
+    <result column="tourist_email" property="touristEmail" jdbcType="VARCHAR" />
+    <result column="head_id" property="headId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tourist_id, tourist_nickName, tourist_email, head_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_tourist
+    where tourist_id = #{touristId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_tourist
+    where tourist_id = #{touristId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.bdqn.domain.Tourist" >
+    insert into t_tourist (tourist_id, tourist_nickName, tourist_email, 
+      head_id)
+    values (#{touristId,jdbcType=INTEGER}, #{touristNickname,jdbcType=VARCHAR}, #{touristEmail,jdbcType=VARCHAR}, 
+      #{headId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.bdqn.domain.Tourist" >
+    insert into t_tourist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="touristId != null" >
+        tourist_id,
+      </if>
+      <if test="touristNickname != null" >
+        tourist_nickName,
+      </if>
+      <if test="touristEmail != null" >
+        tourist_email,
+      </if>
+      <if test="headId != null" >
+        head_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="touristId != null" >
+        #{touristId,jdbcType=INTEGER},
+      </if>
+      <if test="touristNickname != null" >
+        #{touristNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="touristEmail != null" >
+        #{touristEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="headId != null" >
+        #{headId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bdqn.domain.Tourist" >
+    update t_tourist
+    <set >
+      <if test="touristNickname != null" >
+        tourist_nickName = #{touristNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="touristEmail != null" >
+        tourist_email = #{touristEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="headId != null" >
+        head_id = #{headId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tourist_id = #{touristId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.bdqn.domain.Tourist" >
+    update t_tourist
+    set tourist_nickName = #{touristNickname,jdbcType=VARCHAR},
+      tourist_email = #{touristEmail,jdbcType=VARCHAR},
+      head_id = #{headId,jdbcType=VARCHAR}
+    where tourist_id = #{touristId,jdbcType=INTEGER}
+  </update>
+</mapper>
