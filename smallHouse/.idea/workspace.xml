@@ -7,24 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31074f45-a3a4-402e-99ed-442cb53a131f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-domain/src/main/java/cn/bdqn/domain/Great.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/java/cn/bdqn/mapper/GreatMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/resources/cn/bdqn/mapper/Great.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/GreatService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/impl/GreatServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-parent.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/java/cn/bdqn/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/java/cn/bdqn/controller/ArticleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/classes/cn/bdqn/controller/ArticleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/classes/cn/bdqn/controller/ArticleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/classes/cn/bdqn/controller/ArticleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/classes/cn/bdqn/controller/ArticleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-domain-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-domain-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-mapper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-mapper-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-service-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-service-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-utils-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-utils-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,6 +168,7 @@
       <workItem from="1577698004156" duration="274000" />
       <workItem from="1577757309312" duration="3326000" />
       <workItem from="1577771404384" duration="365000" />
+      <workItem from="1577772224047" duration="236000" />
     </task>
     <servers />
   </component>

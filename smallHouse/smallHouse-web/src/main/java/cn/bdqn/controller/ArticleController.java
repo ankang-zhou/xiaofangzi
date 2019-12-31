@@ -155,4 +155,9 @@ public class ArticleController {
         return "forward:/user/SkipPersonalPage";
     }
 
+    @RequestMapping("/like")
+    public String giveALike(){
+
+        return null;
+    }
 }
