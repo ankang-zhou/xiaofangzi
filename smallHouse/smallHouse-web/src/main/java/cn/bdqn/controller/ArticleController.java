@@ -4,6 +4,7 @@ import cn.bdqn.domain.Article;
 import cn.bdqn.domain.Type;
 import cn.bdqn.domain.User;
 import cn.bdqn.service.ArticleService;
+import cn.bdqn.service.GreatService;
 import cn.bdqn.service.TypeService;
 import cn.bdqn.utils.BlogImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class ArticleController {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private GreatService greatService;
 
     @RequestMapping(value = "/saveArticle")
     public String saveArticle(@SessionAttribute(value = "users",required = false) User user
