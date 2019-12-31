@@ -32,8 +32,8 @@ public class ArticleController {
     @Autowired
     private TypeService typeService;
 
-    @Autowired
-    private GreatService greatService;
+//    @Autowired
+//    private GreatService greatService;
 
     @RequestMapping(value = "/saveArticle")
     public String saveArticle(@SessionAttribute(value = "users",required = false) User user
