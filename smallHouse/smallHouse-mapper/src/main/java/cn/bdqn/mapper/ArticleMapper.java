@@ -42,7 +42,10 @@ public interface ArticleMapper {
     //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
     public List<Article> selectRecommendArticleList();
 
-    //根据id 更新文章的浏览量
+    //根据文章id更新文章的浏览量
     public  void updateArticlePageView(@Param("articleId") Integer articleId);
+
+    //根据文章Id改变文章的点赞量
+    public void updateArticleLikeById(@Param("count")Integer count,@Param("articleId") Integer articleId);
 
 }

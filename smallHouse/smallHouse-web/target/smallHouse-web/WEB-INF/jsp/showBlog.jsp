@@ -99,6 +99,7 @@
         </c:if>
         <c:forEach items="${articles}" var="articles">
             <div class="fenGe">
+                <p class="articleId" id="articleId" style="display: none" >${articles.articleId}</p>
                 <p class="titleP">
                     <span id="typeName" >${articles.typeName}</span><a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a>
                 </p>
@@ -111,24 +112,25 @@
                 <div class="summaryP">${articles.articleSummary}</div>
                 <div class="clearDiv"></div>
                 <ul id="ul">
-                    <li><p>
+                    <li>
                         <a class="liColor" href="#">
                             <i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>&nbsp&nbsp${articles.userNickName}
                         </a>
-                    </p></li>
-                    <li><p>日期：<fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日 HH:mm"/></p></li>
-                    <li><p>
-                        <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
-                            <span>浏览</span>&nbsp<span class="numColor">${articles.articlePageview}</span>
-                        </a>
-                    </p>
                     </li>
-                    <li><p>
-                        <a href="#">
-                            <i class="layui-icon layui-icon-praise" style="font-size: 15px; color: #565656;"></i>
-                            <span class="numColor">${articles.articleLike}</span>
+                    <li>
+                        <i class="layui-icon layui-icon-date" style="font-size: 15px;color: black"></i>&nbsp
+                        <fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日 HH:mm"/>&nbsp
+                    </li>
+                    <li>
+                        <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
+                            <i class="layui-icon layui-icon-read" style="font-size: 15px; color: #565656;"></i>&nbsp<span class="numColor">${articles.articlePageview}</span>
                         </a>
-                    </p>
+                    </li>
+                    <li>
+                        <a class="likeA" href="javascript:void(0)">
+                            <i class="layui-icon layui-icon-praise likeIcon" style="font-size: 15px; color: #565656;"></i>
+                            <span class="numColor likeNum">${articles.articleLike}</span>
+                        </a>
                     </li>
                 </ul>
                 <div class="clearDiv"></div>
@@ -215,6 +217,25 @@
             var articleTitle = $("#searchText2").val();
             location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
         });
+        //点赞
+        $(".likeA").click(function () {
+            var articleId = $(this).parent().parent().parent().children('p').eq(0).text();//文章Id
+            var userId = ${users.userId}//用户Id
+            var likeNum  = $(this).children('span').text().trim();   //当前文章点赞量
+            var mythis = $(this);   //ajax函数里不能用this调用只能在外部声明一个变量再使用。
+            $.ajax({
+                url:"${ctx}/article/like",
+                data:{"articleId":articleId,"userId":userId},
+                success:function (data) {
+                    if(data > likeNum){
+                        mythis.children('i').css("color","red");
+                    }else{
+                        mythis.children('i').css("color","#565656");
+                    }
+                    mythis.children('span').text(data);
+                }
+            })
+        })
     })
 </script>
 </html>

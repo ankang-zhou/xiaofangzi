@@ -34,4 +34,7 @@ public interface ArticleService {
 
     //根据id 查出当前文章的浏览量
     public void updateArticlePageView(Integer articleId);
+
+    //根据文章Id改变文章的点赞量
+    public void updateArticleLikeById(Integer count,Integer articleId);
 }

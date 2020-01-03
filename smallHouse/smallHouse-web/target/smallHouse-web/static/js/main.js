@@ -34,10 +34,6 @@ layui.use(['carousel', 'form'], function(){
         ,interval: 5000
     });
 
-    //事件
-    carousel.on('change(test4)', function(res){
-        console.log(res)
-    });
 
     var $ = layui.$, active = {
         set: function(othis){
@@ -97,6 +93,6 @@ $(function(){
 
     });
 
-})
+});
 
 

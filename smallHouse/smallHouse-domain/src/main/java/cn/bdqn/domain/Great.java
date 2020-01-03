@@ -29,4 +29,13 @@ public class Great {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Great{" +
+                "greatId=" + greatId +
+                ", articleId=" + articleId +
+                ", userId=" + userId +
+                '}';
+    }
 }

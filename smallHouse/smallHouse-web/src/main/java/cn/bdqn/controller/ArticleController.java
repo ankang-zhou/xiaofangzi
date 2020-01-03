@@ -1,6 +1,7 @@
 package cn.bdqn.controller;
 
 import cn.bdqn.domain.Article;
+import cn.bdqn.domain.Great;
 import cn.bdqn.domain.Type;
 import cn.bdqn.domain.User;
 import cn.bdqn.service.ArticleService;
@@ -10,9 +11,7 @@ import cn.bdqn.utils.BlogImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -155,4 +154,44 @@ public class ArticleController {
         return "forward:/user/SkipPersonalPage";
     }
 
+    @RequestMapping("/like")
+    @ResponseBody
+    public String giveALike(Integer articleId,Integer userId){
+        Integer count;
+
+        System.out.println("文章Id："+articleId+"用户Id："+userId);
+        System.out.println("进来了");
+
+        //首先根据文章Id查询文章
+        Article article = articleService.selectArticleById(articleId);
+        System.out.println(article);
+        //然后根据文章Id，和用户Id查询点赞表。
+        List<Great> list = greatService.findByArticleIdAndUserId(articleId,userId);
+        System.out.println(list);
+        //查询是否有该用户对该文章的点赞记录
+        if(list != null && list.size() > 0){
+            //如果找到了这条记录，则删除该记录，同时文章的点赞数减1
+            Great great=list.get(0);
+            greatService.delByGreatId(great.getGreatId());
+            System.out.println("删除了");
+            //执行文章点赞数减1更新
+            count = article.getArticleLike()-1;
+            articleService.updateArticleLikeById(count,articleId);
+        }else{
+            //如果没有找到这条记录，则添加这条记录，同时文章点赞数加1
+            Great great=new Great();
+            great.setArticleId(articleId);
+            great.setUserId(userId);
+
+            System.out.println(great);
+
+            //添加记录
+            greatService.insertGreat(great);
+            //文章点赞数加1
+            count = article.getArticleLike()+1;
+            System.out.println("添加了");
+            articleService.updateArticleLikeById(count,articleId);
+        }
+        return count.toString();
+    }
 }

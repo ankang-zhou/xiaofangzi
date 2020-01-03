@@ -299,11 +299,19 @@
         LIMIT 10
   </select>
 
-<!--  -->
+  <!-- 根据用户查看的文章增加浏览量 -->
   <select id="updateArticlePageView" resultType="java.lang.Integer">
     UPDATE t_article
     SET article_pageview = article_pageview + 1
     WHERE article_id = #{articleId}
   </select>
+
+  <!-- 根据文章Id改变文章的点赞量 -->
+  <update id="updateArticleLikeById">
+    UPDATE t_article
+    SET article_like = #{count}
+    WHERE article_id = #{articleId}
+  </update>
+
 
 </mapper>

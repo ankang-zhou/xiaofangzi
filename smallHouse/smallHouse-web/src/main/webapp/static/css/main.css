@@ -189,6 +189,7 @@ article{
     display: inline-block;
     margin-right: 20px;
 }
+
 #ul li span{
     font-size: 12px;
 }
@@ -198,7 +199,7 @@ article{
 }
 .liColor{
     float: left;
-    margin:0px 20px 5px 10px;
+    margin:0px 20px 5px 5px;
 }
 .numColor{
     color: dodgerblue;

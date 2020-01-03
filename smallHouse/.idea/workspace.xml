@@ -7,24 +7,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31074f45-a3a4-402e-99ed-442cb53a131f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-domain/src/main/java/cn/bdqn/domain/Great.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/java/cn/bdqn/mapper/GreatMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/resources/cn/bdqn/mapper/Great.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/GreatService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/impl/GreatServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smallHouse.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-parent.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-domain/src/main/java/cn/bdqn/domain/Great.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-domain/src/main/java/cn/bdqn/domain/Great.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-domain/target/classes/cn/bdqn/domain/Great.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-domain/target/classes/cn/bdqn/domain/Great.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/src/main/java/cn/bdqn/mapper/ArticleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/java/cn/bdqn/mapper/ArticleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/src/main/java/cn/bdqn/mapper/GreatMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/java/cn/bdqn/mapper/GreatMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/src/main/resources/cn/bdqn/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/resources/cn/bdqn/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/src/main/resources/cn/bdqn/mapper/Great.xml" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/src/main/resources/cn/bdqn/mapper/GreatMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/ArticleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/ArticleMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/ArticleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/ArticleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/Great.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/GreatMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-mapper/target/classes/cn/bdqn/mapper/GreatMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/GreatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/GreatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/impl/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/impl/ArticleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/impl/GreatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/src/main/java/cn/bdqn/service/impl/GreatServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/ArticleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/ArticleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/GreatService.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/GreatService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/impl/ArticleServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/impl/ArticleServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/impl/GreatServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-service/target/classes/cn/bdqn/service/impl/GreatServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/java/cn/bdqn/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/java/cn/bdqn/controller/ArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/WEB-INF/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/WEB-INF/jsp/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/WEB-INF/jsp/showBlog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/WEB-INF/jsp/showBlog.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/src/main/webapp/static/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/target/classes/cn/bdqn/controller/ArticleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/classes/cn/bdqn/controller/ArticleController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/classes/cn/bdqn/controller/ArticleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/classes/cn/bdqn/controller/ArticleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/jsp/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/jsp/showBlog.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/jsp/showBlog.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-domain-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-domain-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-mapper-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-mapper-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-service-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-service-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-utils-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/WEB-INF/lib/smallHouse-utils-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/smallHouse-web/target/smallHouse-web/static/js/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,6 +202,13 @@
       <workItem from="1577698004156" duration="274000" />
       <workItem from="1577757309312" duration="3326000" />
       <workItem from="1577771404384" duration="365000" />
+      <workItem from="1577772224047" duration="9743000" />
+      <workItem from="1577855756175" duration="971000" />
+      <workItem from="1577939326433" duration="3279000" />
+      <workItem from="1577944898634" duration="9393000" />
+      <workItem from="1577958686066" duration="10169000" />
+      <workItem from="1577969310931" duration="3976000" />
+      <workItem from="1578008432837" duration="1335000" />
     </task>
     <servers />
   </component>

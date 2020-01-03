@@ -60,4 +60,9 @@ public class ArticleServiceImpl implements ArticleService {
         articleMapper.updateArticlePageView(articleId);
     }
 
+    @Override
+    public void updateArticleLikeById(Integer count, Integer articleId) {
+        articleMapper.updateArticleLikeById(count,articleId);
+    }
+
 }
