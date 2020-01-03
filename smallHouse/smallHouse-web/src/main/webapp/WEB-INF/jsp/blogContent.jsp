@@ -26,6 +26,7 @@
     </p>
     <p>${article.articleSummary}</p>
     <p>${article.articleContent}</p>
+    <a href="${pageContext.request.contextPath}/comment/show">评论</a>
 </div>
 </body>
 </html>

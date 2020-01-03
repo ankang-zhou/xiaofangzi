@@ -34,4 +34,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> selectReplyCommentByCommentId(Comment comment) {
         return commentMapper.selectReplyCommentByCommentId(comment);
     }
+
+    @Override
+    public void insertComment(Comment comment) {
+        commentMapper.insertSelective(comment);
+    }
 }

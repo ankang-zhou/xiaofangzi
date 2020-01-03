@@ -16,4 +16,5 @@ public interface CommentMapper {
 
     //根据评论id查询回复评论
     public List<Comment> selectReplyCommentByCommentId(Comment comment);
+
 }
