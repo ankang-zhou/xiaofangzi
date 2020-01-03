@@ -31,8 +31,8 @@ public class ArticleController {
     @Autowired
     private TypeService typeService;
 
-//    @Autowired
-//    private GreatService greatService;
+    @Autowired
+    private GreatService greatService;
 
     @RequestMapping(value = "/saveArticle")
     public String saveArticle(@SessionAttribute(value = "users",required = false) User user
@@ -120,8 +120,6 @@ public class ArticleController {
         return "blogContent";
     }
 
-    //根据文章类别查询文章列表
-
     //查询文章列表
     @RequestMapping(value = "/articleList")
     public String queryArticleList(@SessionAttribute(value = "users",required = false) User user, ModelMap modelMap){
@@ -193,5 +191,28 @@ public class ArticleController {
             articleService.updateArticleLikeById(count,articleId);
         }
         return count.toString();
+    }
+
+    //根据文章类别查询文章列表
+    @RequestMapping(value = "/articleListByTypeId")
+    public String queryArticleListByTypeId(Integer typeId, ModelMap modelMap){
+
+        //接收查询到的所有文章信息
+        List<Article> articleList = articleService.selectArticleListByTypeId(typeId);
+
+        //接收查询到的所有类型信息
+        List<Type> typeList = typeService.selectTypeList();
+
+        //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+        List<Article> articleTop = articleService.selectRecommendArticleList();
+
+        //将数据放在ModelMap中
+        modelMap.addAttribute("articleList",articleList);
+
+        modelMap.addAttribute("typeList",typeList);
+
+        modelMap.addAttribute("articleTop",articleTop);
+
+        return "main";
     }
 }

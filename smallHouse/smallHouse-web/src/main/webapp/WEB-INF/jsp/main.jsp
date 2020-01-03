@@ -114,7 +114,11 @@
             <ul id="navul">
                 <li  style="background:#F44444;color: white">推荐</li>
                 <c:forEach items="${typeList}" var="typeList">
-                    <li id="navli"><a id="li" href="${ctx}/">${typeList.typeName}</a></li>
+                    <li id="navli">
+                        <a class="li" id="li" href="javascript:void(0)">
+                            <span class="typeId" style="display: none" >${typeList.typeId}</span>${typeList.typeName}
+                        </a>
+                    </li>
                 </c:forEach>
             </ul>
         </div>
@@ -151,11 +155,6 @@
                                 <span class="numColor likeNum">
                                         ${articles.articleLike}
                                 </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="layui-icon layui-icon-reply-fill" style="font-size: 15px; color: #565656;"></i>
                             </a>
                         </li>
                     </ul>
@@ -287,8 +286,13 @@
                     mythis.children('span').text(data);
                 }
             })
-        })
+        });
 
+        $(".li").click(function () {
+            var typeId = $(this).children('span').text();
+            location.href="${ctx}/article/articleListByTypeId?typeId="+typeId;
+
+        })
 
     })
 </script>
