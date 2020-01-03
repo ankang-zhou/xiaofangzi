@@ -162,6 +162,6 @@
     c.comment_revert, c.comment_reply, c.admin_id,
     u.user_id, u.user_nickName,u.user_head, u.user_state
     FROM t_comment AS c,t_user AS u
-    where article_id = #{articleId} and comment_reply = #{commentRevert} AND c.comment_revert = u.user_id AND u.user_state = 1 AND c.comment_state = 1
+    where article_id = #{articleId} and comment_reply = #{commentId} AND c.comment_revert = u.user_id AND u.user_state = 1 AND c.comment_state = 1
   </select>
 </mapper>

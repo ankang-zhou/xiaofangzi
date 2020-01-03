@@ -1,0 +1,102 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#commentMain{
+	margin: 0px auto;
+	width: 62%;
+}
+#comment .ul1{
+	width: 100%;
+	list-style: none;
+}
+#comment .ul1 .li1{
+	border-bottom: 1px dashed #C0C4CC;
+	width: 100%;
+	margin: 0px;
+}
+#comment .ul2{
+	list-style: none;
+}
+.info{
+	margin-left: 5px;
+	margin-top: 10px;
+}
+.ul1 .content{
+	padding: 10px;
+	word-break: break-all;
+	text-indent:2em;
+	/*white-space:pre-warp;*/
+	/*word-wrapL:break-word;*/
+
+}
+.ul1 p img{
+	width:16px;
+	height:16px;
+	border-radius: 50%;
+}
+.ul1 p span{
+	font-size: 13px;
+}
+.nickname a{
+	color: black;
+	text-decoration: none;
+}
+.time{
+	color: #C2C2C2;
+}
+.ul2 li{
+	margin-left: 40px;
+	border-left: 2px solid #C0C4CC;
+	margin-bottom: 5px;
+}
+.reply{
+	float: right;
+	margin-right: 40px;
+	margin-top: 20px;
+}
+.reply a{
+	font-size: 12px;
+	color: #01AAED;
+	text-decoration: none;
+}
+#replyComment{
+	padding: 10px;
+}
+#replyComment textarea{
+	border:0;
+	border-radius:5px;
+	background-color:rgba(241,241,241,.98);
+	width: 500px;
+	height: 60px;
+	padding: 10px;
+	resize: none;
+	vertical-align:top;
+}
+#replyComment form p{
+	font-size: 12px;
+	color: #C9C2C2;
+	height: 60px;
+	display: inline-block;
+}
+#replyComment form p img{
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	vertical-align:top;
+}
+#replyComment form span{
+	float: right;
+	margin-top: 40px;
+	margin-right: 25%;
+}
+#replyComment form a{
+	text-decoration: none;
+	color: white;
+	background-color: #930000;
+	padding: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-top: 40px;
+	margin-left: 20px;
+}

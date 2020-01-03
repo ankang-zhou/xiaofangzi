@@ -16,4 +16,7 @@ public interface CommentService {
     //根据评论id查询回复评论
     public List<Comment> selectReplyCommentByCommentId(Comment comment);
 
+    //怎加评论
+    public void insertComment(Comment comment);
+
 }
