@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -90,8 +91,20 @@
                         <a href="${pageContext.request.contextPath}/user/SkipUserPage?id=${fans.userId}">
                             <span><img src="${ctx}/${fans.userHead}" />&nbsp;&nbsp;${fans.userNickname}</span>
                         </a>
-
-                        <a href="" id="guanId"><span id="guan">关注</span></a>
+                        <c:set var="panduan" value="false"/>
+                        <c:forEach var="attention" items="${userAttention}">
+                            <c:if test="${attention.userId == fans.userId}">
+                                <c:set var="panduan" value="true"/>
+                            </c:if>
+                        </c:forEach>
+                        <c:if test="${panduan=='true'}">
+                            <a href="${ctx}/user/CancelAttention?id=${fans.userId}" class="guanId"><span class="guan">已关注</span></a>
+                        </c:if>
+                        <c:if test="${panduan=='false'}">
+                            <a href="${ctx}/user/AddAttention?id=${fans.userId}" class="guanId"><span class="guan">关注</span></a>
+                        </c:if>
+<%--                        <a href="" id="guanId"><span id="guan">关注</span></a>--%>
+                        <input type="hidden" value="${fans.userId}">
                     </div>
                 </li>
             </c:forEach>
@@ -107,7 +120,7 @@
                         <a href="${pageContext.request.contextPath}/user/SkipUserPage?id=${attention.userId}">
                             <span><img src="${ctx}/${attention.userHead}" />&nbsp;&nbsp;${attention.userNickname}</span>
                         </a>
-                        <a href="" id="cancelGuanId"><span id="cancelGuan">取消关注</span></a>
+                        <a href="${ctx}/user/CancelAttention?id=${attention.userId}" id="cancelGuanId"><span id="cancelGuan">取消关注</span></a>
                     </div>
                 </li>
             </c:forEach>
@@ -150,6 +163,7 @@
             $(this).parent().addClass('ul_li_a')
             $("#divright").hide()
             $("#divFans").hide()
+            $("#divArticle").hide()
             $("#divAttention").show()
         })
         $("#userFans").click(function(){

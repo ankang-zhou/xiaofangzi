@@ -20,6 +20,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -102,30 +104,36 @@ public class UserController {
     @RequestMapping("/SkipPersonalPage")
     public String skipPersonalPage(@SessionAttribute(value = "users") User user, Model model){
         user = userService.selectInfoByUserId(user.getUserId());
-        String[] strings = StringSplitUtils.splitString(user.getUserFans(), "，");
-        String[] strings1 = StringSplitUtils.splitString(user.getUserAttention(), "，");
-
-        List<User> userFansList = userService.selectUsersInfoByIds(strings);
-        List<User> userAttentionList =userService.selectUsersInfoByIds(strings1);
+        List<User> userFansList = null;
+        List<User> userAttentionList = null;
+        if (user.getUserFans()!=null&&!user.getUserFans().equals("")){
+            String[] strings = StringSplitUtils.splitString(user.getUserFans(), ",");
+            List<String> list = new ArrayList<String>();
+            list = Arrays.asList(strings);
+            list.remove(" ");
+            userFansList = userService.selectUsersInfoByIds(list);
+        }
+        if(user.getUserAttention()!=null&&!user.getUserAttention().equals("")){
+            String[] strings1 = StringSplitUtils.splitString(user.getUserAttention(), ",");
+            List<String> list = new ArrayList<String>();
+            list = Arrays.asList(strings1);
+            list.remove(" ");
+            userAttentionList =userService.selectUsersInfoByIds(list);
+        }
         List<Address> addresses = addressService.selectAllStair();
         List<Article> articles = articleService.selectArticleByUserId(user.getUserId());
         String address = "";
         if(user.getUserAddress()!=0){
             Address cityAddress = addressService.selectInfoById(user.getUserAddress());
-            System.out.println(cityAddress.getAddressName());
             Address provinceAddress = addressService.selectParentLevelById(cityAddress.getAddressId());
-            System.out.println(provinceAddress.getAddressName());
             Address nationAddress = addressService.selectParentLevelById(provinceAddress.getAddressId());
-            System.out.println(nationAddress.getAddressName());
-
-
             address = nationAddress.getAddressName()+provinceAddress.getAddressName()+cityAddress.getAddressName();
         }
         model.addAttribute("articles",articles);
         model.addAttribute("address",address);
+        model.addAttribute("users",user);
         model.addAttribute("userAttention",userAttentionList);
         model.addAttribute("userFans",userFansList);
-        model.addAttribute("users",user);
         return "personalPage";
     }
 
@@ -184,11 +192,22 @@ public class UserController {
 
         User user = userService.selectInfoByUserId(id);
 
-        String[] fans = StringSplitUtils.splitString(user.getUserFans(), ",");
-        String[] attention = StringSplitUtils.splitString(user.getUserAttention(),",");
-
-        List<User> fanss = userService.selectUsersInfoByIds(fans);
-        List<User> attentions = userService.selectUsersInfoByIds(attention);
+        List<User> fanss = null;
+        List<User> attentions = null;
+        if (user.getUserFans()!=null&&!user.getUserFans().equals("")){
+            String[] strings = StringSplitUtils.splitString(user.getUserFans(), ",");
+            List<String> list = new ArrayList<String>();
+            list = Arrays.asList(strings);
+            list.remove(" ");
+            fanss = userService.selectUsersInfoByIds(list);
+        }
+        if(user.getUserAttention()!=null&&!user.getUserAttention().equals("")){
+            String[] strings1 = StringSplitUtils.splitString(user.getUserAttention(), ",");
+            List<String> list = new ArrayList<String>();
+            list = Arrays.asList(strings1);
+            list.remove(" ");
+            attentions =userService.selectUsersInfoByIds(list);
+        }
 
         model.addAttribute("userAttention",attentions);
         model.addAttribute("userFans",fanss);
@@ -207,5 +226,37 @@ public class UserController {
         status.setComplete();
 
         return "redirect:/article/articleList";
+    }
+
+    //取消关注
+    @RequestMapping("/CancelAttention")
+    //                                                                         要取消关注的id
+    public String cancelAttention(@SessionAttribute(value = "users") User user,int id){
+        String[] attentions = StringSplitUtils.splitString(user.getUserAttention(),",");
+        String attention = "";
+        String Id = id+"";
+        for (int i = 0;i<attentions.length;i++){
+            if (!attentions[i].equals(Id)){
+                attention = attention+attentions[i]+",";
+            }
+        }
+        user.setUserAttention(attention);
+        userService.cancelAttention(user);
+        return "forward:/user/SkipPersonalPage";
+    }
+
+    //增加关注
+    @RequestMapping("/AddAttention")
+    //                                                                      要添加关注的id
+    public String addAttention(@SessionAttribute(value = "users") User user,int id){
+        String attention =user.getUserAttention();
+        if (attention==null||attention.equals("")){
+            attention = id+"";
+        }else {
+            attention = attention+","+id;
+        }
+        user.setUserAttention(attention);
+        userService.Attention(user);
+        return "forward:/user/SkipPersonalPage";
     }
 }

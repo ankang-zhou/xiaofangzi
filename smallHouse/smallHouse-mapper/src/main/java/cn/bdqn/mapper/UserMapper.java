@@ -25,6 +25,6 @@ public interface UserMapper {
     public int selectNumByEmail(@Param("email") String Email);
 
     //根据userId查询userInfo【数组】
-    public List<User> selectUsersInfoByIds(String[] Ids);
+    public List<User> selectUsersInfoByIds(List<String> Ids);
 
 }

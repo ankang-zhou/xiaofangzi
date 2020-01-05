@@ -26,12 +26,19 @@
             $("#replyComment").hide()
         }
         $(".reply").click(function () {
-            alert($(this).next().next().children($("span:first").children().text()))
-            var name = $(this).next().next().children($("span:first").text())
-            $("#comment_reply").val($(this).next().val())
-
-            $("textarea").attr('placeholder','回复'+name+'的评论')
-
+            alert($(this).text())
+            if ($(this).text()=="回复"){
+                var name = $(this).next().next().children('span').eq(0).text()
+                $("#comment_reply").val($(this).next().val());
+                $("textarea").attr('placeholder','回复'+name+'的评论');
+                $(".reply").children().text("回复")
+                $(this).children().text("取消回复")
+            }else if($(this).text()=="取消回复"){
+                $("#comment_reply").val(0);
+                $("textarea").attr('placeholder','想对博主说点啥');
+                $(".reply").children().text("回复")
+                $(this).children().text("回复")
+            }
         })
     })
 </script>

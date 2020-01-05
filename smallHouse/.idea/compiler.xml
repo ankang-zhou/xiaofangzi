@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="smallHouse-mapper" />
+        <module name="smallHouse-domain" />
+        <module name="smallHouse-service" />
+        <module name="smallHouse-web" />
+        <module name="smallHouse-utils" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="smallHouse-domain" target="1.8" />
+      <module name="smallHouse-mapper" target="1.8" />
+      <module name="smallHouse-parent" target="1.8" />
+      <module name="smallHouse-service" target="1.8" />
+      <module name="smallHouse-utils" target="1.8" />
+      <module name="smallHouse-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

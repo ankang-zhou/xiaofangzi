@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/smallHouse-domain/smallHouse-domain.iml" filepath="$PROJECT_DIR$/smallHouse-domain/smallHouse-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smallHouse-mapper/smallHouse-mapper.iml" filepath="$PROJECT_DIR$/smallHouse-mapper/smallHouse-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smallHouse-parent.iml" filepath="$PROJECT_DIR$/smallHouse-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smallHouse-service/smallHouse-service.iml" filepath="$PROJECT_DIR$/smallHouse-service/smallHouse-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smallHouse-utils/smallHouse-utils.iml" filepath="$PROJECT_DIR$/smallHouse-utils/smallHouse-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smallHouse-web/smallHouse-web.iml" filepath="$PROJECT_DIR$/smallHouse-web/smallHouse-web.iml" />
+    </modules>
+  </component>
+</project>

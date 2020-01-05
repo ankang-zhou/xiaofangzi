@@ -42,8 +42,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> selectUsersInfoByIds(String[] Ids) {
+    public List<User> selectUsersInfoByIds(List<String > Ids) {
         return userMapper.selectUsersInfoByIds(Ids);
+    }
+
+    @Override
+    public void cancelAttention(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public void Attention(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
     }
 
 }

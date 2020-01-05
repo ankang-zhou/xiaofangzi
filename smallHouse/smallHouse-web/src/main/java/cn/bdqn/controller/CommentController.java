@@ -35,14 +35,8 @@ public class CommentController {
 
     @RequestMapping("/AddComment")
     public String addComment(Comment comment){
-        System.out.println("123");
-        System.out.println(comment.getCommentContent());
-        System.out.println(comment.getArticleId());
-        System.out.println(comment.getCommentRevert());
-        System.out.println(comment.getCommentReply());
         comment.setCommentState(1);
         comment.setCommentTime(new Date());
-
         service.insertComment(comment);
 
         return "forward:/comment/show";

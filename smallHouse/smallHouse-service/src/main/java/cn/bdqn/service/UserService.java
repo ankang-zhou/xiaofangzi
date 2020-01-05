@@ -23,6 +23,12 @@ public interface UserService {
     public int updateUserInfo(User user);
 
     //根据userId查询userInfo【数组】
-    public List<User> selectUsersInfoByIds(@Param("Ids") String[] Ids);
+    public List<User> selectUsersInfoByIds(@Param("Ids") List<String > Ids);
+
+    //取消关注
+    public void cancelAttention(User user);
+
+    //添加关注
+    public void Attention(User user);
 
 }
