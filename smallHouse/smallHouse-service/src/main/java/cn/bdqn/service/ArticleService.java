@@ -40,4 +40,10 @@ public interface ArticleService {
 
     //显示文章列表
     public List<Article> selectArticleListByTypeId(Integer typeId);
+
+    //分页显示数据
+    public List<Article> selectListLimit(Integer page,Integer limit);
+
+    //查询文章总记录数
+    public Integer selectCount();
 }

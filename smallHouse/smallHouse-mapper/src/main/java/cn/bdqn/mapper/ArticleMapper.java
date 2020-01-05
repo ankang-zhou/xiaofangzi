@@ -50,4 +50,10 @@ public interface ArticleMapper {
 
     //显示文章列表
     public List<Article> selectArticleListByTypeId(@Param("typeId")Integer typeId);
+
+    //分页显示数据
+    public List<Article> selectListLimit(@Param("page")Integer page,@Param("limit")Integer limit);
+
+    //查询文章总记录数
+    public int selectCount();
 }

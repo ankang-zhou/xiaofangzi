@@ -70,4 +70,14 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.selectArticleListByTypeId(typeId);
     }
 
+    @Override
+    public List<Article> selectListLimit(Integer page, Integer limit) {
+        return articleMapper.selectListLimit(page,limit);
+    }
+
+    @Override
+    public Integer selectCount() {
+      return articleMapper.selectCount();
+    }
+
 }

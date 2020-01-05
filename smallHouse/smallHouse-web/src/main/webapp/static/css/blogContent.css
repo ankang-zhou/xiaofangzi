@@ -1,20 +1,139 @@
-*{
-    margin: 0px;
-    padding: 0px;
+/* css */
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
 }
-div{
-    width: 800px;
+body {
+    font: 15px "Microsoft YaHei", Arial, Helvetica, sans-serif;
+    color: #333;
+    background: #E9EAED;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+img {
+    border: 0;
+    display: block
+}
+
+ul, li, ol, dl, dd, dt, form {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #000;
+    text-decoration: none;
+}
+.clear {
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+    height: 75px
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+    display: block;
+}
+/* container Start*/
+.container{
+    width: 85%;
     margin: 0px auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom:150px;
 }
-h1{
-    text-align: center;
+.container:after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.space_container {
+    width: 44px;
+    float: right;
+    height: 1px;
+}
+/*main*/
+.container main {
+    position: relative;
+    width: 74%;
+}
+main{
+    float: right;
+}
+main .blog-content-box {
+    position: relative;
+    padding: 0 24px 16px;
+    background: #fff;
+    margin-bottom: 8px;
+}
+.article-head{
+    padding-top: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e0dbe2;
+}
+.article-head h1{
+    margin-bottom: 10px;
 }
 ul li{
     list-style: none;
     display: inline-block;
-    font-size: 10px;
+    padding-right: 5px;
+    font-size: 13px;
     color: #565656;
 }
-.liColor{
-    color: #5cb85c;
+.typeName{
+    padding:0px 2px;
+    margin-right: 2px;
+    background: #ff6271;
+    border-radius: 5px;
+    color: white;
+}
+.userName a{
+    color: dodgerblue;
+}
+/*article-head End*/
+
+/*article-content Start*/
+.article-content{
+
+}
+.content img{
+    max-width: 100%;
+    height: auto;
+}
+.toolBox{
+    margin-top: 50px;
+}
+/*aside*/
+aside {
+    float: left;
+    width: 22%;
+    background: #5cb85c;
+    height: 100%;
+}
+
+.tool-box {
+    position: fixed;
+    top: 48px;
+    z-index: 100;
+    width: 44px;
+    right: -118px;
+    background: #00A67C;
+    z-index: 2000;
+    height: 600px;
+}
+
+#footMobile{
+    display: none;
 }

@@ -7,40 +7,42 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 <html>
 <head>
-    <title>写文章-小房子博客</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
-    <%-- writeBlog CSS   --%>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/writeBlog.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/css/bootstrap.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/tinymce/js/jquery-1.12.4.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/tinymce/js/jquery.form.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/tinymce/js/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/bootstrap/js/bootstrap.js" ></script>
-    <%-- writeBlog JS --%>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/writeBlog.js"></script>
+    <title>写文章-小房子博客</title>
+    <link rel="stylesheet" href="${ctx}/static/layui/css/layui.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/writeBlog.css">
+    <link media="(max-width:768px)" rel="stylesheet" href="${ctx}/static/css/writeBlogMobile.css"/>
+    <script type="text/javascript" src="${ctx}/static/tinymce/js/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="${ctx}/static/tinymce/js/jquery.form.js"></script>
+    <script type="text/javascript" src="${ctx}/static/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="${ctx}/static/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+    <script src="${ctx}/static/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${ctx}/static/js/writeBlog.js"></script>
 </head>
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/article/saveArticle"
+    <form action="${ctx}/article/saveArticle"
             method="post"
             enctype="multipart/form-data" >
-        <table class="table table-hover">
+        <table class="layui-table" lay-skin="line">
             <tr>
                 <td class="titleTd">标题：</td>
                 <td><input name="articleTitle" id="title" type="text"/></td>
             </tr>
             <tr>
-                <td class="titleTd">博客图片：</td>
+                <td class="titleTd">图片：</td>
                 <td>
                     <input name="photo" id="photo" type="file" required="false"/>
                 </td>
             </tr>
             <tr>
-                <td class="titleTd">所属类别：</td>
+                <td class="titleTd">类别：</td>
                 <td>
                     <select id="typeId"  name="typeId" editable="false" panelHeight="auto">
                         <option value=0>请选择博客类别...</option>
@@ -57,14 +59,31 @@
                 </td>
             </tr>
             <tr>
-                <td class="titleTd">博客内容：</td>
+                <td class="titleTd">内容：</td>
                 <td>
                     <textarea id="myTextarea" type="text/plain" name="articleContent" >你好，世界！</textarea>
                 </td>
             </tr>
         </table>
-        <input type="submit" id="submit" value="提          交" />
+        <input type="submit" id="submit" value="发布文章" />
     </form>
+</div>
+<div id="footMobile">
+    <div id="footMobileDiv">
+        <p>
+            Copyright ©
+            <a href="http://www.xiaofangzi.top" target="_blank">
+                www.xiaofangzi.top
+            </a>
+            All Rights Reserved.
+        </p>
+        <p style="text-align: center">
+            备案号：
+            <a href="http://www.beian.miit.gov.cn" target="_blank">
+                豫ICP备19041699号-1
+            </a>
+        </p>
+    </div>
 </div>
 </body>
 <script type="text/javascript">
@@ -93,7 +112,6 @@
             formData.append("file", blobInfo.blob());
             xhr.onload = function(e){
                 var json;
-
                 if (xhr.status != 200) {
                     failure('HTTP Error: ' + xhr.status);
                     return;
@@ -107,7 +125,6 @@
                 success(json.location);
             };
             xhr.send(formData);
-
         }
     });
 </script>

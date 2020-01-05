@@ -12,7 +12,8 @@
 </head>
 <body>
 
-    <jsp:forward page="/article/articleList"></jsp:forward>
+    <jsp:forward page="/article/mainYe"></jsp:forward>
 </body>
+
 
 </html>
