@@ -34,7 +34,7 @@
     <nav>
         <ul id="lul" class="layui-nav" lay-filter="">
             <li class="layui-nav-item"><a href="">最新活动</a></li>
-            <li id="homeMenu" class="layui-nav-item layui-this"><a href="${ctx}/article/articleList">首页</a></li>
+            <li id="homeMenu" class="layui-nav-item layui-this"><a href="${ctx}/article/mainYe">首页</a></li>
             <li class="layui-nav-item"><a href="">大数据</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">解决方案</a>
@@ -57,7 +57,9 @@
         <ul id="rul" class="layui-nav">
             <c:if test="${users.userId != null}">
                 <li class="layui-nav-item">
-                    <a href="${ctx}/type/queryAllTypes">写博客</a>
+                    <a href="${ctx}/type/queryAllTypes">
+                        <i class="layui-icon layui-icon-edit" style="font-size: 15px; color: white;"></i>写博客
+                    </a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="${ctx}">个人中心<span class="layui-badge-dot"></span></a>
@@ -204,6 +206,23 @@
 <footer>
 
 </footer>
+<div id="footMobile">
+    <div id="footMobileDiv">
+        <p>
+            Copyright ©
+            <a href="http://www.xiaofangzi.top" target="_blank">
+                www.xiaofangzi.top
+            </a>
+            All Rights Reserved.
+        </p>
+        <p style="text-align: center">
+            备案号：
+            <a href="http://www.beian.miit.gov.cn" target="_blank">
+                豫ICP备19041699号-1
+            </a>
+        </p>
+    </div>
+</div>
 </body>
 <script type="text/javascript">
     //点击搜索框
@@ -211,7 +230,13 @@
         $("#button").click(function () {
             var articleTitle = $("#searchText").val();
             location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
-
+        });
+        //键盘操作
+        $("#searchText").keypress(function (e) {
+            if (e.which == 13) {
+                var articleTitle = $("#searchText").val();
+                location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
+            }
         });
         $("#button2").click(function () {
             var articleTitle = $("#searchText2").val();
@@ -235,7 +260,8 @@
                     mythis.children('span').text(data);
                 }
             })
-        })
+        });
+
     })
 </script>
 </html>

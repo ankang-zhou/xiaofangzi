@@ -8,30 +8,13 @@ layui.use(['carousel', 'form'], function(){
     var carousel = layui.carousel
         ,form = layui.form;
 
-    //常规轮播
-    carousel.render({
-        elem: '#test1'
-        ,arrow: 'always'
-    });
-
-    //改变下时间间隔、动画类型、高度
-    carousel.render({
-        elem: '#test2'
-        ,interval: 1800
-        ,anim: 'fade'
-        ,height: '120px'
-    });
-
-    //设定各种参数
-    var ins3 = carousel.render({
-        elem: '#test3'
-    });
     //图片轮播
     carousel.render({
         elem: '#test3'
         ,width: '100%'
+        ,anim: 'fade'
         ,height: '230px'
-        ,interval: 5000
+        ,interval: 4000
     });
 
 

@@ -37,4 +37,13 @@ public interface ArticleService {
 
     //根据文章Id改变文章的点赞量
     public void updateArticleLikeById(Integer count,Integer articleId);
+
+    //显示文章列表
+    public List<Article> selectArticleListByTypeId(Integer typeId);
+
+    //分页显示数据
+    public List<Article> selectListLimit(Integer page,Integer limit);
+
+    //查询文章总记录数
+    public Integer selectCount();
 }

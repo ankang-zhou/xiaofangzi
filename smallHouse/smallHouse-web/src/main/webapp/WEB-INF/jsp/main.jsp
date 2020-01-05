@@ -13,15 +13,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Title</title>
     <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="${ctx}/static/layui/css/layui.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/main.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/rBox.css"/>
-    <link media="(max-width:768px)" rel="stylesheet" href="${pageContext.request.contextPath}/static/css/mobile.css"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.js"></script>
+    <link rel="stylesheet" href="${ctx}/static/css/header.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/main.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/rBox.css"/>
+    <link media="(max-width:768px)" rel="stylesheet" href="${ctx}/static/css/mobile.css"/>
+    <script type="text/javascript" src="${ctx}/static/js/jquery-1.12.4.js"></script>
     <script src="${ctx}/static/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/main.js"></script>
 </head>
@@ -57,13 +59,15 @@
         <ul id="rul" class="layui-nav">
             <c:if test="${users.userId != null}">
                 <li class="layui-nav-item">
-                    <a href="${ctx}/type/queryAllTypes">写博客</a>
+                    <a href="${ctx}/type/queryAllTypes">
+                        <i class="layui-icon layui-icon-edit" style="font-size: 15px; color: white;"></i>写博客
+                    </a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="${ctx}">个人中心<span class="layui-badge-dot"></span></a>
                 </li>
                 <li id="navItem" class="layui-nav-item">
-                    <a href=""><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
+                    <a href="javascript:void(0)"><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
                         <dd><a href="${ctx}">个人主页</a></dd>
                         <dd><a href="${ctx}/user/SkipPersonalPage">个人中心</a></dd>
@@ -93,7 +97,7 @@
     <div id="lBox">
         <div class="lunbotou">
             <div class="lunBox">
-                <div class="layui-carousel" id="test3" lay-filter="test4">
+                <div class="layui-carousel" id="test3" >
                     <div carousel-item="">
                         <div><a href="${ctx}/"><img src="${ctx}/static/images/lunboimages/1.png"></a></div>
                         <div><a href="${ctx}/"><img src="${ctx}/static/images/lunboimages/2.png"></a></div>
@@ -114,11 +118,15 @@
             <ul id="navul">
                 <li  style="background:#F44444;color: white">推荐</li>
                 <c:forEach items="${typeList}" var="typeList">
-                    <li id="navli"><a id="li" href="${ctx}/">${typeList.typeName}</a></li>
+                    <li id="navli">
+                        <a class="li" id="li" href="javascript:void(0)">
+                            <span class="typeId" style="display: none" >${typeList.typeId}</span>${typeList.typeName}
+                        </a>
+                    </li>
                 </c:forEach>
             </ul>
         </div>
-        <div class="articleList">
+        <div id="LAY_demo1" class="articleList flow-default">
             <c:forEach items="${articleList}" var="articles">
                 <div class="fenGe">
                     <p class="articleId" id="articleId" style="display: none" >${articles.articleId}</p>
@@ -153,16 +161,12 @@
                                 </span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="layui-icon layui-icon-reply-fill" style="font-size: 15px; color: #565656;"></i>
-                            </a>
-                        </li>
                     </ul>
                     <div class="clearDiv"></div>
                 </div>
             </c:forEach>
         </div>
+
     </div>
 
     <%-- rbox begin --%>
@@ -247,14 +251,42 @@
                         </a>
                     </li>
                 </ul>
-                <p>
-                    <span>豫ICP备19041699号-1</span>
-                    <span></span>
+                <p class="footFont">
+                    <a href="http://www.xiaofangzi.top" target="_blank">
+                        Copyright © <span class="hoverSpan" >www.xiaofangzi.top </span>All Rights Reserved
+                    </a>
+                    <br/>
+                    <a href="http://www.beian.miit.gov.cn" target="_blank">
+                        <span class="footA">备案号：<span class="hoverSpan">豫ICP备19041699号-1</span></span>
+                    </a>
+                    <br/>
+
+                    <img src="${ctx}/static/images/img/gongan.png" style="float: left;margin-left: 35px">
+                    <a href="#">
+                        <span>公安备案号 11010502030143</span>
+                    </a>
                 </p>
             </div>
         </div>
     </div>
 </article>
+<div id="footMobile">
+    <div id="footMobileDiv">
+        <p>
+            Copyright ©
+            <a href="http://www.xiaofangzi.top" target="_blank">
+                www.xiaofangzi.top
+            </a>
+            All Rights Reserved.
+        </p>
+        <p style="text-align: center">
+            备案号：
+            <a href="http://www.beian.miit.gov.cn" target="_blank">
+                豫ICP备19041699号-1
+            </a>
+        </p>
+    </div>
+</div>
 <span id="userId" style="display: none" >${users.userId}</span>
 </body>
 <script type="text/javascript">
@@ -269,8 +301,95 @@
             var articleTitle = $("#searchText2").val();
             location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
         });
+
+        //选择分类导航
+        $(".li").click(function () {
+            var typeId = $(this).children('span').text();
+            location.href="${ctx}/article/articleListByTypeId?typeId="+typeId;
+        });
+    });
+    //键盘操作
+    $("#searchText").keypress(function (e) {
+        if (e.which == 13) {
+            var articleTitle = $("#searchText").val();
+            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+        }
+    });
+    layui.use('flow', function(){
+        var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+        var flow = layui.flow;
+        flow.load({
+            elem: '#LAY_demo1' //流加载容器
+            ,scrollElem: '#LAY_demo1' //滚动条所在元素，一般不用填，此处只是演示需要。
+            ,isAuto: true
+            ,done: function(page, next){ //执行下一页的回调
+
+                setTimeout(function(){
+                    var lis = [];
+                    var str = "";
+                    $.get('${ctx}/article/allArticles?page='+page+'&limit=7', function(res){
+
+                    //假设你的列表返回在data集合中
+                    layui.each(res.data, function(index,item){
+                        var articleId = item.articleId;
+                        var typeName = item.typeName;
+                        var articleTitle = item.articleTitle;
+                        var articleSummary = item.articleSummary;
+                        var userNickName= item.userNickName;
+                        var userHead = item.userHead;
+                        var da = item.articleTime;
+                            da = new Date(da);
+                        var year = da.getFullYear()+'年';
+                        var month = da.getMonth()+1+'月';
+                        var date = da.getDate()+'日';
+                        var articlePageview = item.articlePageview;
+                        var articleLike = item.articleLike;
+                        str = '<div class="fenGe">'
+                            +'<p class="articleId" id="articleId" style="display: none" >'+articleId+'</p>'
+                            +'<p class="titleP"><span id="typeName" >'+typeName+'</span> <a href="${ctx}/article/ArticleById?articleId='+articleId+'">'+articleTitle+'</a></p>'
+                            +'<div class="summaryP">'+articleSummary+'</div>'
+                            +'<div class="clearDiv"></div>'
+                            +'<div class="liColor">'
+                            +'<a href="${ctx}"><img id="userPhoto" title="'+userNickName+'" src="${ctx}/'+userHead+'"></a>'
+                            +'</div>'
+                            +'<ul id="ul">'
+                            +'<li>'
+                            +'<i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>'
+                            +'<a id="userNickName" href="${ctx}">'+userNickName+'</a>'
+                            +'</li>'
+                            +'<li>'
+                            +'<i class="layui-icon layui-icon-date" style="font-size: 15px; color: #565656;"></i>'
+                            +'<span>'+[year,month,date].join('-')+'</span>'
+                            +'</li>'
+                            +'<li>'
+                            +'<a href="${ctx}/article/ArticleById?articleId='+articleId+'">'
+                            +'<i class="layui-icon layui-icon-read" style="font-size: 15px; color: #565656;"></i>'
+                            +'&nbsp<span class="numColor">'+articlePageview+'</span>'
+                            +'</a>'
+                            +'</li>'
+                            +'<li>'
+                            +'<a class="likeA" href="javascript:void(0)">'
+                            +'<i class="layui-icon layui-icon-praise likeIcon" style="font-size: 15px; color: #565656;"></i>'
+                            +'<span class="numColor likeNum">'+articleLike+'</span>'
+                            +'</a>'
+                            +'</li>'
+                            +'</ul>'
+                            +'<div class="clearDiv"></div>'
+                            +'</div>';
+                        lis.push(str);
+                    });
+                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                    next(lis.join(''), page < res.count/7);
+                });
+                },500);
+            }
+        });
+    });
+    $(function () {
         //点赞
         $(".likeA").click(function () {
+            alert("??");
             var articleId = $(this).parent().parent().parent().children('p').eq(0).text();//文章Id
             var userId = $("#userId").text();//用户Id
             var likeNum  = $(this).children('span').text().trim();   //当前文章点赞量
@@ -287,9 +406,7 @@
                     mythis.children('span').text(data);
                 }
             })
-        })
-
-
+        });
     })
 </script>
 </html>

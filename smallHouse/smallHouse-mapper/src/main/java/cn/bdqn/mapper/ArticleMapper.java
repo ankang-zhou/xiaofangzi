@@ -48,4 +48,12 @@ public interface ArticleMapper {
     //根据文章Id改变文章的点赞量
     public void updateArticleLikeById(@Param("count")Integer count,@Param("articleId") Integer articleId);
 
+    //显示文章列表
+    public List<Article> selectArticleListByTypeId(@Param("typeId")Integer typeId);
+
+    //分页显示数据
+    public List<Article> selectListLimit(@Param("page")Integer page,@Param("limit")Integer limit);
+
+    //查询文章总记录数
+    public int selectCount();
 }

@@ -103,3 +103,7 @@ ul li{
     margin-left: 10px;
     float: left;
 }
+
+#footMobile{
+    display: none;
+}

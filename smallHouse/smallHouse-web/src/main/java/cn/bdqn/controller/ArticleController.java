@@ -8,6 +8,7 @@ import cn.bdqn.service.ArticleService;
 import cn.bdqn.service.GreatService;
 import cn.bdqn.service.TypeService;
 import cn.bdqn.utils.BlogImageUtil;
+import cn.bdqn.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,10 +35,10 @@ public class ArticleController {
     @Autowired
     private GreatService greatService;
 
+    //写博客
     @RequestMapping(value = "/saveArticle")
     public String saveArticle(@SessionAttribute(value = "users",required = false) User user
             , Article article, HttpServletRequest request, MultipartFile photo)throws Exception{
-
 
         //从Session中获取用户Id
         Integer userId = user.getUserId();
@@ -51,8 +52,6 @@ public class ArticleController {
 
         String articlePhoto = BlogImageUtil.uploadImage(photo,realPath);
         //end
-
-
         Integer typeId = article.getTypeId();   //类别
 
         String articleSummary = article.getArticleSummary();//简介
@@ -68,7 +67,7 @@ public class ArticleController {
 
         Integer count  = articleService.addArticle(article);
 
-        return "main";
+        return "redirect:/article/mainYe";
     }
 
     //根据标题模糊查询所有博客内容
@@ -120,8 +119,6 @@ public class ArticleController {
         return "blogContent";
     }
 
-    //根据文章类别查询文章列表
-
     //查询文章列表
     @RequestMapping(value = "/articleList")
     public String queryArticleList(@SessionAttribute(value = "users",required = false) User user, ModelMap modelMap){
@@ -154,6 +151,7 @@ public class ArticleController {
         return "forward:/user/SkipPersonalPage";
     }
 
+    //点赞
     @RequestMapping("/like")
     @ResponseBody
     public String giveALike(Integer articleId,Integer userId){
@@ -194,4 +192,63 @@ public class ArticleController {
         }
         return count.toString();
     }
+
+    //根据文章类别查询文章列表
+    @RequestMapping(value = "/articleListByTypeId")
+    public String queryArticleListByTypeId(Integer typeId, ModelMap modelMap){
+
+        //接收查询到的所有文章信息
+        List<Article> articleList = articleService.selectArticleListByTypeId(typeId);
+
+        //接收查询到的所有类型信息
+        List<Type> typeList = typeService.selectTypeList();
+
+        //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+        List<Article> articleTop = articleService.selectRecommendArticleList();
+
+        //将数据放在ModelMap中
+        modelMap.addAttribute("articleList",articleList);
+
+        modelMap.addAttribute("typeList",typeList);
+
+        modelMap.addAttribute("articleTop",articleTop);
+
+        return "main";
+    }
+
+    //显示全部文章信息，使用layui流加载
+    @RequestMapping(value = "/allArticles",method = RequestMethod.GET)
+    @ResponseBody
+    public PageResult<List<Article>> allArticles(Integer page,Integer limit) {
+
+        //会自动传入limit和page
+
+        //分页查询，需要参数code（要为0，不然数据表格数据显示不出）,msg（返回的消息），
+        // data(表格显示的数据)，totals(查询到数据的总记录数)
+        List<Article> articleList = articleService.selectListLimit(page,limit);
+        //返回总的记录数
+        Integer count = articleService.selectCount();
+        PageResult<List<Article>> listPageResult = new PageResult<List<Article>>("",articleList,0,count);
+
+        return listPageResult;
+    }
+
+    //打开网页默认显示页面
+    @RequestMapping(value = "/mainYe")
+    public String mainYe(ModelMap modelMap){
+
+        //接收查询到的所有类型信息
+        List<Type> typeList = typeService.selectTypeList();
+
+        //显示推荐的文章列表【根据浏览量和点赞量降序10条信息】
+        List<Article> articleTop = articleService.selectRecommendArticleList();
+
+        //将数据放在ModelMap中
+        modelMap.addAttribute("typeList",typeList);
+
+        modelMap.addAttribute("articleTop",articleTop);
+
+        return "main";
+    }
+
 }

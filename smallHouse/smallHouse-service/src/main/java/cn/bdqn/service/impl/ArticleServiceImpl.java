@@ -65,4 +65,19 @@ public class ArticleServiceImpl implements ArticleService {
         articleMapper.updateArticleLikeById(count,articleId);
     }
 
+    @Override
+    public List<Article> selectArticleListByTypeId(Integer typeId) {
+        return articleMapper.selectArticleListByTypeId(typeId);
+    }
+
+    @Override
+    public List<Article> selectListLimit(Integer page, Integer limit) {
+        return articleMapper.selectListLimit(page,limit);
+    }
+
+    @Override
+    public Integer selectCount() {
+      return articleMapper.selectCount();
+    }
+
 }

@@ -204,6 +204,9 @@ article{
 .numColor{
     color: dodgerblue;
 }
+.likeIcon:hover{
+    color: dodgerblue;
+}
 .layui-icon-praise{
     margin-bottom: -10px;
 }
@@ -233,4 +236,7 @@ article{
 .clearDiv{
     width: 100%;
     clear: both;
+}
+#footMobile{
+    display: none;
 }

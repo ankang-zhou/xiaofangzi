@@ -26,7 +26,6 @@
             $("#replyComment").hide()
         }
         $(".reply").click(function () {
-            alert($(this).text())
             if ($(this).text()=="回复"){
                 var name = $(this).next().next().children('span').eq(0).text()
                 $("#comment_reply").val($(this).next().val());
@@ -39,6 +38,10 @@
                 $(".reply").children().text("回复")
                 $(this).children().text("回复")
             }
+            var name = $(this).next().next().children($("span:first").text())
+            $("#comment_reply").val($(this).next().val())
+
+            $("textarea").attr('placeholder','回复'+name+'的评论')
         })
     })
 </script>
