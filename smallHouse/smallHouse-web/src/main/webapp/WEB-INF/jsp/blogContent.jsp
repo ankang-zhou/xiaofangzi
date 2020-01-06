@@ -129,7 +129,7 @@
                                 <p class="reply"><a href="#">回复</a></p>
                                 <input type="hidden" value="${comment.commentId}"/>
                                 <p class="info">
-                                    <img src="${pageContext.request.contextPath}/${comment.user.userHead}"/>
+                                    <img src="${ctx}/${comment.user.userHead}"/>
                                     <span class="nickname"><a href="${pageContext.request.contextPath}/user/SkipUserPage?id=${comment.user.userId}">${comment.user.userNickname}</a></span>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <span class="time"><fmt:formatDate value="${comment.commentTime}" pattern="yyyy年MM月dd日 HH:mm"/></span>
@@ -142,8 +142,8 @@
                                         <ul class="ul2">
                                             <li>
                                                 <p class="info">
-                                                    <img src="${pageContext.request.contextPath}/${replyComment.user.userHead}"/>
-                                                    <span class="nickname"><a href="${pageContext.request.contextPath}/user/SkipUserPage?id=${replyComment.user.userId}">${replyComment.user.userNickname}</a>&nbsp;&nbsp;&nbsp;&nbsp;回复了&nbsp;&nbsp;&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/${comment.user.userHead}"/>&nbsp;<a href="${pageContext.request.contextPath}/user/SkipUserPage?id=${comment.user.userId}">${comment.user.userNickname}</a></span>
+                                                    <img src="${ctx}/${replyComment.user.userHead}"/>
+                                                    <span class="nickname"><a href="${ctx}/user/SkipUserPage?id=${replyComment.user.userId}">${replyComment.user.userNickname}</a>&nbsp;&nbsp;回复&nbsp;&nbsp;<img src="${pageContext.request.contextPath}/${comment.user.userHead}"/>&nbsp;<a href="${pageContext.request.contextPath}/user/SkipUserPage?id=${comment.user.userId}">${comment.user.userNickname}</a></span>
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                     <span class="time"><fmt:formatDate value="${replyComment.commentTime}" pattern="yyyy年MM月dd日 HH:mm"/></span>
                                                 </p>

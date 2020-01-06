@@ -110,7 +110,7 @@ public class ArticleController {
             articleService.updateArticlePageView(articleId);
         }
 
-        List<Comment> list = commentService.selectCommentById(1);
+        List<Comment> list = commentService.selectCommentById(articleId);
 
         for (Comment com:list
         ) {

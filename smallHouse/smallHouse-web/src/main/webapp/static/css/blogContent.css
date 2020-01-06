@@ -167,6 +167,7 @@ aside {
     width:16px;
     height:16px;
     border-radius: 50%;
+    display: inline-block;
 }
 .ul1 p span{
     font-size: 13px;
