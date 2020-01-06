@@ -1,10 +1,8 @@
 package cn.bdqn.controller;
 
-import cn.bdqn.domain.Article;
-import cn.bdqn.domain.Great;
-import cn.bdqn.domain.Type;
-import cn.bdqn.domain.User;
+import cn.bdqn.domain.*;
 import cn.bdqn.service.ArticleService;
+import cn.bdqn.service.CommentService;
 import cn.bdqn.service.GreatService;
 import cn.bdqn.service.TypeService;
 import cn.bdqn.utils.BlogImageUtil;
@@ -34,6 +32,9 @@ public class ArticleController {
 
     @Autowired
     private GreatService greatService;
+
+    @Autowired
+    private CommentService commentService;
 
     //写博客
     @RequestMapping(value = "/saveArticle")
@@ -108,6 +109,16 @@ public class ArticleController {
         }else {
             articleService.updateArticlePageView(articleId);
         }
+
+        List<Comment> list = commentService.selectCommentById(articleId);
+
+        for (Comment com:list
+        ) {
+            System.out.println(com.getCommentId());
+            com.setReplyComment(commentService.selectReplyCommentByCommentId(com));
+        }
+
+        modelMap.addAttribute("comments",list);
 
         articles = articleService.selectArticleById(articleId);
         //将article放在ModelMap中
