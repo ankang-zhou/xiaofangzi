@@ -1,32 +1,33 @@
 <%--
   Created by IntelliJ IDEA.
   User: 鸣人
-  Date: 2019/12/22
-  Time: 20:32
+  Date: 2020/1/6
+  Time: 21:46
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-
-
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>显示博客页面</title>
-    <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="${ctx}/static/layui/css/layui.css"/>
     <link rel="stylesheet" href="${ctx}/static/css/header.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/main.css"/>
     <link rel="stylesheet" href="${ctx}/static/css/rBox.css"/>
-    <link rel="stylesheet" href="${ctx}/static/css/showBlog.css">
     <link media="(max-width:768px)" rel="stylesheet" href="${ctx}/static/css/mobile.css"/>
     <script type="text/javascript" src="${ctx}/static/js/jquery-1.12.4.js"></script>
     <script src="${ctx}/static/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/main.js"></script>
 </head>
-<body id="body">
+<body>
+<%--top begin--%>
 <header id="header">
     <a href="${ctx}/article/articleList">
         <i id="menu" class="layui-icon layui-icon-home"></i>
@@ -34,7 +35,7 @@
     <nav>
         <ul id="lul" class="layui-nav" lay-filter="">
             <li class="layui-nav-item"><a href="">最新活动</a></li>
-            <li id="homeMenu" class="layui-nav-item layui-this"><a href="${ctx}/article/mainYe">首页</a></li>
+            <li class="layui-nav-item layui-this"><a href="${ctx}/article/mainYe">首页</a></li>
             <li class="layui-nav-item"><a href="">大数据</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">解决方案</a>
@@ -48,7 +49,7 @@
         </ul>
 
         <div class="search-box">
-            <input id="searchText" class="search-txt " type="text" value="java"/>
+            <input id="searchText" class="search-txt " type="text" value="java" />
             <a id="button" class="search-btn button" href="#">
                 <i class="fas fa-search"></i>
             </a>
@@ -64,12 +65,12 @@
                 <li class="layui-nav-item">
                     <a href="${ctx}">个人中心<span class="layui-badge-dot"></span></a>
                 </li>
-                <li class="layui-nav-item">
-                    <a href=""><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
+                <li id="navItem" class="layui-nav-item">
+                    <a href="javascript:void(0)"><img src="${ctx}/${users.userHead}" class="layui-nav-img"></a>
                     <dl class="layui-nav-child">
                         <dd><a href="${ctx}">个人主页</a></dd>
-                        <dd><a href="${ctx}">个人中心</a></dd>
-                        <dd><a href="${ctx}">退出</a></dd>
+                        <dd><a href="${ctx}/user/SkipPersonalPage">个人中心</a></dd>
+                        <dd><a href="${ctx}/user/validateSession">退出</a></dd>
                     </dl>
                 </li>
             </c:if>
@@ -82,64 +83,74 @@
     </nav>
 </header>
 <div class="clear"></div>
-
-<section id="section">
+<article>
+    <%-- lbox begin --%>
     <div id="searchBox">
-        <div class="search-box3">
+        <div class="search-box2">
             <input id="searchText2" class="search-txt2  " type="text" value="java" />
             <a id="button2" class="search-btn2">
                 <i class="fas fa-search"></i>
             </a>
         </div>
     </div>
-    <div id="left">
-        <c:if test="${articles == null}">
-        <div class="fenGe">
-            <p style="font-size: 13px;color: #c4c4c4;margin-left: 35%;padding-top: 10%">你已经到达了世界的尽头</p>
-            <div style="margin-bottom: 0px"><img style="width: 100%;" src="${ctx}/static/images/img/end.png"/></div>
+    <div id="lBox">
+        <%--左侧导航栏--%>
+        <div class="navUl" style="top: 320px">
+            <ul id="navul">
+                <li  style="background:#F44444;color: white">推荐</li>
+                <c:forEach items="${typeList}" var="typeList">
+                    <li id="navli">
+                        <a class="li" id="li" href="javascript:void(0)">
+                            <span class="typeId" style="display: none" >${typeList.typeId}</span>${typeList.typeName}
+                        </a>
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
-        </c:if>
-        <c:forEach items="${articles}" var="articles">
-            <div class="fenGe">
-                <p class="articleId" id="articleId" style="display: none" >${articles.articleId}</p>
-                <p class="titleP">
-                    <span id="typeName" >${articles.typeName}</span><a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a>
-                </p>
-                <div class="imgDiv">
-                    <a class="blogA"
-                       href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
-                        <img class="blogImg" src="${ctx}/${articles.articlePhoto}">
-                    </a>
+        <div id="LAY_demo1" class="articleList flow-default">
+            <c:forEach items="${articleList}" var="articles">
+                <div class="fenGe">
+                    <p class="articleId" id="articleId" style="display: none" >${articles.articleId}</p>
+                    <p class="titleP"><span id="typeName" >${articles.typeName}</span> <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
+                    <div class="summaryP">${articles.articleSummary}</div>
+                    <div class="clearDiv"></div>
+                    <div class="liColor">
+                        <a href="${ctx}">
+                            <img id="userPhoto" title="${articles.userNickName}" src="${ctx}/${articles.userHead}">
+                        </a>
+                    </div>
+                    <ul id="ul">
+                        <li>
+                            <i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>
+                            <a id="userNickName" href="${ctx}">${articles.userNickName}</a>
+                        </li>
+                        <li>
+                            <i class="layui-icon layui-icon-date" style="font-size: 15px; color: #565656;"></i>
+                            <span><fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日"/></span>
+                        </li>
+                        <li>
+                            <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
+                                <i class="layui-icon layui-icon-read" style="font-size: 15px; color: #565656;"></i>
+                                &nbsp<span class="numColor">${articles.articlePageview}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="likeA" href="javascript:void(0)">
+                                <i class="layui-icon layui-icon-praise likeIcon" style="font-size: 15px; color: #565656;"></i>
+                                <span class="numColor likeNum">
+                                        ${articles.articleLike}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="clearDiv"></div>
                 </div>
-                <div class="summaryP">${articles.articleSummary}</div>
-                <div class="clearDiv"></div>
-                <ul id="ul">
-                    <li>
-                        <a class="liColor" href="#">
-                            <i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>&nbsp&nbsp${articles.userNickName}
-                        </a>
-                    </li>
-                    <li>
-                        <i class="layui-icon layui-icon-date" style="font-size: 15px;color: black"></i>&nbsp
-                        <fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日 HH:mm"/>&nbsp
-                    </li>
-                    <li>
-                        <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
-                            <i class="layui-icon layui-icon-read" style="font-size: 15px; color: #565656;"></i>&nbsp<span class="numColor">${articles.articlePageview}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="likeA" href="javascript:void(0)">
-                            <i class="layui-icon layui-icon-praise likeIcon" style="font-size: 15px; color: #565656;"></i>
-                            <span class="numColor likeNum">${articles.articleLike}</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="clearDiv"></div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </div>
-    <div id="right">
+
+    <%-- rbox begin --%>
+    <div id="rBox">
         <div id="rightMenu">
             <div id="ad">
                 <div>
@@ -177,7 +188,6 @@
 
                             </a>
                         </li>
-
                     </c:forEach>
                 </ul>
             </div>
@@ -188,24 +198,58 @@
                 推荐博客
             </div>
             <div id="footer">
+
                 <div id="middle">
-                    <a class="btn" href="https://github.com/">
+                    <a id="middleA1" class="btn" href="https://github.com/">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a class="btn" href="#">
+                    <div id="middleA1Img"><img class="middleImg" src="${ctx}/static/images/img/gitHub.jpg" /></div>
+                    <a id="middleA2" class="btn" href="#">
                         <i class="fab fa-weixin"></i>
                     </a>
-                    <a class="btn" href="#">
+                    <div id="middleA2Img"><img class="middleImg" src="${ctx}/static/images/img/weixin.jpg" /></div>
+                    <a id="middleA3" class="btn" href="#">
                         <i class="fab fa-qq"></i>
                     </a>
+                    <div id="middleA3Img"><img class="middleImg" src="${ctx}/static/images/img/qq.png" /></div>
                 </div>
+
+                <ul id="footUl">
+                    <li>
+                        <a href="#">
+                            关于我们
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            关于我们
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            关于我们
+                        </a>
+                    </li>
+                </ul>
+                <p class="footFont">
+                    <a href="http://www.xiaofangzi.top" target="_blank">
+                        Copyright © <span class="hoverSpan" >www.xiaofangzi.top </span>All Rights Reserved
+                    </a>
+                    <br/>
+                    <a href="http://www.beian.miit.gov.cn" target="_blank">
+                        <span class="footA">备案号：<span class="hoverSpan">豫ICP备19041699号-1</span></span>
+                    </a>
+                    <br/>
+
+                    <img src="${ctx}/static/images/img/gongan.png" style="float: left;margin-left: 35px">
+                    <a href="#">
+                        <span>公安备案号 11010502030143</span>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
-</section>
-<footer>
-
-</footer>
+</article>
 <div id="footMobile">
     <div id="footMobileDiv">
         <p>
@@ -223,25 +267,36 @@
         </p>
     </div>
 </div>
+<span id="userId" style="display: none" >${users.userId}</span>
 </body>
 <script type="text/javascript">
     //点击搜索框
-    $(function () {
-        $("#button").click(function () {
+    $(function(){
+        $("#button").click(function(){
             var articleTitle = $("#searchText").val();
-            location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
+            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+
         });
-        //键盘操作
-        $("#searchText").keypress(function (e) {
-            if (e.which == 13) {
-                var articleTitle = $("#searchText").val();
-                location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
-            }
-        });
-        $("#button2").click(function () {
+        $("#button2").click(function(){
             var articleTitle = $("#searchText2").val();
-            location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
+            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
         });
+
+        //选择分类导航
+        $(".li").click(function () {
+            var typeId = $(this).children('span').text();
+            $("#LAY_demo1").html("");
+            location.href="${ctx}/article/articleListByTypeId?typeId="+typeId;
+        });
+    });
+    //键盘操作
+    $("#searchText").keypress(function (e) {
+        if (e.which == 13) {
+            var articleTitle = $("#searchText").val();
+            location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
+        }
+    });
+    $(function () {
         //点赞
         $(".likeA").click(function () {
             var userId = $("#userId").text();//用户Id
@@ -263,10 +318,9 @@
                     }
                 })
             }else {
-                alert("请您登录后再进行操作！");
+                alert("请您登录后再进行操作");
             }
         });
-
-    })
+    });
 </script>
 </html>

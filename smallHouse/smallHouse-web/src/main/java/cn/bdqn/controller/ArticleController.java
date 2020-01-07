@@ -114,7 +114,6 @@ public class ArticleController {
 
         for (Comment com:list
         ) {
-            System.out.println(com.getCommentId());
             com.setReplyComment(commentService.selectReplyCommentByCommentId(com));
         }
 
@@ -168,21 +167,18 @@ public class ArticleController {
     public String giveALike(Integer articleId,Integer userId){
         Integer count;
 
-        System.out.println("文章Id："+articleId+"用户Id："+userId);
-        System.out.println("进来了");
-
         //首先根据文章Id查询文章
         Article article = articleService.selectArticleById(articleId);
-        System.out.println(article);
+
         //然后根据文章Id，和用户Id查询点赞表。
         List<Great> list = greatService.findByArticleIdAndUserId(articleId,userId);
-        System.out.println(list);
+
         //查询是否有该用户对该文章的点赞记录
         if(list != null && list.size() > 0){
             //如果找到了这条记录，则删除该记录，同时文章的点赞数减1
             Great great=list.get(0);
             greatService.delByGreatId(great.getGreatId());
-            System.out.println("删除了");
+
             //执行文章点赞数减1更新
             count = article.getArticleLike()-1;
             articleService.updateArticleLikeById(count,articleId);
@@ -192,13 +188,12 @@ public class ArticleController {
             great.setArticleId(articleId);
             great.setUserId(userId);
 
-            System.out.println(great);
 
             //添加记录
             greatService.insertGreat(great);
             //文章点赞数加1
             count = article.getArticleLike()+1;
-            System.out.println("添加了");
+
             articleService.updateArticleLikeById(count,articleId);
         }
         return count.toString();
@@ -224,7 +219,7 @@ public class ArticleController {
 
         modelMap.addAttribute("articleTop",articleTop);
 
-        return "main";
+        return "typeMain";
     }
 
     //显示全部文章信息，使用layui流加载

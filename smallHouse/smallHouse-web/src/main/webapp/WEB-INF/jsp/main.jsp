@@ -127,44 +127,6 @@
             </ul>
         </div>
         <div id="LAY_demo1" class="articleList flow-default">
-            <c:forEach items="${articleList}" var="articles">
-                <div class="fenGe">
-                    <p class="articleId" id="articleId" style="display: none" >${articles.articleId}</p>
-                    <p class="titleP"><span id="typeName" >${articles.typeName}</span> <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">${articles.articleTitle}</a></p>
-                    <div class="summaryP">${articles.articleSummary}</div>
-                    <div class="clearDiv"></div>
-                    <div class="liColor">
-                        <a href="${ctx}">
-                            <img id="userPhoto" title="${articles.userNickName}" src="${ctx}/${articles.userHead}">
-                        </a>
-                    </div>
-                    <ul id="ul">
-                        <li>
-                            <i class="layui-icon layui-icon-user" style="font-size: 15px; color: #565656;"></i>
-                            <a id="userNickName" href="${ctx}">${articles.userNickName}</a>
-                        </li>
-                        <li>
-                            <i class="layui-icon layui-icon-date" style="font-size: 15px; color: #565656;"></i>
-                            <span><fmt:formatDate value="${articles.articleTime}" pattern="yyyy年MM月dd日"/></span>
-                        </li>
-                        <li>
-                            <a href="${ctx}/article/ArticleById?articleId=${articles.articleId}">
-                                <i class="layui-icon layui-icon-read" style="font-size: 15px; color: #565656;"></i>
-                                &nbsp<span class="numColor">${articles.articlePageview}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="likeA" href="javascript:void(0)">
-                                <i class="layui-icon layui-icon-praise likeIcon" style="font-size: 15px; color: #565656;"></i>
-                                <span class="numColor likeNum">
-                                        ${articles.articleLike}
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="clearDiv"></div>
-                </div>
-            </c:forEach>
         </div>
 
     </div>
@@ -290,6 +252,32 @@
 <span id="userId" style="display: none" >${users.userId}</span>
 </body>
 <script type="text/javascript">
+    $(function () {
+        //点赞
+        $(".likeA").click(function () {
+            alert("???");
+            var userId = $("#userId").text();//用户Id
+            if(userId != ''){
+                var articleId = $(this).parent().parent().parent().children('p').eq(0).text();//文章Id
+                var likeNum  = $(this).children('span').text().trim();   //当前文章点赞量
+                var mythis = $(this);   //ajax函数里不能用this调用只能在外部声明一个变量再使用。
+                $.ajax({
+                    url:"${ctx}/article/like",
+                    data:{"articleId":articleId,"userId":userId},
+                    success:function (data) {
+                        if(data > likeNum){
+                            mythis.children('i').css("color","red");
+                        }else{
+                            mythis.children('i').css("color","#565656");
+                        }
+                        mythis.children('span').text(data);
+                    }
+                })
+            }else {
+                alert("请您登录后再进行操作！");
+            }
+        });
+    });
     //点击搜索框
     $(function(){
         $("#button").click(function(){
@@ -315,6 +303,7 @@
             location.href="${ctx}/article/queryArticle?articleTitle="+articleTitle;
         }
     });
+
     layui.use('flow', function(){
         var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
         var flow = layui.flow;
@@ -386,27 +375,6 @@
             }
         });
     });
-    $(function () {
-        //点赞
-        $(".likeA").click(function () {
-            alert("??");
-            var articleId = $(this).parent().parent().parent().children('p').eq(0).text();//文章Id
-            var userId = $("#userId").text();//用户Id
-            var likeNum  = $(this).children('span').text().trim();   //当前文章点赞量
-            var mythis = $(this);   //ajax函数里不能用this调用只能在外部声明一个变量再使用。
-            $.ajax({
-                url:"${ctx}/article/like",
-                data:{"articleId":articleId,"userId":userId},
-                success:function (data) {
-                    if(data > likeNum){
-                        mythis.children('i').css("color","red");
-                    }else{
-                        mythis.children('i').css("color","#565656");
-                    }
-                    mythis.children('span').text(data);
-                }
-            })
-        });
-    })
+
 </script>
 </html>
