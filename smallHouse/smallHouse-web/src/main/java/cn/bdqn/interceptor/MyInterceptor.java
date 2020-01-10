@@ -12,12 +12,11 @@ public class MyInterceptor implements HandlerInterceptor {
     //前置处理
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("MyInterceptor1------>preHandle 前置处理");
         //验证登录
-        if(null != request.getSession().getAttribute("user")){
+        if(null != request.getSession().getAttribute("users")){
             return true;
         }else {
-            response.sendRedirect("/login.jsp");
+            response.sendRedirect("/smallHouse/article/mainYe");
             return false;
         }
         //在interceptor中只要preHandle返回为true，则最终处理afterCompletion()一定会执行。

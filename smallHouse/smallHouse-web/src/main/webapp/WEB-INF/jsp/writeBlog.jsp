@@ -87,6 +87,12 @@
 </div>
 </body>
 <script type="text/javascript">
+    //判断页面是否更能改，或者刷新
+    $(document).ready(function(){
+        window.onbeforeunload = function() {
+            return "确认离开当前页面吗？未保存的数据将会丢失";
+        }
+    });
     tinymce.init({
         selector: "#myTextarea",
         language: 'zh_CN',

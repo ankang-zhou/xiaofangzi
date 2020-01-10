@@ -1,0 +1,87 @@
+/* css */
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font: 15px "Microsoft YaHei", Arial, Helvetica, sans-serif;
+    color: #333;
+    background: #E9EAED;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+img {
+    border: 0;
+    display: block
+}
+
+ul, li, ol, dl, dd, dt, form {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #000;
+    text-decoration: none;
+}
+.clear {
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+    height: 75px
+}
+/*article*/
+article{
+    width: 72%;
+    margin: 0px auto;
+    position: relative;
+    background: #9bbd82;
+}
+#topDiv,#centre,#footDiv{
+    width: 100%;
+}
+#topDiv:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+.topDiv-left{
+    width: 78.16%;
+    height: 538px;
+    float: left;
+    background: slategrey;
+}
+.content{
+    margin: 10px;
+    width: 100%;
+}
+.vip-ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
+.topDiv-right{
+    width: 21.16%;
+    height: 538px;
+    float: right;
+    background: #0f0f0f;
+}
+#centre{
+    height: 500px;
+    background: #5cb85c;
+    margin-top: 20px;
+}

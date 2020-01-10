@@ -50,5 +50,17 @@
 
     <!--逻辑视图映射-->
     <mvc:view-controller path="/login" view-name="login"/>
+    <mvc:view-controller path="/pay" view-name="pay"/>
+
+    <!-- 2、配置具体的拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截具体的请求-->
+            <mvc:mapping path="/type/queryAllTypes"/>
+            <mvc:mapping path="/user/SkipPersonalPage"/>
+            <mvc:exclude-mapping path="/order/*"/><!-- 排除掉具体的请求，不拦截它-->
+            <bean class="cn.bdqn.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

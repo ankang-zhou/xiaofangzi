@@ -50,7 +50,7 @@ article{
 }
 .search-box3 {
     position: absolute;
-    top: 16.1%;
+    top: 14.65%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: black;
@@ -153,4 +153,9 @@ article{
 }
 #tuiArticle{
     margin-top: 150px;
+}
+
+.return_top{
+    bottom: 45px;
+    right: 5px;
 }

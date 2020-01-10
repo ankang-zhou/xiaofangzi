@@ -7,6 +7,7 @@ import cn.bdqn.service.AddressService;
 import cn.bdqn.service.ArticleService;
 import cn.bdqn.service.UserService;
 import cn.bdqn.utils.BlogImageUtil;
+import cn.bdqn.utils.MD5Util;
 import cn.bdqn.utils.StringSplitUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,10 @@ public class UserController {
      */
     @RequestMapping("/addUserInfo")
     public String addUserInfo(User user, Model model){
+        //用户密码加密
 
+        user.setUserPassword(MD5Util.toMd5(user.getUserPassword()));
+        System.out.println(MD5Util.toMd5(user.getUserPassword()));
         userService.insertUserInfo(user);
 
         return "login";
@@ -68,8 +72,9 @@ public class UserController {
      */
     @RequestMapping("/LoginVerify")
     public String loginVerify(String userEamil, String userPassword, ModelMap model){
+        String pwd = MD5Util.toMd5(userPassword);
 
-        User user = userService.selectUserByUserInfo(userEamil,userPassword);
+        User user = userService.selectUserByUserInfo(userEamil,pwd);
 
         if(user != null){
             model.addAttribute("users",user);
@@ -174,8 +179,6 @@ public class UserController {
 
         userService.updateUserInfo(user);
 
-        System.out.println(user.getUserHead());
-
         return "forward:/user/SkipPersonalPage";
     }
 
@@ -230,7 +233,7 @@ public class UserController {
 
     //取消关注
     @RequestMapping("/CancelAttention")
-    //                                                                         要取消关注的id
+    //要取消关注的id
     public String cancelAttention(@SessionAttribute(value = "users") User user,int id){
         String[] attentions = StringSplitUtils.splitString(user.getUserAttention(),",");
         String attention = "";
@@ -247,7 +250,7 @@ public class UserController {
 
     //增加关注
     @RequestMapping("/AddAttention")
-    //                                                                      要添加关注的id
+    //要添加关注的id
     public String addAttention(@SessionAttribute(value = "users") User user,int id){
         String attention =user.getUserAttention();
         if (attention==null||attention.equals("")){

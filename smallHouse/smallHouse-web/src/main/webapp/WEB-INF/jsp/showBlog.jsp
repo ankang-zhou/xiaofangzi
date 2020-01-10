@@ -223,6 +223,10 @@
         </p>
     </div>
 </div>
+<span id="userId" style="display: none" >${users.userId}</span>
+<div class="return_top">
+    <i class="layui-icon layui-icon-top" style="font-size: 40px; color: #ffffff;margin-left: 5px;line-height: 50px"></i>
+</div>
 </body>
 <script type="text/javascript">
     //点击搜索框
@@ -242,6 +246,25 @@
             var articleTitle = $("#searchText2").val();
             location.href = "${ctx}/article/queryArticle?articleTitle=" + articleTitle;
         });
+        //回到头部
+        $(document).ready(function() {
+            $(".return_top").fadeOut(1);
+            $(window).scroll(function() {
+                if($(window).scrollTop()>300){
+                    $(".return_top").fadeIn(300);
+                }else{
+                    $(".return_top").fadeOut(300);
+                }
+            });
+            //为返回顶部元素添加点击事件
+            $('.return_top').click(function() {
+                //将当前窗口的内容区滚动高度改为0，即顶部
+                $("html,body").animate({
+                    scrollTop: 0
+                }, "fast");
+            });
+        });
+
         //点赞
         $(".likeA").click(function () {
             var userId = $("#userId").text();//用户Id

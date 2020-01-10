@@ -46,7 +46,7 @@
                     <dd><a href="">电商平台</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">社区</a></li>
+            <li class="layui-nav-item"><a href="${ctx}/pay">VIP会员</a></li>
         </ul>
 
         <div class="search-box">
@@ -225,8 +225,10 @@
 
                     <img src="${ctx}/static/images/img/gongan.png" style="float: left;margin-left: 35px">
                     <a href="#">
-                        <span>公安备案号 11010502030143</span>
+                        <span>公安备案号 00000000000000</span>
                     </a>
+                    <br/>
+                    <span class="wzsm">网站声明：</span>本网站为学习网站，一切都为测试内容，没有任何盈利目的。网站测试用户所发表内容仅代表他们个人意见。
                 </p>
             </div>
         </div>
@@ -250,12 +252,32 @@
     </div>
 </div>
 <span id="userId" style="display: none" >${users.userId}</span>
+<div class="return_top">
+    <i class="layui-icon layui-icon-top" style="font-size: 40px; color: #ffffff;margin-left: 5px;line-height: 50px"></i>
+</div>
 </body>
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function(){
+        $(document).ready(function() {
+            $(".return_top").fadeOut(1);
+            $(window).scroll(function() {
+                if($(window).scrollTop()>300){
+                    $(".return_top").fadeIn(300);
+                }else{
+                    $(".return_top").fadeOut(300);
+                }
+            });
+            //为返回顶部元素添加点击事件
+            $('.return_top').click(function() {
+                //将当前窗口的内容区滚动高度改为0，即顶部
+                $("html,body").animate({
+                    scrollTop: 0
+                }, "fast");
+            });
+        });
         //点赞
         $(".likeA").click(function () {
-            alert("???");
+
             var userId = $("#userId").text();//用户Id
             if(userId != ''){
                 var articleId = $(this).parent().parent().parent().children('p').eq(0).text();//文章Id
@@ -274,7 +296,8 @@
                     }
                 })
             }else {
-                alert("请您登录后再进行操作！");
+                alert("???");
+                alert("请您登录后再进行操作!");
             }
         });
     });
